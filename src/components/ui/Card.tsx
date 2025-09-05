@@ -1,5 +1,7 @@
+"use client";
+
 import { forwardRef, HTMLAttributes } from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
@@ -29,7 +31,7 @@ const cardVariants = cva(
 );
 
 export interface CardProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends Omit<HTMLMotionProps<'div'>, 'size'>,
     VariantProps<typeof cardVariants> {
   asChild?: boolean;
 }

@@ -1,8 +1,11 @@
+"use client";
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle } from 'lucide-react';
+import { useHydrationSafe } from '@/hooks/useHydrationSafe';
 
 interface ContactFormData {
   name: string;
@@ -27,6 +30,7 @@ export function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const isMounted = useHydrationSafe();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,7 +64,7 @@ export function ContactForm() {
     });
   };
 
-  if (isSubmitted) {
+  if (isMounted && isSubmitted) {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -70,7 +74,7 @@ export function ContactForm() {
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
         <p className="text-gray-600">
-          We've received your inquiry and will get back to you within 24 hours.
+          We&apos;ve received your inquiry and will get back to you within 24 hours.
         </p>
       </motion.div>
     );
@@ -81,7 +85,7 @@ export function ContactForm() {
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">Get in Touch</CardTitle>
         <CardDescription>
-          Ready to transform your hospitality space? Let's discuss your project.
+          Ready to transform your hospitality space? Let&apos;s discuss your project.
         </CardDescription>
       </CardHeader>
       <CardContent>

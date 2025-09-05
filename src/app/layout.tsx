@@ -10,7 +10,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-white text-gray-900">
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-1">

@@ -1,12 +1,16 @@
+"use client";
+
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { COUNTRIES } from '@/lib/constants';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import { useHydrationSafe } from '@/hooks/useHydrationSafe';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const isMounted = useHydrationSafe();
 
   return (
     <header className="bg-white shadow-sm border-b sticky top-0 z-50">
@@ -87,10 +91,10 @@ export function Header() {
               >
                 <Globe className="w-4 h-4" />
                 <span>Select Country</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${isMounted && isCountryDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               
-              {isCountryDropdownOpen && (
+              {isMounted && isCountryDropdownOpen && (
                 <motion.div
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
