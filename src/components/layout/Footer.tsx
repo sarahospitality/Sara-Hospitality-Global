@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { COUNTRIES } from '@/lib/constants';
-import { Globe, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Globe, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube, ArrowRight } from 'lucide-react';
 import { useHydrationSafe } from '@/hooks/useHydrationSafe';
 
 export function Footer() {
@@ -16,7 +16,15 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="lg:col-span-1">
-              <h3 className="text-xl font-bold mb-4">Sara Global Hospitality</h3>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-10 h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">S</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Sara Global</h3>
+                  <p className="text-xs text-gray-400">Hospitality</p>
+                </div>
+              </div>
               <p className="text-gray-400 mb-6 leading-relaxed">
                 Premium B2B furniture solutions for hotels, resorts, and senior living facilities worldwide.
               </p>
@@ -32,6 +40,9 @@ export function Footer() {
                 </Link>
                 <Link href="#" className="text-gray-400 hover:text-white transition-colors">
                   <Instagram className="w-5 h-5" />
+                </Link>
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <Youtube className="w-5 h-5" />
                 </Link>
               </div>
             </div>
@@ -137,7 +148,15 @@ export function Footer() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-1"
           >
-            <h3 className="text-xl font-bold mb-4">Sara Global Hospitality</h3>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-10 h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xl">S</span>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white">Sara Global</h3>
+                <p className="text-xs text-gray-400">Hospitality</p>
+              </div>
+            </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Premium B2B furniture solutions for hotels, resorts, and senior living facilities worldwide.
             </p>
@@ -153,6 +172,9 @@ export function Footer() {
               </Link>
               <Link href="#" className="text-gray-400 hover:text-white transition-colors">
                 <Instagram className="w-5 h-5" />
+              </Link>
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Youtube className="w-5 h-5" />
               </Link>
             </div>
           </motion.div>
@@ -228,7 +250,7 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center text-gray-400">
                 <Phone className="w-4 h-4 mr-3" />
-                <span>+1 (555) 123-4567</span>
+                <span>+1-678-431-9041</span>
               </div>
               <div className="flex items-center text-gray-400">
                 <Mail className="w-4 h-4 mr-3" />
@@ -236,7 +258,7 @@ export function Footer() {
               </div>
               <div className="flex items-center text-gray-400">
                 <MapPin className="w-4 h-4 mr-3" />
-                <span>Global Headquarters</span>
+                <span>2600 Pleasantdale Rd. Ste 12, Atlanta, GA 30340</span>
               </div>
             </div>
           </motion.div>

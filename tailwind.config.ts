@@ -13,6 +13,7 @@ const config: Config = {
         foreground: 'var(--foreground)',
         primary: {
           DEFAULT: '#f26d35',
+          foreground: 'var(--primary-foreground)',
           50: '#fef7f0',
           100: '#fdeee0',
           200: '#fbd9c0',
@@ -24,6 +25,14 @@ const config: Config = {
           800: '#cb3417',
           900: '#be210d',
         },
+        accent: {
+          DEFAULT: '#f26d35',
+          foreground: '#ffffff',
+        },
+        muted: {
+          foreground: 'var(--muted-foreground)',
+        },
+        border: 'var(--border)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
