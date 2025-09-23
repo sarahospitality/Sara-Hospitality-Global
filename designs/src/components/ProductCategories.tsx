@@ -180,7 +180,7 @@ export default function ProductCategories({ selectedCountry, onNavigate }: Produ
               {canadianCategories.map((category, index) => {
               const Icon = category.icon;
               return (
-                <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden bg-white border-0 shadow-lg flex-shrink-0 w-96" style={{ scrollSnapAlign: 'start' }}>
+                <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-white border border-gray-200/50 shadow-lg shadow-[0_8px_25px_-5px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_35px_-5px_rgba(0,0,0,0.2)] flex-shrink-0 w-96" style={{ scrollSnapAlign: 'start' }}>
                   <div className="relative overflow-hidden">
                     <ImageWithFallback
                       src={category.image}
@@ -340,7 +340,7 @@ export default function ProductCategories({ selectedCountry, onNavigate }: Produ
                       .map((category, index) => {
                         const IconComponent = category.icon;
                         return (
-                          <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.15)] hover:-translate-y-1">
+                          <Card key={index} className="group hover:shadow-xl transition-all duration-300 border border-gray-200/50 shadow-lg shadow-[0_8px_25px_-5px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_35px_-5px_rgba(0,0,0,0.2)] overflow-hidden hover:-translate-y-1">
                             <CardContent className="p-0">
                               <div className="relative overflow-hidden rounded-t-lg">
                                 <ImageWithFallback

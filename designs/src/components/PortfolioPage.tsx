@@ -2,14 +2,13 @@ import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { ExternalLink, MapPin, Calendar } from "lucide-react";
-import { useState } from "react";
+import Link from "next/link";
 
 interface PortfolioPageProps {
   onNavigate: (page: string, id?: string) => void;
 }
 
 export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
   const projects = [
     {
@@ -104,10 +103,6 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
     }
   ];
 
-  const handleProjectClick = (projectId: string) => {
-    setSelectedProject(projectId);
-    onNavigate("hotel", projectId);
-  };
 
 
   return (
@@ -145,11 +140,13 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
             <div className="overflow-hidden">
               <div className="flex animate-scroll-logos space-x-4">
                 {/* First set of projects */}
-                {projects.map((project, index) => (
-                  <button
+                {projects.map((project, index) => {
+                  console.log("Rendering carousel project:", project.title);
+                  return (
+                  <Link
                     key={`first-${index}`}
-                    onClick={() => handleProjectClick(project.id)}
-                    className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-6 py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[240px]"
+                    href={`/portfolio/${project.id}`}
+                    className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-6 py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[240px] block"
                   >
                     <div className="text-center">
                       <h3 className="font-medium text-sm leading-tight group-hover:text-white transition-colors mb-1">
@@ -162,15 +159,16 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
                         </span>
                       </div>
                     </div>
-                  </button>
-                ))}
+                  </Link>
+                  );
+                })}
                 
                 {/* Duplicate set for seamless loop */}
                 {projects.map((project, index) => (
-                  <button
+                  <Link
                     key={`second-${index}`}
-                    onClick={() => handleProjectClick(project.id)}
-                    className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-6 py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[240px]"
+                    href={`/portfolio/${project.id}`}
+                    className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-6 py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[240px] block"
                   >
                     <div className="text-center">
                       <h3 className="font-medium text-sm leading-tight group-hover:text-white transition-colors mb-1">
@@ -183,8 +181,9 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
                         </span>
                       </div>
                     </div>
-                  </button>
-                ))}
+                  </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -202,12 +201,14 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden cursor-pointer"
-                onClick={() => onNavigate("hotel", project.id)}
-              >
+            {projects.map((project, index) => {
+              console.log("Rendering project:", project.title, "with ID:", project.id);
+              return (
+              <Link href={`/portfolio/${project.id}`}>
+                <Card 
+                  key={index} 
+                  className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden cursor-pointer"
+                >
                 <div className="relative">
                   <ImageWithFallback
                     src={project.image}
@@ -220,7 +221,8 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
                   <div className="flex flex-wrap gap-1 mb-3">
                     {project.tags.map((tag, tagIndex) => (
                       <Badge key={tagIndex} variant="outline" className="text-xs">{tag}</Badge>
-                    ))}
+                      );
+                })}
                   </div>
                   
                   <h3 className="text-lg font-bold mb-3">{project.title}</h3>
@@ -239,7 +241,9 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
                   <p className="text-sm text-muted-foreground line-clamp-2">{project.description}</p>
                 </CardContent>
               </Card>
-            ))}
+              </Link>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -16,7 +16,11 @@ import {
   Target
 } from "lucide-react";
 
-export default function WhyChooseUs() {
+interface WhyChooseUsProps {
+  selectedCountry?: string;
+}
+
+export default function WhyChooseUs({ selectedCountry }: WhyChooseUsProps) {
   const reasons = [
     {
       icon: Award,

@@ -3,6 +3,7 @@ import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { ExternalLink, MapPin, Calendar, Users, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 interface PortfolioProps {
   onNavigate?: (page: string) => void;
@@ -11,6 +12,17 @@ interface PortfolioProps {
 
 export default function Portfolio({ onNavigate, selectedCountry }: PortfolioProps) {
   const isCanada = selectedCountry === "canada-toronto";
+  
+  // Function to generate slug from project title
+  const generateSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim();
+  };
+  
   const projects = [
     {
       title: "Grand Palace Hotel Dubai",
@@ -157,13 +169,12 @@ export default function Portfolio({ onNavigate, selectedCountry }: PortfolioProp
                       <span>{project.year}</span>
                     </div>
                     <p className="text-white/90 text-sm mb-4 line-clamp-2">{project.description}</p>
-                    <Button 
-                      className="bg-primary hover:bg-primary/90 text-white"
-                      onClick={() => onNavigate?.("portfolio")}
-                    >
-                      View Details
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
+                    <Link href={`/portfolio/${generateSlug(project.title)}`}>
+                      <Button className="bg-primary hover:bg-primary/90 text-white">
+                        View Details
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -260,13 +271,12 @@ export default function Portfolio({ onNavigate, selectedCountry }: PortfolioProp
                   </div>
                 </div>
                 <p className="text-muted-foreground mb-6">{projects[0].description}</p>
-                <Button 
-                  className="w-fit"
-                  onClick={() => onNavigate?.("portfolio")}
-                >
-                  View Case Study
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+                <Link href={`/portfolio/${generateSlug(projects[0].title)}`}>
+                  <Button className="w-fit">
+                    View Case Study
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -309,15 +319,16 @@ export default function Portfolio({ onNavigate, selectedCountry }: PortfolioProp
                 
                 <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
                 
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="p-0 h-auto hover:bg-transparent"
-                  onClick={() => onNavigate?.("portfolio")}
-                >
-                  <span className="text-primary">View Details</span>
-                  <ArrowRight className="w-3 h-3 ml-2 text-primary" />
-                </Button>
+                <Link href={`/portfolio/${generateSlug(project.title)}`}>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="p-0 h-auto hover:bg-transparent"
+                  >
+                    <span className="text-primary">View Details</span>
+                    <ArrowRight className="w-3 h-3 ml-2 text-primary" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}

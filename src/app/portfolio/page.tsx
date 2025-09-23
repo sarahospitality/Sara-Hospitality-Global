@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { ExternalLink, MapPin, Calendar } from "lucide-react";
+import { ExternalLink, MapPin, Calendar, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -123,10 +123,17 @@ export default function PortfolioPage() {
               Our Portfolio of
               <span className="text-primary block">Excellence</span>
             </h1>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-muted-foreground mb-8">
               Discover our diverse collection of hospitality projects spanning luxury resorts, 
               boutique hotels, and unique accommodations across the globe.
             </p>
+            <Link href="/contact">
+              <button className="bg-[#f26d35] hover:bg-[#e55a2b] text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 mx-auto transition-all duration-300 shadow-2xl hover:shadow-3xl relative overflow-hidden">
+                <span className="relative z-10">Request A Quote</span>
+                <ArrowRight className="w-5 h-5 relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent"></div>
+              </button>
+            </Link>
           </div>
         </div>
       </section>

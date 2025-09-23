@@ -133,221 +133,228 @@ export default function EnquiryPage({ onNavigate }: EnquiryPageProps) {
       {/* Main Content */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid lg:grid-cols-3 gap-8 lg:items-stretch">
             
-            {/* Enquiry Form */}
-            <div>
-              <div className="mb-8">
-                <h2 className="text-3xl lg:text-4xl font-bold mb-4">Send Us Your Enquiry</h2>
-                <p className="text-xl text-muted-foreground">
-                  Fill out the form below and our furniture experts will get back to you 
-                  with a personalized solution within 24 hours.
+            {/* Contact Information */}
+            <div className="space-y-6 flex flex-col">
+              <div>
+                <h2 className="text-3xl font-bold mb-6">Contact Information</h2>
+                <p className="text-gray-600 mb-8">
+                  Ready to start your project? Our team is here to help you every step of the way.
                 </p>
               </div>
 
-              <Card className="shadow-2xl border-0 bg-gradient-to-br from-white to-accent/20">
-                <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Name Field */}
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="flex items-center gap-2">
-                        <User className="w-4 h-4 text-primary" />
-                        Your Name *
-                      </Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Enter your full name"
-                        className="h-12 bg-input-background border-0 focus:ring-2 focus:ring-primary/20"
-                      />
+              <div className="space-y-6">
+                {/* Phone */}
+                <div className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-white rounded-lg">
+                  <div className="h-1 bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20"></div>
+                  <div className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20 text-[#f26d35]">
+                        <Phone className="w-6 h-6" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold mb-2">Phone</h4>
+                        <p className="text-gray-900 mb-1">+1-678-431-9041</p>
+                        <p className="text-sm text-gray-600">Mon-Fri 8AM-6PM EST</p>
+                      </div>
                     </div>
+                  </div>
+                </div>
 
-                    {/* Email Field */}
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-primary" />
-                        Email Address *
-                      </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="your.email@example.com"
-                        className="h-12 bg-input-background border-0 focus:ring-2 focus:ring-primary/20"
-                      />
+                {/* Email */}
+                <div className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-white rounded-lg">
+                  <div className="h-1 bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20"></div>
+                  <div className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20 text-[#f26d35]">
+                        <Mail className="w-6 h-6" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold mb-2">Email</h4>
+                        <p className="text-gray-900 mb-1">info@saraglobal.com</p>
+                        <p className="text-gray-900 mb-1">sales@saraglobal.com</p>
+                        <p className="text-sm text-gray-600">24/7 Email Support</p>
+                      </div>
                     </div>
+                  </div>
+                </div>
 
-                    {/* Phone Field */}
-                    <div className="space-y-2">
-                      <Label htmlFor="phone" className="flex items-center gap-2">
-                        <Phone className="w-4 h-4 text-primary" />
-                        Phone Number *
-                      </Label>
-                      <Input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        placeholder="+1 (555) 123-4567"
-                        className="h-12 bg-input-background border-0 focus:ring-2 focus:ring-primary/20"
-                      />
+                {/* Headquarters */}
+                <div className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-white rounded-lg">
+                  <div className="h-1 bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20"></div>
+                  <div className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20 text-[#f26d35]">
+                        <MapPin className="w-6 h-6" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold mb-2">Headquarters</h4>
+                        <p className="text-gray-900 mb-1">Sara Global Hospitality</p>
+                        <p className="text-gray-900 mb-2">2600 Pleasantdale Rd. Ste 12, Atlanta, GA 30340</p>
+                        <a href="#" className="text-[#f26d35] hover:text-[#f26d35]/80 font-medium">
+                          Visit our showroom
+                        </a>
+                      </div>
                     </div>
+                  </div>
+                </div>
 
-                    {/* Subject Field */}
-                    <div className="space-y-2">
-                      <Label htmlFor="subject" className="flex items-center gap-2">
-                        <Building className="w-4 h-4 text-primary" />
-                        Subject *
-                      </Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        type="text"
-                        required
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        placeholder="e.g., Hotel Lobby Furniture Enquiry"
-                        className="h-12 bg-input-background border-0 focus:ring-2 focus:ring-primary/20"
-                      />
+                {/* Global Offices */}
+                <div className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-white rounded-lg">
+                  <div className="h-1 bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20"></div>
+                  <div className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20 text-[#f26d35]">
+                        <Globe className="w-6 h-6" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold mb-2">Global Offices</h4>
+                        <p className="text-gray-900 mb-2">Dubai • London • Singapore</p>
+                        <p className="text-gray-900 mb-2">Mumbai • Shanghai • Toronto</p>
+                        <a href="#" className="text-[#f26d35] hover:text-[#f26d35]/80 font-medium">
+                          Worldwide presence
+                        </a>
+                      </div>
                     </div>
-
-                    {/* Message Field */}
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="flex items-center gap-2">
-                        <MessageSquare className="w-4 h-4 text-primary" />
-                        Your Message *
-                      </Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        required
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Tell us about your project requirements, space dimensions, style preferences, budget range, and any specific needs..."
-                        className="min-h-32 bg-input-background border-0 focus:ring-2 focus:ring-primary/20 resize-none"
-                      />
-                    </div>
-
-                    {/* Submit Button */}
-                    <Button 
-                      type="submit" 
-                      size="lg" 
-                      disabled={isSubmitting}
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2"></div>
-                          Sending Enquiry...
-                        </>
-                      ) : (
-                        <>
-                          Send Enquiry
-                          <Send className="w-4 h-4 ml-2" />
-                        </>
-                      )}
-                    </Button>
-
-                    <p className="text-sm text-muted-foreground text-center">
-                      By submitting this form, you agree to our privacy policy and terms of service.
-                    </p>
-                  </form>
-                </CardContent>
-              </Card>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Spacer to fill remaining height */}
+              <div className="flex-1"></div>
             </div>
 
-            {/* Right Side Content */}
-            <div className="space-y-8">
-              
-              {/* Furniture Showcase */}
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/20 rounded-3xl transform rotate-3"></div>
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1675518544582-6706988d16bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGZ1cm5pdHVyZSUyMHNob3dyb29tfGVufDF8fHx8MTc1NzMyODE5MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Sara Global Hospitality Furniture Showroom"
-                  className="relative z-10 w-full h-80 object-cover rounded-3xl shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl z-20 flex items-end">
-                  <div className="p-6 text-white">
-                    <h3 className="text-xl font-bold mb-2">Premium Hospitality Furniture</h3>
-                    <p className="text-white/90 text-sm">Custom-designed solutions for luxury hotels and resorts worldwide</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Contact Information */}
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-                <div className="space-y-4">
-                  {contactInfo.map((info, index) => (
-                    <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                      <div className={`h-1 bg-gradient-to-r ${info.bgColor}`}></div>
-                      <CardContent className="p-6">
-                        <div className="flex items-start gap-4">
-                          <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r ${info.bgColor} ${info.color}`}>
-                            {info.icon}
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="font-bold mb-1">{info.title}</h4>
-                            <p className="text-foreground mb-1">{info.content}</p>
-                            <p className="text-sm text-muted-foreground">{info.subcontent}</p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-
-              {/* Business Hours */}
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-primary/5 to-accent/20">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Clock className="w-6 h-6 text-primary" />
-                    <h4 className="text-xl font-bold">Business Hours</h4>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span>Monday - Friday</span>
-                      <span className="font-medium">9:00 AM - 6:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Saturday</span>
-                      <span className="font-medium">10:00 AM - 4:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Sunday</span>
-                      <span className="font-medium text-muted-foreground">Closed</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-4 border-t">
-                    <p className="text-sm text-muted-foreground">
-                      Emergency support available 24/7 for existing projects
+            {/* Enquiry Form */}
+            <div className="lg:col-span-2 flex flex-col">
+              <div className="flex-1 flex flex-col">
+                <div className="border-0 shadow-2xl bg-gradient-to-br from-white to-gray-50 flex-1 flex flex-col rounded-lg">
+                  <div className="pb-3 p-6">
+                    <h3 className="flex items-center gap-2 text-2xl font-bold mb-2">
+                      <User className="w-6 h-6 text-[#f26d35]" />
+                      Project Inquiry Form
+                    </h3>
+                    <p className="text-gray-600">
+                      Tell us about your project and we'll get back to you within 24 hours with a detailed proposal.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="space-y-3 p-3 flex-1 flex flex-col">
+                    <form onSubmit={handleSubmit} className="space-y-3 flex-1 flex flex-col">
+                      {/* Name & Email */}
+                      <div className="grid md:grid-cols-2 gap-3">
+                        <div className="space-y-2">
+                          <Label htmlFor="name" className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <User className="w-4 h-4 text-[#f26d35]" />
+                            Name *
+                          </Label>
+                          <Input
+                            id="name"
+                            name="name"
+                            type="text"
+                            required
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            placeholder="Enter your full name"
+                            className="h-12 bg-gray-50 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 rounded-lg px-4"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="email" className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <Mail className="w-4 h-4 text-[#f26d35]" />
+                            Email Address *
+                          </Label>
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            required
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="your@email.com"
+                            className="h-12 bg-gray-50 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 rounded-lg px-4"
+                          />
+                        </div>
+                      </div>
 
-              {/* Alternative Furniture Image */}
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-l from-accent/20 to-primary/10 rounded-3xl transform -rotate-2"></div>
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1750306957820-f778b67c4e13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBmdXJuaXR1cmUlMjBkZXNpZ258ZW58MXx8fHwxNzU3MzI4MTk0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Modern Office Furniture Design"
-                  className="relative z-10 w-full h-64 object-cover rounded-3xl shadow-xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-3xl z-20 flex items-end">
-                  <div className="p-4 text-white">
-                    <p className="text-white/90 text-sm">Modern workspace solutions tailored to your brand</p>
+                      {/* Phone & Subject */}
+                      <div className="grid md:grid-cols-2 gap-3">
+                        <div className="space-y-2">
+                          <Label htmlFor="phone" className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <Phone className="w-4 h-4 text-[#f26d35]" />
+                            Phone Number *
+                          </Label>
+                          <Input
+                            id="phone"
+                            name="phone"
+                            type="tel"
+                            required
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                            placeholder="+1-678-431-9041"
+                            className="h-12 bg-gray-50 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 rounded-lg px-4"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="subject" className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <Building className="w-4 h-4 text-[#f26d35]" />
+                            Subject *
+                          </Label>
+                          <Input
+                            id="subject"
+                            name="subject"
+                            type="text"
+                            required
+                            value={formData.subject}
+                            onChange={handleInputChange}
+                            placeholder="e.g., Hotel Lobby Furniture Enquiry"
+                            className="h-12 bg-gray-50 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 rounded-lg px-4"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Message - Full Width */}
+                      <div className="space-y-2">
+                        <Label htmlFor="message" className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                          <MessageSquare className="w-4 h-4 text-[#f26d35]" />
+                          Message from the Client *
+                        </Label>
+                        <Textarea
+                          id="message"
+                          name="message"
+                          required
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          placeholder="Please describe your project, specific furniture needs, timeline, and any special requirements..."
+                          className="w-full h-24 bg-gray-50 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 resize-none rounded-lg px-4 py-3"
+                        />
+                      </div>
+
+                      {/* Spacer to push button to bottom */}
+                      <div className="flex-1"></div>
+
+                      {/* Submit Button */}
+                      <Button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full bg-[#f26d35] hover:bg-[#f26d35]/90 text-white h-12"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2"></div>
+                            Sending Inquiry...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4 mr-2" />
+                            Send Inquiry
+                          </>
+                        )}
+                      </Button>
+
+                      <p className="text-sm text-gray-600 text-center">
+                        We'll review your inquiry and respond within 24 hours with next steps.
+                      </p>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -355,6 +362,7 @@ export default function EnquiryPage({ onNavigate }: EnquiryPageProps) {
           </div>
         </div>
       </section>
+
 
       {/* Why Choose Us CTA */}
       <section className="py-20 bg-gradient-to-r from-primary/5 via-accent/50 to-primary/5">
