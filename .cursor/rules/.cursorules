@@ -1,5 +1,5 @@
 description: |
-  When implementing instructions provided in chat, the AI agent must follow these rules:
+  When implementing instructions provided in chat, the AI agent must follow these rules : 
 
   1. Requirement Understanding & Planning
      - Carefully read and understand the request.
