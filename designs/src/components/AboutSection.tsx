@@ -94,7 +94,7 @@ export default function AboutSection({ selectedCountry, onNavigate }: AboutSecti
               <div className="pt-4">
                 <Button 
                   className="w-full bg-primary hover:bg-primary/90 text-white"
-                  onClick={() => onNavigate("about")}
+                  onClick={() => onNavigate?.("about")}
                 >
                   View More About Us
                   <ArrowRight className="w-4 h-4 ml-2" />

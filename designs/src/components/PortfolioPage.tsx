@@ -182,8 +182,7 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
                       </div>
                     </div>
                   </Link>
-                  );
-                })}
+                ))}
               </div>
             </div>
           </div>
@@ -221,8 +220,7 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
                   <div className="flex flex-wrap gap-1 mb-3">
                     {project.tags.map((tag, tagIndex) => (
                       <Badge key={tagIndex} variant="outline" className="text-xs">{tag}</Badge>
-                      );
-                })}
+                ))}
                   </div>
                   
                   <h3 className="text-lg font-bold mb-3">{project.title}</h3>

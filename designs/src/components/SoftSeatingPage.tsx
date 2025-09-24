@@ -452,11 +452,11 @@ export default function SoftSeatingPage({ onNavigate }: SoftSeatingPageProps) {
 
               {/* Right Column - Dynamic Content Based on Selection */}
               <div className="bg-white rounded-2xl p-8 shadow-lg sticky top-6">
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900">{buyingGuideContent[selectedGuidePoint].title}</h3>
-                <p className="text-lg text-primary font-medium mb-6">{buyingGuideContent[selectedGuidePoint].subtitle}</p>
+                <h3 className="text-2xl font-semibold mb-4 text-gray-900">{buyingGuideContent[selectedGuidePoint as keyof typeof buyingGuideContent].title}</h3>
+                <p className="text-lg text-primary font-medium mb-6">{buyingGuideContent[selectedGuidePoint as keyof typeof buyingGuideContent].subtitle}</p>
                 
                 <div className="space-y-6">
-                  {buyingGuideContent[selectedGuidePoint].content.map((paragraph, index) => (
+                  {buyingGuideContent[selectedGuidePoint as keyof typeof buyingGuideContent].content.map((paragraph, index) => (
                     <p key={index} className="text-gray-600 leading-relaxed">
                       {paragraph}
                     </p>

@@ -142,13 +142,13 @@ export default function ContactPage() {
             </motion.div>
             <motion.div variants={itemVariants}>
               <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-                Let's Discuss Your
+                Let&apos;s Discuss Your
                 <span className="text-[#f26d35] block">Project Needs</span>
               </h1>
             </motion.div>
             <motion.div variants={itemVariants}>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Get in touch with our hospitality furniture experts. We're here to help you 
+                Get in touch with our hospitality furniture experts. We&apos;re here to help you 
                 create exceptional spaces that inspire and delight your guests.
               </p>
             </motion.div>
@@ -251,7 +251,7 @@ export default function ContactPage() {
                       Project Inquiry Form
                     </CardTitle>
                     <p className="text-gray-600">
-                      Tell us about your project and we'll get back to you within 24 hours with a detailed proposal.
+                      Tell us about your project and we&apos;ll get back to you within 24 hours with a detailed proposal.
                     </p>
                   </CardHeader>
                   <CardContent className="space-y-3 p-3 flex-1 flex flex-col">
@@ -390,7 +390,7 @@ export default function ContactPage() {
                       </Button>
 
                       <p className="text-sm text-gray-600 text-center">
-                        We'll review your inquiry and respond within 24 hours with next steps and project details.
+                        We&apos;ll review your inquiry and respond within 24 hours with next steps and project details.
                       </p>
                     </form>
                   </CardContent>

@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 
 // Badge component
-const Badge = ({ children, variant = "default", className = "", ...props }: any) => {
+const Badge = ({ children, variant = "default", className = "", ...props }: { children: React.ReactNode; variant?: string; className?: string; [key: string]: unknown }) => {
   const baseClasses = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium";
   const variantClasses = {
     default: "bg-[#f26d35] text-white",
@@ -50,7 +50,7 @@ const Separator = ({ className = "" }: { className?: string }) => (
 );
 
 // ImageWithFallback component
-const ImageWithFallback = ({ src, alt, className = "", ...props }: any) => (
+const ImageWithFallback = ({ src, alt, className = "", ...props }: { src: string; alt: string; className?: string; [key: string]: unknown }) => (
   <img src={src} alt={alt} className={className} {...props} />
 );
 
@@ -65,10 +65,6 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
-};
 
 export default function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   // Use the use hook to unwrap the Promise

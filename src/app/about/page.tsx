@@ -9,19 +9,9 @@ import {
   Users, 
   Globe, 
   Calendar, 
-  ArrowRight, 
-  CheckCircle, 
-  Star, 
-  Heart, 
-  Shield,
-  Building,
-  Phone,
-  Mail,
-  MapPin,
-  Clock
+  ArrowRight
 } from 'lucide-react';
 import Link from 'next/link';
-import { useHydrationSafe } from '@/hooks/useHydrationSafe';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -46,90 +36,8 @@ const itemVariants = {
 };
 
 export default function AboutPage() {
-  const isMounted = useHydrationSafe();
 
-  const timelineEvents = [
-    {
-      year: "1995",
-      title: "Company Founded",
-      description: "Sara Global Hospitality was established with a vision to revolutionize hotel furniture manufacturing."
-    },
-    {
-      year: "2000",
-      title: "International Expansion",
-      description: "Expanded operations to UAE and UK, serving luxury hotels across multiple continents."
-    },
-    {
-      year: "2005",
-      title: "Design Innovation",
-      description: "Launched our custom design division, creating bespoke furniture solutions for premium hotels."
-    },
-    {
-      year: "2010",
-      title: "Sustainability Initiative",
-      description: "Introduced eco-friendly materials and sustainable manufacturing processes across all operations."
-    },
-    {
-      year: "2015",
-      title: "Technology Integration",
-      description: "Integrated smart furniture solutions and IoT technology for modern hospitality experiences."
-    },
-    {
-      year: "2024",
-      title: "Global Recognition",
-      description: "Achieved 500+ completed projects and received international awards for hospitality furniture excellence."
-    }
-  ];
 
-  const values = [
-    {
-      icon: Star,
-      title: "Excellence",
-      description: "We strive for perfection in every piece we create, ensuring the highest quality standards."
-    },
-    {
-      icon: Heart,
-      title: "Passion",
-      description: "Our love for craftsmanship drives us to create furniture that tells a story."
-    },
-    {
-      icon: Shield,
-      title: "Trust",
-      description: "Building lasting relationships through reliability, transparency, and consistent delivery."
-    },
-    {
-      icon: Globe,
-      title: "Innovation",
-      description: "Pioneering new design concepts and sustainable solutions for the hospitality industry."
-    }
-  ];
-
-  const teamMembers = [
-    {
-      name: "Sarah Johnson",
-      role: "Chief Executive Officer",
-      image: "https://images.unsplash.com/photo-1585554414787-09b821c321c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHdvbWFuJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc1NzMwNDkxOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      bio: "With over 15 years in hospitality design, Sarah leads our vision of creating exceptional furniture experiences."
-    },
-    {
-      name: "Michael Chen",
-      role: "Head of Design",
-      image: "https://images.unsplash.com/photo-1601489865452-407a1b801dde?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBtYW4lMjBzdWl0fGVufDF8fHx8MTc1NzMyNTE0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      bio: "Award-winning designer specializing in luxury hospitality interiors and sustainable furniture solutions."
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "Operations Director",
-      image: "https://images.unsplash.com/photo-1610631066894-62452ccb927c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGNlb3xlbnwxfHx8fDE3NTczMjUxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      bio: "Ensures seamless project execution and quality control across all our international manufacturing facilities."
-    },
-    {
-      name: "David Thompson",
-      role: "Client Relations Manager",
-      image: "https://images.unsplash.com/photo-1601489865452-407a1b801dde?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBtYW4lMjBzdWl0fGVufDF8fHx8MTc1NzMyNTE0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      bio: "Builds strong partnerships with hospitality clients worldwide, ensuring exceptional service delivery."
-    }
-  ];
 
   const stats = [
     { number: "500+", label: "Projects Completed" },
@@ -159,7 +67,7 @@ export default function AboutPage() {
                 <span className="text-[#f26d35] block">Hospitality Furniture</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                For nearly three decades, we've been transforming hospitality spaces with custom-designed furniture 
+                For nearly three decades, we&apos;ve been transforming hospitality spaces with custom-designed furniture 
                 that combines luxury, functionality, and sustainability. Our global presence spans across 
                 continents, bringing world-class craftsmanship to premium hotels and resorts.
               </p>
@@ -255,7 +163,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-2xl lg:text-3xl font-bold text-[#f26d35] mb-6">Our Vision</h3>
                   <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                    To become the world's leading hospitality furniture manufacturer, recognized for innovation, 
+                    To become the world&apos;s leading hospitality furniture manufacturer, recognized for innovation, 
                     sustainability, and unparalleled quality.
                   </p>
                   <div className="grid grid-cols-2 gap-4">
@@ -290,7 +198,7 @@ export default function AboutPage() {
                 <Card className="relative bg-white/80 backdrop-blur border-0 shadow-lg">
                   <CardContent className="p-8 lg:p-12">
                     <blockquote className="text-xl lg:text-2xl font-medium text-center leading-relaxed text-gray-700">
-                      "Transforming spaces, creating experiences, and building dreams - one piece of furniture at a time."
+                      &ldquo;Transforming spaces, creating experiences, and building dreams - one piece of furniture at a time.&rdquo;
                     </blockquote>
                   </CardContent>
                 </Card>
@@ -375,7 +283,7 @@ export default function AboutPage() {
               Ready to Transform Your Hospitality Space?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-              Let's discuss how Sara Global Hospitality can bring your vision to life with our expert furniture solutions and global experience.
+              Let&apos;s discuss how Sara Global Hospitality can bring your vision to life with our expert furniture solutions and global experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">

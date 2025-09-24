@@ -21,7 +21,6 @@ import {
   Award,
   Globe
 } from "lucide-react";
-import { toast } from "sonner@2.0.3";
 
 interface ContactPageProps {
   onNavigate: (page: string) => void;
@@ -60,7 +59,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    toast.success("Thank you for your inquiry! We'll get back to you within 24 hours.");
+    alert("Thank you for your inquiry! We'll get back to you within 24 hours.");
     setFormData({
       name: "",
       email: "",
@@ -334,7 +333,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                             <Checkbox 
                               id={`interest-${index}`}
                               checked={formData.interests.includes(interest)}
-                              onCheckedChange={(checked) => handleInterestChange(interest, checked as boolean)}
+                              onCheckedChange={(checked: boolean) => handleInterestChange(interest, checked)}
                             />
                             <Label htmlFor={`interest-${index}`} className="text-sm cursor-pointer">
                               {interest}

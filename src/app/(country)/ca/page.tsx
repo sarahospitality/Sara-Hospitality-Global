@@ -8,7 +8,6 @@ import {
   ArrowRight, 
   Star, 
   Users, 
-  Award, 
   MapPin, 
   Phone, 
   Mail,
@@ -192,7 +191,7 @@ export default function CanadaHomepage() {
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            {PRODUCT_CATEGORIES.map((category, index) => (
+            {PRODUCT_CATEGORIES.map((category) => (
               <motion.div
                 key={category}
                 variants={itemVariants}

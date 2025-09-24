@@ -100,7 +100,7 @@ export default function CanadianStatsSection({ selectedCountry }: CanadianStatsS
                     {brandLogos.map((logo, index) => (
                       <div key={`${setIndex}-${index}`} className="flex-shrink-0">
                         <img
-                          src={logo.src}
+                          src={logo.src as unknown as string}
                           alt={`${logo.name} logo`}
                           className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
                         />

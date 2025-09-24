@@ -265,7 +265,7 @@ export default function BlogPage({ onNavigate }: BlogPageProps) {
                     <div className="flex gap-4">
                       <Button 
                         size="lg" 
-                        onClick={() => onNavigate?.("blog-detail", featuredPost.slug)}
+                        onClick={() => onNavigate?.(`blog-detail/${featuredPost.slug}`)}
                         className="bg-primary hover:bg-primary/90 text-primary-foreground"
                       >
                         Read Full Article
@@ -350,7 +350,7 @@ export default function BlogPage({ onNavigate }: BlogPageProps) {
                         <div className="flex items-center justify-between pt-4 border-t border-border">
                           <span className="text-sm text-muted-foreground">{post.date}</span>
                           <Button 
-                            onClick={() => onNavigate?.("blog-detail", post.slug)}
+                            onClick={() => onNavigate?.(`blog-detail/${post.slug}`)}
                             className="bg-primary hover:bg-primary/90 text-primary-foreground"
                           >
                             Read More

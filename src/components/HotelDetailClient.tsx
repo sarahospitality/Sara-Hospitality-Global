@@ -2,8 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/Button";
-import { ArrowLeft, ArrowRight, Check, MessageCircle, Star, Lightbulb, Calendar, Settings } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/Card";
+import { ArrowLeft, ArrowRight, Check, MessageCircle, Star } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import Link from "next/link";
 
@@ -12,7 +11,6 @@ interface HotelDetailClientProps {
 }
 
 export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
-  const [activeTab, setActiveTab] = useState<'old' | 'new'>('new');
   const [activeGuideItem, setActiveGuideItem] = useState(0);
 
   // Memoize project data to prevent recalculation
@@ -186,7 +184,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-          <p className="text-gray-600 mb-8">The project you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-8">The project you&apos;re looking for doesn&apos;t exist.</p>
           <Link href="/portfolio">
             <Button className="bg-primary text-white hover:bg-primary/90">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -411,7 +409,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
               Transform Your Vision Into Reality
             </h2>
             <p className="text-xl text-white mb-8">
-              Brand identity and guest experience goals. Our award-winning design team specializes in creating bespoke furniture solutions that perfectly align with your hotel's vision.
+              Brand identity and guest experience goals. Our award-winning design team specializes in creating bespoke furniture solutions that perfectly align with your hotel&apos;s vision.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="http://localhost:3001/contact">
@@ -440,7 +438,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
             Lorem ipsum dolor sit amet consectetur
           </h2>
           <p className="text-lg text-white mb-6 leading-relaxed">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
           </p>
           <p className="text-lg text-white leading-relaxed">
             but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -471,7 +469,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                 </div>
                 <div className="flex-1">
                   <p className="text-gray-700 mb-4 leading-relaxed">
-                    "Pool, <strong>hot tub</strong>, decent <strong>breakfast</strong> with eggs, sausage, cereal, <strong>waffles</strong>, <strong>coffee</strong>."
+                    &ldquo;Pool, <strong>hot tub</strong>, decent <strong>breakfast</strong> with eggs, sausage, cereal, <strong>waffles</strong>, <strong>coffee</strong>.&rdquo;
                   </p>
                   <div className="flex space-x-1">
                     {[...Array(4)].map((_, i) => (
@@ -498,7 +496,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                 </div>
                 <div className="flex-1">
                   <p className="text-gray-700 mb-4 leading-relaxed">
-                    "<strong>Easy access</strong> to the main drag for <strong>food</strong> and <strong>shopping</strong>."
+                    &ldquo;<strong>Easy access</strong> to the main drag for <strong>food</strong> and <strong>shopping</strong>.&rdquo;
                   </p>
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
@@ -526,7 +524,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                 </div>
                 <div className="flex-1">
                   <p className="text-gray-700 mb-4 leading-relaxed">
-                    "Very very clean <strong>facility</strong> wonderful <strong>staff</strong> cheapest <strong>price</strong> in town"
+                    &ldquo;Very very clean <strong>facility</strong> wonderful <strong>staff</strong> cheapest <strong>price</strong> in town&rdquo;
                   </p>
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
@@ -561,7 +559,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
           
           {/* Lorem Ipsum Text */}
           <p className="text-lg text-gray-700 mb-12 leading-relaxed">
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here'.
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &apos;Content here&apos;.
           </p>
           
           {/* Client Information */}
@@ -682,13 +680,13 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                   <p className="text-orange-500 font-semibold mb-6">Design Selection Excellence</p>
                   <div className="space-y-4 text-gray-600">
                     <p>
-                      Consider your hotel's brand identity and target guest demographics to select seating that aligns with your overall aesthetic vision and guest expectations.
+                      Consider your hotel&apos;s brand identity and target guest demographics to select seating that aligns with your overall aesthetic vision and guest expectations.
                     </p>
                     <p>
                       Evaluate space constraints and traffic patterns to ensure optimal furniture placement that enhances guest flow and comfort throughout your property.
                     </p>
                     <p>
-                      Choose versatile designs that can adapt to different spaces - from intimate conversation areas to large gatherings - maximizing your investment's functionality.
+                      Choose versatile designs that can adapt to different spaces - from intimate conversation areas to large gatherings - maximizing your investment&apos;s functionality.
                     </p>
                   </div>
                   <Link href="http://localhost:3001/contact" className="inline-block mt-8">
@@ -923,7 +921,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                       Project Inquiry Form
                     </h3>
                     <p className="text-gray-600">
-                      Tell us about your project and we'll get back to you within 24 hours with a detailed proposal.
+                      Tell us about your project and we&apos;ll get back to you within 24 hours with a detailed proposal.
                     </p>
                   </div>
                   <div className="space-y-4 p-6">
@@ -1051,7 +1049,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                       </Button>
 
                       <p className="text-sm text-gray-600 text-center">
-                        We'll review your inquiry and respond within 24 hours with next steps.
+                        We&apos;ll review your inquiry and respond within 24 hours with next steps.
                       </p>
                     </form>
                   </div>

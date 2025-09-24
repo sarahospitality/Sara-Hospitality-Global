@@ -37,7 +37,7 @@ export interface CardProps
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, padding, asChild = false, ...props }, ref) => {
+  ({ className, variant, padding, ...props }, ref) => {
     return (
       <motion.div
         className={cn(cardVariants({ variant, padding, className }))}

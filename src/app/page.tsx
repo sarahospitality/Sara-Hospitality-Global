@@ -1,14 +1,11 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
-import { COUNTRIES } from '@/lib/constants';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { 
   Globe, 
   ArrowRight, 
   Star, 
-  Building, 
   Quote, 
   MessageSquare, 
   Send,
@@ -16,7 +13,6 @@ import {
   Mail,
   MapPin,
   Clock,
-  Download,
   BookOpen,
   Calendar,
   User,
@@ -40,34 +36,10 @@ import {
   TrendingUp
 } from 'lucide-react';
 import Link from 'next/link';
-import { useHydrationSafe } from '@/hooks/useHydrationSafe';
 import { useState } from 'react';
 import { useInquiryForm } from '@/hooks/useInquiryForm';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-    },
-  },
-};
-
 export default function CommonHomepage() {
-  const isMounted = useHydrationSafe();
   const [currentSlide, setCurrentSlide] = useState(0);
   const {
     formData,
@@ -1490,7 +1462,7 @@ export default function CommonHomepage() {
                     <div className="bg-green-50 border border-green-200 rounded-md p-4 flex items-center space-x-2">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                       <p className="text-green-800 font-medium">
-                        Thank you! Your inquiry has been submitted successfully. We'll get back to you within 24 hours.
+                        Thank you! Your inquiry has been submitted successfully. We&apos;ll get back to you within 24 hours.
                       </p>
                     </div>
                   )}
@@ -1601,8 +1573,8 @@ export default function CommonHomepage() {
                             <input 
                               type="checkbox" 
                               id={`interest-${index}`} 
-                              checked={formData.category.includes(item as any)}
-                              onChange={() => toggleCategory(item as any)}
+                              checked={formData.category.includes(item as string)}
+                              onChange={() => toggleCategory(item as string)}
                               className="rounded border-gray-300 text-[#f26d35] focus:ring-[#f26d35]" 
                             />
                             <label htmlFor={`interest-${index}`} className="text-sm cursor-pointer">{item}</label>

@@ -197,7 +197,7 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
                       <Checkbox 
                         id={`popup-interest-${index}`}
                         checked={formData.interests.includes(item)}
-                        onCheckedChange={(checked) => handleInterestChange(item, !!checked)}
+                        onCheckedChange={(checked: boolean) => handleInterestChange(item, !!checked)}
                         className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                       />
                       <Label 

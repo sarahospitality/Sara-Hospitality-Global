@@ -38,7 +38,7 @@ const itemVariants = {
 };
 
 // Badge component
-const Badge = ({ children, variant = "default", className = "", ...props }: any) => {
+const Badge = ({ children, variant = "default", className = "", ...props }: { children: React.ReactNode; variant?: string; className?: string; [key: string]: unknown }) => {
   const baseClasses = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium";
   const variantClasses = {
     default: "bg-[#f26d35] text-white",
@@ -59,7 +59,7 @@ const Separator = ({ className = "" }: { className?: string }) => (
 );
 
 // ImageWithFallback component
-const ImageWithFallback = ({ src, alt, className = "", ...props }: any) => (
+const ImageWithFallback = ({ src, alt, className = "", ...props }: { src: string; alt: string; className?: string; [key: string]: unknown }) => (
   <img src={src} alt={alt} className={className} {...props} />
 );
 

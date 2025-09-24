@@ -18,7 +18,6 @@ import {
   Globe,
   Building
 } from "lucide-react";
-import { toast } from "sonner@2.0.3";
 
 interface EnquiryPageProps {
   onNavigate: (page: string) => void;
@@ -46,7 +45,7 @@ export default function EnquiryPage({ onNavigate }: EnquiryPageProps) {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    toast.success("Enquiry submitted successfully! We'll get back to you within 24 hours.");
+    alert("Enquiry submitted successfully! We'll get back to you within 24 hours.");
     setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     setIsSubmitting(false);
   };
