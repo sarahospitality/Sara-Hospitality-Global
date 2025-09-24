@@ -250,10 +250,12 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                 
                 {/* Custom Arrow */}
                 <div className="flex-shrink-0 px-4 flex items-center justify-center">
-                  <img 
+                  <ImageWithFallback 
                     src="/down-left.svg" 
                     alt="Arrow" 
                     className="w-16 h-16"
+                    width={64}
+                    height={64}
                   />
                 </div>
                 

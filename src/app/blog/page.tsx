@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { 
   ArrowRight, 
   Calendar, 
@@ -38,7 +39,7 @@ const itemVariants = {
 };
 
 // Badge component
-const Badge = ({ children, variant = "default", className = "", ...props }: { children: React.ReactNode; variant?: string; className?: string; [key: string]: unknown }) => {
+const Badge = ({ children, variant = "default", className = "", ...props }: { children: React.ReactNode; variant?: "default" | "outline" | "secondary"; className?: string; [key: string]: unknown }) => {
   const baseClasses = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium";
   const variantClasses = {
     default: "bg-[#f26d35] text-white",
@@ -56,11 +57,6 @@ const Badge = ({ children, variant = "default", className = "", ...props }: { ch
 // Separator component
 const Separator = ({ className = "" }: { className?: string }) => (
   <div className={`h-px bg-gray-200 ${className}`} />
-);
-
-// ImageWithFallback component
-const ImageWithFallback = ({ src, alt, className = "", ...props }: { src: string; alt: string; className?: string; [key: string]: unknown }) => (
-  <img src={src} alt={alt} className={className} {...props} />
 );
 
 export default function BlogPage() {

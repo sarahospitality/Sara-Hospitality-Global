@@ -2,6 +2,8 @@
 
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
+import { InquiryCategory } from '@/types/inquiries';
 import { 
   Globe, 
   ArrowRight, 
@@ -425,10 +427,12 @@ export default function CommonHomepage() {
             {/* Hero Image */}
             <div className="relative">
               <div className="relative z-10">
-                <img
+                <ImageWithFallback
                   src="https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb20lMjBmdXJuaXR1cmV8ZW58MXx8fHwxNzU2OTk4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                   alt="Luxury hotel bedroom furniture"
                   className="w-full h-[600px] object-cover rounded-lg shadow-2xl"
+                  width={1080}
+                  height={600}
                 />
                 
                 {/* Stats positioned inside the image */}
@@ -510,45 +514,57 @@ export default function CommonHomepage() {
                 {[...Array(2)].map((_, setIndex) => (
                   <div key={setIndex} className="flex gap-16 items-center flex-shrink-0">
                     <div className="flex-shrink-0">
-                      <img
+                      <ImageWithFallback
                         src="/assets/f31b2dfb28307640a195a389e2838f1c2a7dc156.png"
                         alt="La Quinta by Wyndham logo"
                         className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={120}
+                        height={48}
                       />
                     </div>
                     <div className="flex-shrink-0">
-                      <img
+                      <ImageWithFallback
                         src="/assets/6e7b3d1f8e168548d6b65e7dd7fb4691d792ff17.png"
                         alt="Holiday Inn Express & Suites logo"
                         className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={120}
+                        height={48}
                       />
                     </div>
                     <div className="flex-shrink-0">
-                      <img
+                      <ImageWithFallback
                         src="/assets/1a36f52dfb717910963752bf97e84ab00d9f89e9.png"
                         alt="Quality Inn logo"
                         className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={120}
+                        height={48}
                       />
                     </div>
                     <div className="flex-shrink-0">
-                      <img
+                      <ImageWithFallback
                         src="/assets/65e2b4ed424723dae6731b7df90d808c1d793105.png"
                         alt="Baymont by Wyndham logo"
                         className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={120}
+                        height={48}
                       />
                     </div>
                     <div className="flex-shrink-0">
-                      <img
+                      <ImageWithFallback
                         src="/assets/d3e30d7d50aff6f76bb0916c50dc15aa2919a066.png"
                         alt="Best Western Plus logo"
                         className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={120}
+                        height={48}
                       />
                     </div>
                     <div className="flex-shrink-0">
-                      <img
+                      <ImageWithFallback
                         src="/assets/61636d64a66e87acc43f2e63f91829fa6b8f0dea.png"
                         alt="Days Inn & Suites logo"
                         className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={120}
+                        height={48}
                       />
                     </div>
                   </div>
@@ -635,10 +651,12 @@ export default function CommonHomepage() {
 
             {/* Image */}
             <div className="relative">
-              <img
+              <ImageWithFallback
                 src="https://images.unsplash.com/photo-1710828865631-6fea9948a71b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXJuaXR1cmUlMjBmYWN0b3J5JTIwcHJvZHVjdGlvbnxlbnwxfHx8fDE3NTcwMDI5MDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt="Furniture manufacturing facility"
                 className="w-full h-[500px] object-cover rounded-lg shadow-lg"
+                width={1080}
+                height={500}
               />
               
               {/* Overlay Card */}
@@ -726,10 +744,12 @@ export default function CommonHomepage() {
                             <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.15)] hover:-translate-y-1">
                               <CardContent className="p-0">
                                 <div className="relative overflow-hidden rounded-t-lg">
-                                  <img
+                                  <ImageWithFallback
                                     src={category.image}
                                     alt={category.title}
                                     className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
+                                    width={400}
+                                    height={224}
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm p-3 rounded-xl shadow-lg">
@@ -1003,10 +1023,12 @@ export default function CommonHomepage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-lg">
               <div className="grid lg:grid-cols-2">
                 <div className="relative">
-                  <img
+                  <ImageWithFallback
                     src={projects[0].image}
                     alt={projects[0].title}
                     className="w-full h-80 lg:h-full object-cover"
+                    width={800}
+                    height={500}
                   />
                   <div className="absolute top-4 left-4">
                     <div className="bg-[#f26d35] text-white px-3 py-1 rounded-full text-sm font-medium">Featured Project</div>
@@ -1052,10 +1074,12 @@ export default function CommonHomepage() {
             {projects.slice(1).map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md overflow-hidden">
                 <div className="relative">
-                  <img
+                  <ImageWithFallback
                     src={project.image}
                     alt={project.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    width={400}
+                    height={192}
                   />
                   <div className="absolute top-4 left-4">
                     <div className="bg-white/90 text-gray-700 px-3 py-1 rounded-full text-sm">{project.type}</div>
@@ -1283,10 +1307,12 @@ export default function CommonHomepage() {
             <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-r from-white to-gray-50/50">
               <div className="grid lg:grid-cols-5 gap-0">
                 <div className="lg:col-span-3 relative">
-                  <img
+                  <ImageWithFallback
                     src={featuredPost.image}
                     alt={featuredPost.title}
                     className="w-full h-64 lg:h-80 object-cover"
+                    width={600}
+                    height={320}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute top-4 left-4">
@@ -1341,10 +1367,12 @@ export default function CommonHomepage() {
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-sm overflow-hidden h-full">
                 <div className="flex gap-4 p-4">
                   <div className="relative flex-shrink-0">
-                    <img
+                    <ImageWithFallback
                       src={post.image}
                       alt={post.title}
                       className="w-24 h-24 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                      width={96}
+                      height={96}
                     />
                     <div className="absolute -top-1 -right-1">
                       <div className="bg-white/90 text-gray-700 px-2 py-0.5 rounded-full text-xs shadow-sm">
@@ -1573,8 +1601,8 @@ export default function CommonHomepage() {
                             <input 
                               type="checkbox" 
                               id={`interest-${index}`} 
-                              checked={formData.category.includes(item as string)}
-                              onChange={() => toggleCategory(item as string)}
+                              checked={formData.category.includes(item as InquiryCategory)}
+                              onChange={() => toggleCategory(item as InquiryCategory)}
                               className="rounded border-gray-300 text-[#f26d35] focus:ring-[#f26d35]" 
                             />
                             <label htmlFor={`interest-${index}`} className="text-sm cursor-pointer">{item}</label>

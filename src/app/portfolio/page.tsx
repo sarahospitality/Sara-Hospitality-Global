@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
@@ -7,6 +8,7 @@ import { ExternalLink, MapPin, Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function PortfolioPage() {
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
   const projects = [
     {

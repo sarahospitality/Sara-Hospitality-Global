@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { Send, X } from "lucide-react";
 
 interface QuotePopupProps {
@@ -91,35 +92,35 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
               
               {/* Profile Pictures positioned around the rings */}
               <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" />
+                <ImageWithFallback src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" width={100} height={100} />
               </div>
               
               <div className="absolute top-12 right-6 w-8 h-8 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" />
+                <ImageWithFallback src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" width={100} height={100} />
               </div>
               
               <div className="absolute top-20 left-6 w-8 h-8 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" />
+                <ImageWithFallback src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" width={100} height={100} />
               </div>
               
               <div className="absolute top-28 right-10 w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" />
+                <ImageWithFallback src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" width={100} height={100} />
               </div>
               
               <div className="absolute top-36 left-10 w-8 h-8 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" />
+                <ImageWithFallback src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" width={100} height={100} />
               </div>
               
               <div className="absolute bottom-20 right-6 w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" />
+                <ImageWithFallback src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" width={100} height={100} />
               </div>
               
               <div className="absolute bottom-12 left-6 w-8 h-8 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" />
+                <ImageWithFallback src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" width={100} height={100} />
               </div>
               
               <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" />
+                <ImageWithFallback src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=face" alt="Hotelier" className="w-full h-full object-cover" width={100} height={100} />
               </div>
             </div>
           </div>
@@ -304,45 +305,57 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
               </div>
               <div className="flex flex-wrap justify-center items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img
+                  <ImageWithFallback
                     src="/assets/f31b2dfb28307640a195a389e2838f1c2a7dc156.png"
                     alt="La Quinta by Wyndham logo"
                     className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={120}
+                    height={32}
                   />
                 </div>
                 <div className="flex-shrink-0">
-                  <img
+                  <ImageWithFallback
                     src="/assets/6e7b3d1f8e168548d6b65e7dd7fb4691d792ff17.png"
                     alt="Holiday Inn Express & Suites logo"
                     className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={120}
+                    height={32}
                   />
                 </div>
                 <div className="flex-shrink-0">
-                  <img
+                  <ImageWithFallback
                     src="/assets/1a36f52dfb717910963752bf97e84ab00d9f89e9.png"
                     alt="Quality Inn logo"
                     className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={120}
+                    height={32}
                   />
                 </div>
                 <div className="flex-shrink-0">
-                  <img
+                  <ImageWithFallback
                     src="/assets/65e2b4ed424723dae6731b7df90d808c1d793105.png"
                     alt="Baymont by Wyndham logo"
                     className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={120}
+                    height={32}
                   />
                 </div>
                 <div className="flex-shrink-0">
-                  <img
+                  <ImageWithFallback
                     src="/assets/d3e30d7d50aff6f76bb0916c50dc15aa2919a066.png"
                     alt="Best Western Plus logo"
                     className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={120}
+                    height={32}
                   />
                 </div>
                 <div className="flex-shrink-0">
-                  <img
+                  <ImageWithFallback
                     src="/assets/61636d64a66e87acc43f2e63f91829fa6b8f0dea.png"
                     alt="Days Inn & Suites logo"
                     className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={120}
+                    height={32}
                   />
                 </div>
               </div>
