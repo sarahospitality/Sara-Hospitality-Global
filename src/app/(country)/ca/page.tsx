@@ -69,7 +69,7 @@ export default function CanadaHomepage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="group">
                   Explore Products
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-4 h-4 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
                 <Button variant="outline" size="lg">
                   Request Quote

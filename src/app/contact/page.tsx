@@ -34,7 +34,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative py-12 bg-gradient-to-br from-[#f26d35]/5 via-gray-50 to-[#f26d35]/10 overflow-hidden">
-        <div className="container mx-auto px-4 relative">
+        <div className="container mx-auto px-6 sm:px-4 relative">
           <motion.div 
             className="text-center mb-8"
             variants={containerVariants}
@@ -48,9 +48,9 @@ export default function ContactPage() {
               </div>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-relaxed">
                 Let&apos;s Discuss Your
-                <span className="text-[#f26d35] block">Project Needs</span>
+                <span className="text-[#f26d35] block mt-2">Project Needs</span>
               </h1>
             </motion.div>
             <motion.div variants={itemVariants}>
@@ -63,7 +63,7 @@ export default function ContactPage() {
           
           {/* Quick Stats */}
           <motion.div 
-            className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+            className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto px-6 sm:px-4"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -89,7 +89,7 @@ export default function ContactPage() {
 
       {/* Call to Action */}
       <section className="py-12 bg-gradient-to-r from-[#f26d35]/5 via-gray-50 to-[#f26d35]/5">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +108,7 @@ export default function ContactPage() {
               <Link href="/portfolio">
                 <Button size="lg" className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
                   View Our Portfolio
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
               </Link>
               <Link href="/about">

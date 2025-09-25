@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { use } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -63,9 +63,9 @@ const containerVariants = {
 };
 
 
-export default function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  // Use the use hook to unwrap the Promise
-  const { slug } = use(params);
+export default function BlogDetailPage() {
+  const params = useParams();
+  const slug = params.slug as string;
 
   // Mock data for different blog posts
   const blogPosts = {
@@ -240,7 +240,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
           <h1 className="text-2xl font-bold mb-4">Blog Post Not Found</h1>
           <Link href="/blog">
             <Button className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="w-4 h-4 mr-2 animate-pulse" style={{ animation: 'arrowMoveBack 2s ease-in-out infinite' }} />
               Back to Blog
             </Button>
           </Link>
@@ -255,7 +255,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
       <section className="relative">
         {/* Breadcrumb */}
         <div className="bg-white border-b">
-          <div className="container mx-auto px-4 py-4">
+          <div className="container mx-auto px-6 sm:px-4 py-4">
             <motion.div 
               className="flex items-center gap-2 text-sm text-gray-600"
               variants={containerVariants}
@@ -279,6 +279,8 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
             src={currentPost.image}
             alt={currentPost.title}
             className="w-full h-full object-cover"
+            width={800}
+            height={500}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           
@@ -300,7 +302,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
                 size="sm"
                 className="bg-white/90 hover:bg-white text-gray-900"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" />
+                <ArrowLeft className="w-4 h-4 mr-2 animate-pulse" style={{ animation: 'arrowMoveBack 2s ease-in-out infinite' }} />
                 Back to Blog
               </Button>
             </Link>
@@ -309,7 +311,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
 
         {/* Article Meta - Below Banner */}
         <div className="bg-white border-b">
-          <div className="container mx-auto px-4 py-8">
+          <div className="container mx-auto px-6 sm:px-4 py-8">
             <div className="max-w-4xl">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">
                 {currentPost.subtitle}
@@ -322,6 +324,8 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
                     src={currentPost.author.avatar}
                     alt={currentPost.author.name}
                     className="w-12 h-12 rounded-full border-2 border-[#f26d35]/20"
+                    width={48}
+                    height={48}
                   />
                   <div className="flex flex-col">
                     <span className="text-gray-900 font-semibold text-lg">{currentPost.author.name}</span>
@@ -348,7 +352,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
 
       {/* Main Content */}
       <section className="py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Article Content */}
             <div className="lg:col-span-3">
@@ -443,6 +447,8 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
                           src={section.image}
                           alt={section.heading}
                           className="w-full h-64 object-cover rounded-lg shadow-lg"
+                          width={600}
+                          height={256}
                         />
                       </div>
                     </div>
@@ -468,7 +474,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
                         <Link href="/portfolio">
                           <Button className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
                             View Our Portfolio
-                            <ArrowRight className="w-4 h-4 ml-2" />
+                            <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                           </Button>
                         </Link>
                         <Link href="/contact">
@@ -508,6 +514,8 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
                           src={currentPost.author.avatar}
                           alt={currentPost.author.name}
                           className="w-24 h-24 rounded-full flex-shrink-0 border-4 border-[#f26d35]/20"
+                          width={96}
+                          height={96}
                         />
                         <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#f26d35] rounded-full flex items-center justify-center">
                           <User className="w-3 h-3 text-white" />
@@ -621,7 +629,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
 
       {/* Related Posts */}
       <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <motion.div 
             className="text-center mb-8"
             initial={{ opacity: 0, y: 20 }}
@@ -651,6 +659,8 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
                         src={post.image}
                         alt={post.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        width={300}
+                        height={192}
                       />
                       <Badge className="absolute top-4 left-4 bg-[#f26d35]/90 text-white">
                         {post.category}
@@ -668,7 +678,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
                         </div>
                         <Button size="sm" variant="ghost" className="p-0 h-auto">
                           Read More
-                          <ArrowRight className="w-4 h-4 ml-1" />
+                          <ArrowRight className="w-4 h-4 ml-1 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                         </Button>
                       </div>
                     </CardContent>
@@ -682,7 +692,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
 
       {/* Comments Section */}
       <section className="py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <div className="max-w-4xl mx-auto">
             <motion.div 
               className="flex items-center gap-2 mb-8"

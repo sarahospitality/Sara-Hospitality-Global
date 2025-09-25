@@ -113,7 +113,7 @@ export default function PortfolioPage() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative py-12 bg-gradient-to-br from-[#f26d35]/5 via-gray-50 to-[#f26d35]/10 overflow-hidden">
-        <div className="container mx-auto px-4 relative">
+        <div className="container mx-auto px-6 sm:px-4 relative">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-primary px-4 py-2 rounded-full mb-6">
               <ExternalLink className="w-4 h-4" />
@@ -130,7 +130,7 @@ export default function PortfolioPage() {
             <Link href="/contact">
               <button className="bg-[#f26d35] hover:bg-[#e55a2b] text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 mx-auto transition-all duration-300 shadow-2xl hover:shadow-3xl relative overflow-hidden">
                 <span className="relative z-10">Request A Quote</span>
-                <ArrowRight className="w-5 h-5 relative z-10" />
+                <ArrowRight className="w-5 h-5 relative z-10 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent"></div>
               </button>
             </Link>
@@ -140,7 +140,7 @@ export default function PortfolioPage() {
 
       {/* Hotel Projects Carousel */}
       <section className="pt-8 pb-4 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-3">Our Hotel Projects</h2>
             <p className="text-muted-foreground">Explore our diverse portfolio of luxury hospitality projects worldwide</p>
@@ -199,7 +199,7 @@ export default function PortfolioPage() {
 
       {/* Projects Grid */}
       <section className="pt-8 pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

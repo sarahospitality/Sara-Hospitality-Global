@@ -51,7 +51,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section - About Sara Global Hospitality */}
       <section className="relative py-12 bg-gradient-to-br from-[#f26d35]/5 via-gray-50 to-[#f26d35]/10 overflow-hidden">
-        <div className="container mx-auto px-4 relative">
+        <div className="container mx-auto px-6 sm:px-4 relative">
           <motion.div 
             className="grid lg:grid-cols-2 gap-12 items-center"
             variants={containerVariants}
@@ -102,7 +102,7 @@ export default function AboutPage() {
 
       {/* Our Driving Force - Mission & Vision */}
       <section className="py-12 bg-gradient-to-r from-[#f26d35]/5 via-gray-50 to-[#f26d35]/5">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -212,7 +212,7 @@ export default function AboutPage() {
 
       {/* Explore Our Story */}
       <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -292,7 +292,7 @@ export default function AboutPage() {
               <Link href="/contact">
                 <Button size="lg" variant="secondary" className="bg-white text-[#f26d35] hover:bg-white/90">
                   Get Free Consultation
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
               </Link>
               <Link href="/portfolio">

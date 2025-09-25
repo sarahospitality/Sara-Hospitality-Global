@@ -188,7 +188,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
           <p className="text-gray-600 mb-8">The project you&apos;re looking for doesn&apos;t exist.</p>
           <Link href="/portfolio">
             <Button className="bg-primary text-white hover:bg-primary/90">
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="w-4 h-4 mr-2 animate-pulse" style={{ animation: 'arrowMoveBack 2s ease-in-out infinite' }} />
               Back to Portfolio
             </Button>
           </Link>
@@ -301,7 +301,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
             </Link>
             <Link href="http://localhost:3001/about">
               <Button variant="outline" className="border-white text-white hover:bg-white/10">
-                <ArrowRight className="w-4 h-4 mr-2" />
+                <ArrowRight className="w-4 h-4 mr-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 Learn About Us
               </Button>
             </Link>
@@ -430,7 +430,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
               <Link href="http://localhost:3001/contact">
                 <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg flex items-center">
                   Request A Quote
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
               </Link>
               <Link href="https://wa.me/16784319041" target="_blank" rel="noopener noreferrer">
@@ -713,7 +713,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                   <Link href="http://localhost:3001/contact" className="inline-block mt-8">
                     <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg flex items-center">
                       Get Expert Consultation
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                     </Button>
                   </Link>
                 </div>
@@ -739,7 +739,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                   <Link href="http://localhost:3001/contact" className="inline-block mt-8">
                     <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg flex items-center">
                       Get Expert Consultation
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                     </Button>
                   </Link>
                 </div>
@@ -765,7 +765,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                   <Link href="http://localhost:3001/contact" className="inline-block mt-8">
                     <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg flex items-center">
                       Get Expert Consultation
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                     </Button>
                   </Link>
                 </div>

@@ -205,8 +205,8 @@ export default function Testimonials({ selectedCountry }: TestimonialsProps) {
                 style={{ scrollSnapType: 'x mandatory' }}
               >
                 {canadianTestimonials.map((testimonial, index) => (
-                  <Card key={index} className="flex-shrink-0 w-80 border-0 shadow-lg overflow-hidden bg-white hover:shadow-xl transition-all duration-300" style={{ scrollSnapAlign: 'start' }}>
-                    <CardContent className="p-6">
+                  <Card key={index} className="flex-shrink-0 w-80 border-0 shadow-[0px_4px_16px_rgba(0,0,0,0.1),0px_-4px_16px_rgba(0,0,0,0.1)] hover:shadow-[0px_6px_20px_rgba(0,0,0,0.15),0px_-6px_20px_rgba(0,0,0,0.15)] overflow-hidden bg-white transition-all duration-300 rounded-xl" style={{ scrollSnapAlign: 'start' }}>
+                    <CardContent className="p-5">
                       <div className="flex justify-between items-start mb-4">
                         <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
                           <Quote className="w-6 h-6 text-primary" />
@@ -317,12 +317,12 @@ export default function Testimonials({ selectedCountry }: TestimonialsProps) {
             >
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                 <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-1">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-2">
                     {testimonials
                       .slice(slideIndex * itemsPerPage, (slideIndex + 1) * itemsPerPage)
                       .map((testimonial, index) => (
-                        <Card key={index} className="border-0 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.15)] hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full">
-                          <CardContent className="p-8 flex flex-col h-full">
+                        <Card key={index} className="border-0 shadow-[0px_4px_16px_rgba(0,0,0,0.1),0px_-4px_16px_rgba(0,0,0,0.1)] hover:shadow-[0px_6px_20px_rgba(0,0,0,0.15),0px_-6px_20px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-1 h-full rounded-xl">
+                          <CardContent className="p-6 flex flex-col h-full">
                             {/* Quote Icon */}
                             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                               <Quote className="w-6 h-6 text-primary" />

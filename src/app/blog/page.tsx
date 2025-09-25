@@ -226,7 +226,7 @@ export default function BlogPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="py-8 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <motion.div 
             className="text-center mb-6"
             variants={containerVariants}
@@ -289,7 +289,7 @@ export default function BlogPage() {
       {/* Featured Post */}
       {featuredPost && (
         <section className="py-12">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-4">
             <motion.div 
               className="mb-8"
               initial={{ opacity: 0, y: 20 }}
@@ -315,6 +315,8 @@ export default function BlogPage() {
                       src={featuredPost.image}
                       alt={featuredPost.title}
                       className="w-full h-full object-cover"
+                      width={600}
+                      height={400}
                     />
                     <div className="absolute top-4 left-4">
                       <Badge className="bg-[#f26d35]/90 text-white">
@@ -364,7 +366,7 @@ export default function BlogPage() {
                             className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white"
                           >
                             Read Full Article
-                            <ArrowRight className="w-4 h-4 ml-2" />
+                            <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                           </Button>
                         </Link>
                         <Button size="lg" variant="outline" className="flex items-center gap-2">
@@ -383,7 +385,7 @@ export default function BlogPage() {
 
       {/* Main Content with Sidebar */}
       <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Main Content Area */}
             <div className="lg:col-span-3">
@@ -416,6 +418,8 @@ export default function BlogPage() {
                             src={post.image}
                             alt={post.title}
                             className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            width={400}
+                            height={192}
                           />
                           <div className="absolute top-4 left-4">
                             <Badge className="bg-[#f26d35]/90 text-white">
@@ -465,7 +469,7 @@ export default function BlogPage() {
                                 className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white"
                               >
                                 Read More
-                                <ArrowRight className="w-4 h-4 ml-2" />
+                                <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                               </Button>
                             </Link>
                           </div>
@@ -538,6 +542,8 @@ export default function BlogPage() {
                               src={post.image}
                               alt={post.title}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              width={64}
+                              height={64}
                             />
                           </div>
                           <div className="flex-1 min-w-0">
@@ -642,7 +648,7 @@ export default function BlogPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
                 View Our Portfolio
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
               </Button>
               <Button size="lg" variant="outline" className="border-[#f26d35] text-[#f26d35] hover:bg-[#f26d35]/10">
                 Contact Our Experts

@@ -53,7 +53,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6 sm:px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-4">

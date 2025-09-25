@@ -24,6 +24,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
+      <head>
+        <meta name="robots" content="noindex" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>Sara Global Hospitality</title>
+      </head>
       <body className="bg-white text-gray-900">
         <div className="min-h-screen flex flex-col">
           <Header onQuoteRequest={handleQuoteRequest} />

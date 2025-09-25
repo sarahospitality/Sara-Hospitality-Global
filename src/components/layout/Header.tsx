@@ -64,7 +64,7 @@ export function Header({ onQuoteRequest }: HeaderProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <div className="w-10 h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-xl">S</span>
                 </div>
@@ -72,20 +72,11 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                   <h1 className="text-xl font-bold text-[#f26d35]">Sara Global</h1>
                   <p className="text-xs text-gray-600">Hospitality</p>
                 </div>
-              </div>
+              </Link>
             </motion.div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                <Link href="/" className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
-                  Home
-                </Link>
-              </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -202,13 +193,6 @@ export function Header({ onQuoteRequest }: HeaderProps) {
               className="md:hidden border-t border-gray-200"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
-                <Link
-                  href="/"
-                  className="block px-3 py-2 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-                </Link>
                 <Link
                   href="/about"
                   className="block px-3 py-2 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-md transition-colors"

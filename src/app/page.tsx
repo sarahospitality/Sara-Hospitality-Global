@@ -19,7 +19,7 @@ import {
   Calendar,
   User,
   Eye,
-  Bed,
+  Box,
   Coffee,
   Users,
   Bath,
@@ -68,7 +68,7 @@ export default function CommonHomepage() {
       features: ["Durable materials", "Custom configurations", "Space optimization", "Modern finishes"]
     },
     {
-      icon: Bed,
+      icon: Box,
       title: "Hospitality Casegoods",
       description: "Premium bedroom furniture including beds, nightstands, dressers, and wardrobes for guest rooms",
       image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb20lMjBmdXJuaXR1cmV8ZW58MXx8fHwxNzU2OTk4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -325,7 +325,7 @@ export default function CommonHomepage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 sm:px-4 py-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div className="space-y-6">
@@ -334,9 +334,9 @@ export default function CommonHomepage() {
                   <Star className="w-4 h-4" />
                   <span>Premium Hotel Furniture Manufacturer</span>
                 </div>
-                <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+                <h1 className="text-4xl lg:text-6xl font-bold leading-tight leading-relaxed">
                   Crafting Exceptional
-                  <span className="text-[#f26d35] block">Hotel Furniture</span>
+                  <span className="text-[#f26d35] block mt-2">Hotel Furniture</span>
                   Since 1995
                 </h1>
                 <p className="text-lg text-gray-600 max-w-lg">
@@ -374,7 +374,7 @@ export default function CommonHomepage() {
                     className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white"
                   >
                     View Our Portfolio
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                   </Button>
                 </Link>
                 <Link href="/contact">
@@ -399,24 +399,6 @@ export default function CommonHomepage() {
                   width={1080}
                   height={600}
                 />
-                
-                {/* Stats positioned inside the image */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-lg shadow-lg">
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-[#f26d35]">500+</div>
-                      <div className="text-xs text-gray-600">Projects Completed</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-[#f26d35]">50+</div>
-                      <div className="text-xs text-gray-600">Countries Served</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-[#f26d35]">25+</div>
-                      <div className="text-xs text-gray-600">Years Experience</div>
-                    </div>
-                  </div>
-                </div>
               </div>
               
               {/* Floating Elements */}
@@ -437,9 +419,9 @@ export default function CommonHomepage() {
 
       {/* Trusted Brands Section */}
       <section className="py-8 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
             <div className="text-center">
               <div className="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-2xl border border-white/20">
                 <div className="text-3xl text-[#f26d35] mb-1">500+</div>
@@ -542,16 +524,16 @@ export default function CommonHomepage() {
 
       {/* About Section */}
       <section id="about" className="pt-8 pb-4 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           {/* Section Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-4">
               <Star className="w-4 h-4" />
               <span>About Sara Global Hospitality</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-2">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
               Pioneering Excellence in
-              <span className="text-[#f26d35] block">Hotel Furniture Manufacturing</span>
+              <span className="text-[#f26d35] block mt-2">Hotel Furniture Manufacturing</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               For over 25 years, Sara Global Hospitality has been at the forefront of hotel furniture 
@@ -638,16 +620,16 @@ export default function CommonHomepage() {
 
       {/* Product Categories Section */}
       <section id="products" className="pt-4 pb-8 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           {/* Section Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-4">
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
               <span>Product Categories</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-2">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
               Complete Furniture Solutions
-              <span className="text-[#f26d35] block">For Every Space</span>
+              <span className="text-[#f26d35] block mt-2">For Every Space</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               From luxurious guest rooms to sophisticated lobbies, we provide comprehensive 
@@ -727,11 +709,11 @@ export default function CommonHomepage() {
                                   </div>
                                 </div>
                                 
-                                <div className="p-6">
+                                <div className="p-6 pb-4">
                                   <h3 className="text-xl font-bold mb-3 group-hover:text-[#f26d35] transition-colors">{category.title}</h3>
                                   <p className="text-gray-600 mb-4 line-clamp-2">{category.description}</p>
                                   
-                                  <div className="grid grid-cols-2 gap-2 mb-6">
+                                  <div className="grid grid-cols-2 gap-2 mb-3">
                                     {category.features.slice(0, 4).map((feature, featureIndex) => (
                                       <div key={featureIndex} className="flex items-center gap-2 text-sm">
                                         <div className="w-1.5 h-1.5 bg-[#f26d35] rounded-full flex-shrink-0"></div>
@@ -739,11 +721,6 @@ export default function CommonHomepage() {
                                       </div>
                                     ))}
                                   </div>
-                                  
-                                  <Button variant="ghost" className="group/btn w-full justify-center p-0 h-auto hover:bg-[#f26d35]/5 py-2 rounded-lg">
-                                    <span className="text-[#f26d35] group-hover/btn:text-[#f26d35]/80">View Collection</span>
-                                    <ArrowRight className="w-4 h-4 ml-2 text-[#f26d35] group-hover/btn:translate-x-1 transition-transform" />
-                                  </Button>
                                 </div>
                               </CardContent>
                             </Card>
@@ -765,7 +742,7 @@ export default function CommonHomepage() {
               
               <div className="relative z-10 text-center">
                 <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-6">
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                   <span>Custom Solutions</span>
                 </div>
                 
@@ -782,7 +759,7 @@ export default function CommonHomepage() {
                 <div className="grid md:grid-cols-3 gap-6 mb-10">
                   <div className="flex flex-col items-center p-4">
                     <div className="w-12 h-12 bg-[#f26d35]/10 rounded-xl flex items-center justify-center mb-3">
-                      <Bed className="w-6 h-6 text-[#f26d35]" />
+                      <Box className="w-6 h-6 text-[#f26d35]" />
                     </div>
                     <h4 className="font-bold mb-2">3D Design</h4>
                     <p className="text-sm text-gray-600">Visualize before you invest</p>
@@ -796,7 +773,7 @@ export default function CommonHomepage() {
                   </div>
                   <div className="flex flex-col items-center p-4">
                     <div className="w-12 h-12 bg-[#f26d35]/10 rounded-xl flex items-center justify-center mb-3">
-                      <Coffee className="w-6 h-6 text-[#f26d35]" />
+                      <Award className="w-6 h-6 text-[#f26d35]" />
                     </div>
                     <h4 className="font-bold mb-2">Premium Quality</h4>
                     <p className="text-sm text-gray-600">Luxury materials & finishes</p>
@@ -809,9 +786,8 @@ export default function CommonHomepage() {
                     size="lg" 
                     className="bg-[#f26d35] hover:bg-[#f26d35]/90 shadow-lg hover:shadow-xl transition-all duration-300 group px-8"
                   >
-                    <Bath className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
-                    Start Custom Project
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    Request A Quote
+                    <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                   </Button>
                   <Link href="/portfolio">
                     <Button 
@@ -849,9 +825,9 @@ export default function CommonHomepage() {
               <Star className="w-4 h-4" />
               <span>Why Choose Sara Global</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-2">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
               Industry Leaders in
-              <span className="text-[#f26d35] block">Hospitality Furniture</span>
+              <span className="text-[#f26d35] block mt-2">Hospitality Furniture</span>
             </h2>
           </div>
 
@@ -956,16 +932,16 @@ export default function CommonHomepage() {
 
       {/* Portfolio Section */}
       <section id="portfolio" className="py-10 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           {/* Section Header */}
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-4">
               <ExternalLink className="w-4 h-4" />
               <span>Our Portfolio</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-2">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
               Transforming Hospitality Spaces
-              <span className="text-[#f26d35] block">Worldwide</span>
+              <span className="text-[#f26d35] block mt-2">Worldwide</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Explore our diverse portfolio of completed projects spanning luxury resorts, 
@@ -985,13 +961,13 @@ export default function CommonHomepage() {
 
           {/* Featured Project */}
           <div className="mb-16">
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+            <div className="bg-white rounded-lg overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300">
               <div className="grid lg:grid-cols-2">
-                <div className="relative">
+                <div className="relative overflow-hidden">
                   <ImageWithFallback
                     src={projects[0].image}
                     alt={projects[0].title}
-                    className="w-full h-80 lg:h-full object-cover"
+                    className="w-full h-80 lg:h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                     width={800}
                     height={500}
                   />
@@ -1026,7 +1002,7 @@ export default function CommonHomepage() {
                       className="w-fit bg-[#f26d35] hover:bg-[#f26d35]/90"
                     >
                       View Details
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                     </Button>
                   </Link>
                 </div>
@@ -1042,7 +1018,7 @@ export default function CommonHomepage() {
                   <ImageWithFallback
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                     width={400}
                     height={192}
                   />
@@ -1080,7 +1056,7 @@ export default function CommonHomepage() {
                       className="p-0 h-auto hover:bg-transparent"
                     >
                       <span className="text-[#f26d35]">View Details</span>
-                      <ArrowRight className="w-3 h-3 ml-2 text-[#f26d35]" />
+                      <ArrowRight className="w-3 h-3 ml-2 text-[#f26d35] animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                     </Button>
                   </Link>
                 </CardContent>
@@ -1105,16 +1081,16 @@ export default function CommonHomepage() {
 
       {/* Client Testimonials Section */}
       <section className="py-8 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           {/* Section Header */}
           <div className="text-center mb-4">
             <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-4">
               <Star className="w-4 h-4" />
               <span>Client Testimonials</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-2">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
               What Our Clients Say
-              <span className="text-[#f26d35] block">About Our Work</span>
+              <span className="text-[#f26d35] block mt-2">About Our Work</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Don&apos;t just take our word for it. Here&apos;s what hospitality professionals 
@@ -1215,7 +1191,7 @@ export default function CommonHomepage() {
 
       {/* Call to Action Section */}
       <section className="py-10 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">
               Ready to Transform Your Hospitality Space?
@@ -1231,7 +1207,7 @@ export default function CommonHomepage() {
                   className="bg-[#f26d35] text-white hover:bg-[#f26d35]/90"
                 >
                   Get Free Consultation
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
               </Link>
               <Link href="/portfolio">
@@ -1241,7 +1217,7 @@ export default function CommonHomepage() {
                   className="border-2 hover:bg-[#f26d35]/5 hover:border-[#f26d35] transition-all duration-300"
                 >
                   View Our Portfolio
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
               </Link>
             </div>
@@ -1251,16 +1227,16 @@ export default function CommonHomepage() {
 
       {/* Industry Insights Blog Section */}
       <section id="blogs" className="py-8 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           {/* Section Header */}
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-4">
               <BookOpen className="w-4 h-4" />
               <span>Industry Insights</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-2">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
               Latest from Our
-              <span className="text-[#f26d35] block">Blog & Resources</span>
+              <span className="text-[#f26d35] block mt-2">Blog & Resources</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Stay updated with the latest trends, insights, and best practices in hospitality furniture design.
@@ -1318,7 +1294,7 @@ export default function CommonHomepage() {
                   <Link href={`/blog/${featuredPost.slug}`}>
                     <Button size="sm" className="w-fit bg-[#f26d35] hover:bg-[#f26d35]/90">
                       Read Article
-                      <ArrowRight className="w-3 h-3 ml-2" />
+                      <ArrowRight className="w-3 h-3 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                     </Button>
                   </Link>
                 </div>
@@ -1370,7 +1346,7 @@ export default function CommonHomepage() {
                       <Link href={`/blog/${post.slug}`}>
                         <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent group/btn text-xs">
                           <span className="text-[#f26d35]">Read</span>
-                          <ArrowRight className="w-3 h-3 ml-1 text-[#f26d35] group-hover/btn:translate-x-0.5 transition-transform" />
+                          <ArrowRight className="w-3 h-3 ml-1 text-[#f26d35] group-hover/btn:translate-x-1 transition-transform duration-300 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                         </Button>
                       </Link>
                     </div>
@@ -1385,7 +1361,7 @@ export default function CommonHomepage() {
             <Link href="/blog">
               <Button variant="outline" className="border-[#f26d35] text-[#f26d35] hover:bg-[#f26d35] hover:text-white">
                 View All Articles
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
               </Button>
             </Link>
           </div>

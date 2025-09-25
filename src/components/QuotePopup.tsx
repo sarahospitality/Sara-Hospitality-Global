@@ -54,7 +54,71 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
         <div className="flex">
           {/* Left Side - Trusted by 1000+ Hoteliers (Reduced Width) */}
           <div className="w-2/5 bg-gray-50 p-6 flex flex-col justify-center items-center">
-            <div className="text-center mb-6">
+            {/* Hotel Brand Logos - At the Very Top */}
+            <div className="mb-10">
+              <div className="text-center mb-4">
+                <h4 className="text-sm font-bold text-gray-700">Trusted by Leading Hotel Brands</h4>
+              </div>
+              <div className="flex flex-wrap justify-center items-center gap-3">
+                <div className="flex-shrink-0">
+                  <ImageWithFallback
+                    src="/assets/f31b2dfb28307640a195a389e2838f1c2a7dc156.png"
+                    alt="La Quinta by Wyndham logo"
+                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={100}
+                    height={24}
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <ImageWithFallback
+                    src="/assets/6e7b3d1f8e168548d6b65e7dd7fb4691d792ff17.png"
+                    alt="Holiday Inn Express & Suites logo"
+                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={100}
+                    height={24}
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <ImageWithFallback
+                    src="/assets/1a36f52dfb717910963752bf97e84ab00d9f89e9.png"
+                    alt="Quality Inn logo"
+                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={100}
+                    height={24}
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <ImageWithFallback
+                    src="/assets/65e2b4ed424723dae6731b7df90d808c1d793105.png"
+                    alt="Baymont by Wyndham logo"
+                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={100}
+                    height={24}
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <ImageWithFallback
+                    src="/assets/d3e30d7d50aff6f76bb0916c50dc15aa2919a066.png"
+                    alt="Best Western Plus logo"
+                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={100}
+                    height={24}
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <ImageWithFallback
+                    src="/assets/61636d64a66e87acc43f2e63f91829fa6b8f0dea.png"
+                    alt="Days Inn & Suites logo"
+                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={100}
+                    height={24}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* TRUSTED BY 1000+ HOTELIERS - Below Brand Logos */}
+            <div className="text-center mb-8">
               <h2 className="text-lg font-bold text-gray-900 mb-1">
                 TRUSTED BY
               </h2>
@@ -264,69 +328,6 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
                   </p>
                 </div>
               </form>
-            </div>
-            
-            {/* Hotel Brand Logos - Using Actual Logos from Homepage */}
-            <div className="p-6 border-t border-gray-200 bg-gray-50">
-              <div className="text-center mb-4">
-                <h4 className="text-sm font-medium text-gray-700">Trusted by Leading Hotel Brands</h4>
-              </div>
-              <div className="flex flex-wrap justify-center items-center gap-4">
-                <div className="flex-shrink-0">
-                  <ImageWithFallback
-                    src="/assets/f31b2dfb28307640a195a389e2838f1c2a7dc156.png"
-                    alt="La Quinta by Wyndham logo"
-                    className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={120}
-                    height={32}
-                  />
-                </div>
-                <div className="flex-shrink-0">
-                  <ImageWithFallback
-                    src="/assets/6e7b3d1f8e168548d6b65e7dd7fb4691d792ff17.png"
-                    alt="Holiday Inn Express & Suites logo"
-                    className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={120}
-                    height={32}
-                  />
-                </div>
-                <div className="flex-shrink-0">
-                  <ImageWithFallback
-                    src="/assets/1a36f52dfb717910963752bf97e84ab00d9f89e9.png"
-                    alt="Quality Inn logo"
-                    className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={120}
-                    height={32}
-                  />
-                </div>
-                <div className="flex-shrink-0">
-                  <ImageWithFallback
-                    src="/assets/65e2b4ed424723dae6731b7df90d808c1d793105.png"
-                    alt="Baymont by Wyndham logo"
-                    className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={120}
-                    height={32}
-                  />
-                </div>
-                <div className="flex-shrink-0">
-                  <ImageWithFallback
-                    src="/assets/d3e30d7d50aff6f76bb0916c50dc15aa2919a066.png"
-                    alt="Best Western Plus logo"
-                    className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={120}
-                    height={32}
-                  />
-                </div>
-                <div className="flex-shrink-0">
-                  <ImageWithFallback
-                    src="/assets/61636d64a66e87acc43f2e63f91829fa6b8f0dea.png"
-                    alt="Days Inn & Suites logo"
-                    className="h-8 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={120}
-                    height={32}
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </div>
