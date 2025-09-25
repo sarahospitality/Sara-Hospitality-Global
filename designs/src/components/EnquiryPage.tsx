@@ -54,8 +54,8 @@ export default function EnquiryPage({ onNavigate }: EnquiryPageProps) {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Visit Our Showroom",
-      content: "2600 Pleasantdale Rd. Ste 12",
-      subcontent: "Atlanta, GA 30340, USA",
+      content: "1010 MCGINNIS PARK CT, Suite A",
+      subcontent: "SUWANEE, GA 30024, USA",
       color: "text-blue-600",
       bgColor: "from-blue-500/10 to-blue-600/20"
     },
@@ -190,7 +190,7 @@ export default function EnquiryPage({ onNavigate }: EnquiryPageProps) {
                       <div className="flex-1">
                         <h4 className="font-bold mb-2">Headquarters</h4>
                         <p className="text-gray-900 mb-1">Sara Global Hospitality</p>
-                        <p className="text-gray-900 mb-2">2600 Pleasantdale Rd. Ste 12, Atlanta, GA 30340</p>
+                        <p className="text-gray-900 mb-2">1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024</p>
                         <a href="#" className="text-[#f26d35] hover:text-[#f26d35]/80 font-medium">
                           Visit our showroom
                         </a>

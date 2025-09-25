@@ -39,7 +39,7 @@ export default function ContactSection({ onNavigate, selectedCountry }: ContactS
     {
       icon: MapPin,
       title: "Headquarters",
-      details: ["Sara Global Hospitality", "2600 Pleasantdale Rd. Ste 12, Atlanta, GA 30340"],
+      details: ["Sara Global Hospitality", "1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024"],
       description: "Visit our showroom"
     },
     {
@@ -132,7 +132,7 @@ export default function ContactSection({ onNavigate, selectedCountry }: ContactS
                 <div className="flex-1">
                   <h4 className="font-bold mb-2 text-gray-900">Headquarters</h4>
                   <p className="text-gray-900 mb-1">Sara Global Hospitality</p>
-                  <p className="text-gray-900 mb-2">2600 Pleasantdale Rd. Ste 12, Atlanta, GA 30340</p>
+                  <p className="text-gray-900 mb-2">1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024</p>
                   <a href="#" className="text-[#f26d35] hover:text-[#f26d35]/80 font-medium">
                     Visit our showroom
                   </a>

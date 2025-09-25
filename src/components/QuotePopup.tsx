@@ -15,9 +15,8 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
     name: "",
     email: "",
     phone: "",
-    location: "",
-    message: "",
-    interests: [] as string[]
+    interestedIn: "",
+    message: ""
   });
 
   const interestOptions = [
@@ -31,15 +30,6 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
     "Custom Solutions"
   ];
 
-  const handleInterestChange = (interest: string, checked: boolean) => {
-    setFormData(prev => ({
-      ...prev,
-      interests: checked 
-        ? [...prev.interests, interest]
-        : prev.interests.filter(item => item !== interest)
-    }));
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
@@ -50,9 +40,8 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
       name: "",
       email: "",
       phone: "",
-      location: "",
-      message: "",
-      interests: []
+      interestedIn: "",
+      message: ""
     });
     onClose();
   };
@@ -186,7 +175,7 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
                   </div>
                 </div>
 
-                {/* Phone and Location Row */}
+                {/* Phone and Interested In Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="popup-phone" className="text-sm font-medium text-gray-700">
@@ -203,17 +192,21 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="popup-location" className="text-sm font-medium text-gray-700">
-                      Location *
+                    <label htmlFor="popup-interested-in" className="text-sm font-medium text-gray-700">
+                      Interested In *
                     </label>
-                    <input 
-                      id="popup-location"
-                      value={formData.location}
-                      onChange={(e) => setFormData(prev => ({...prev, location: e.target.value}))}
-                      placeholder="City, State, Country"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent h-10"
+                    <select 
+                      id="popup-interested-in"
+                      value={formData.interestedIn}
+                      onChange={(e) => setFormData(prev => ({...prev, interestedIn: e.target.value}))}
+                      className="w-full pl-3 pr-16 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent h-10"
                       required
-                    />
+                    >
+                      <option value="">Select your interest</option>
+                      {interestOptions.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
@@ -232,31 +225,6 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
                   />
                 </div>
 
-                {/* Interested In Checkboxes */}
-                <div className="space-y-3">
-                  <label className="text-sm font-medium text-gray-700">
-                    Interested In
-                  </label>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {interestOptions.map((item, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <input 
-                          type="checkbox"
-                          id={`popup-interest-${index}`}
-                          checked={formData.interests.includes(item)}
-                          onChange={(e) => handleInterestChange(item, e.target.checked)}
-                          className="rounded border-gray-300 text-[#f26d35] focus:ring-[#f26d35]"
-                        />
-                        <label 
-                          htmlFor={`popup-interest-${index}`} 
-                          className="text-sm cursor-pointer font-normal text-gray-700"
-                        >
-                          {item}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
 
                 {/* reCAPTCHA Section */}
                 <div className="space-y-3">

@@ -29,7 +29,6 @@ export interface FormData {
   full_name: string;
   email: string;
   phone: string;
-  location: string;
   message: string;
   category: InquiryCategory[];
 }
@@ -38,7 +37,6 @@ export interface FormErrors {
   full_name?: string;
   email?: string;
   phone?: string;
-  location?: string;
   message?: string;
   category?: string;
   general?: string;

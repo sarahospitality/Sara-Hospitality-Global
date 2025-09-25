@@ -258,7 +258,7 @@ export function Footer() {
               </div>
               <div className="flex items-center text-gray-400">
                 <MapPin className="w-4 h-4 mr-3" />
-                <span>2600 Pleasantdale Rd. Ste 12, Atlanta, GA 30340</span>
+                <span>1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024</span>
               </div>
             </div>
           </motion.div>

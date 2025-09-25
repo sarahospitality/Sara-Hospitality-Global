@@ -5,7 +5,6 @@ const initialFormData: FormData = {
   full_name: '',
   email: '',
   phone: '',
-  location: '',
   message: '',
   category: []
 };
@@ -39,10 +38,6 @@ export function useInquiryForm() {
 
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
-    }
-
-    if (!formData.location.trim()) {
-      newErrors.location = 'Location is required';
     }
 
     if (!formData.message.trim()) {

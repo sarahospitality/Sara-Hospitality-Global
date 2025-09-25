@@ -91,7 +91,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
     {
       icon: MapPin,
       title: "Headquarters",
-      details: ["Sara Global Hospitality", "2600 Pleasantdale Rd. Ste 12, Atlanta, GA 30340"],
+      details: ["Sara Global Hospitality", "1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024"],
       description: "Visit our showroom",
       color: "text-primary",
       bgColor: "from-primary/10 to-primary/20"

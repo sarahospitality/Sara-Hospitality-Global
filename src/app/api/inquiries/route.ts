@@ -40,9 +40,9 @@ export async function POST(request: NextRequest) {
     console.log('Inquiries API: Request body:', { ...body, message: body.message?.substring(0, 50) + '...' });
     
     // Validate required fields
-    const { full_name, email, phone, location, message, category } = body;
+    const { full_name, email, phone, message, category } = body;
     
-    if (!full_name || !email || !phone || !location || !message) {
+    if (!full_name || !email || !phone || !message) {
       return NextResponse.json(
         { error: 'All required fields must be provided' },
         { status: 400 }
@@ -80,13 +80,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (location.length > 255) {
-      return NextResponse.json(
-        { error: 'Location is too long' },
-        { status: 400 }
-      );
-    }
-
     if (message.length > 2000) {
       return NextResponse.json(
         { error: 'Message is too long' },
@@ -117,7 +110,7 @@ export async function POST(request: NextRequest) {
       full_name: full_name.trim(),
       email: email.toLowerCase().trim(),
       phone: phone.trim(),
-      location: location.trim(),
+      location: 'Not specified', // Default value since location is required in DB but not in form
       message: message.trim(),
       source: 'web',
       ip: ip,

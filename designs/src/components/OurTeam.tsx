@@ -283,7 +283,7 @@ export default function OurTeam({ onNavigate }: OurTeamProps) {
               <div className="space-y-4 mb-8">
                 <div className="flex items-center gap-3">
                   <MapPin className="w-5 h-5 text-primary" />
-                  <span>2600 Pleasantdale Rd. Ste 12, Atlanta, GA 30340</span>
+                  <span>1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-primary" />

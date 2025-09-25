@@ -218,6 +218,8 @@ export default function PortfolioPage() {
                   <ImageWithFallback
                     src={project.image}
                     alt={project.title}
+                    width={400}
+                    height={256}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>

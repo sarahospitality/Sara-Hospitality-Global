@@ -12,7 +12,7 @@ interface ContactFormData {
   company: string;
   email: string;
   phone: string;
-  country: string;
+  interestedIn: string;
   message: string;
   department: string;
 }
@@ -23,7 +23,7 @@ export function ContactForm() {
     company: '',
     email: '',
     phone: '',
-    country: '',
+    interestedIn: '',
     message: '',
     department: 'Sales',
   });
@@ -50,7 +50,7 @@ export function ContactForm() {
         company: '',
         email: '',
         phone: '',
-        country: '',
+        interestedIn: '',
         message: '',
         department: 'Sales',
       });
@@ -159,24 +159,26 @@ export function ContactForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
-                Country *
+              <label htmlFor="interestedIn" className="block text-sm font-medium text-gray-700 mb-2">
+                Interested In *
               </label>
               <select
-                id="country"
-                name="country"
-                value={formData.country}
+                id="interestedIn"
+                name="interestedIn"
+                value={formData.interestedIn}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent transition-colors"
+                className="w-full pl-4 pr-16 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent transition-colors"
               >
-                <option value="">Select your country</option>
-                <option value="Canada">Canada</option>
-                <option value="United States">United States</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="United Arab Emirates">United Arab Emirates</option>
-                <option value="Australia">Australia</option>
-                <option value="Other">Other</option>
+                <option value="">Select your interest</option>
+                <option value="Casegoods">Casegoods</option>
+                <option value="FF&E">FF&E</option>
+                <option value="Reception Items">Reception Items</option>
+                <option value="Bedroom Furniture">Bedroom Furniture</option>
+                <option value="Restaurant Furniture">Restaurant Furniture</option>
+                <option value="Lobby Items">Lobby Items</option>
+                <option value="Outdoor Furniture">Outdoor Furniture</option>
+                <option value="Custom Solutions">Custom Solutions</option>
               </select>
             </div>
             

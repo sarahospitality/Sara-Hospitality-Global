@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { ArrowLeft, ArrowRight, Check, MessageCircle, Star } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import Link from "next/link";
+import { ContactSection } from '@/components/ContactSection';
 
 interface HotelDetailClientProps {
   slug: string;
@@ -203,6 +204,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
         <ImageWithFallback
           src={project.heroImage}
           alt={project.title}
+          width={1920}
+          height={1080}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />
@@ -240,6 +243,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                     <ImageWithFallback
                       src={imageSet.old}
                       alt={`Before transformation ${index + 1}`}
+                      width={600}
+                      height={400}
                       className="w-full h-[400px] object-cover rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300"
                     />
                     <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -265,6 +270,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                     <ImageWithFallback
                       src={imageSet.new}
                       alt={`After transformation ${index + 1}`}
+                      width={600}
+                      height={400}
                       className="w-full h-[400px] object-cover rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300"
                     />
                     <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -340,6 +347,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
               <ImageWithFallback
                 src={project.challengesImage}
                 alt="Project challenges"
+                width={800}
+                height={400}
                 className="w-full h-[400px] object-cover rounded-2xl shadow-xl"
               />
             </div>
@@ -358,6 +367,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
               <ImageWithFallback
                 src={project.howWeDeliveredImage}
                 alt="How we delivered"
+                width={800}
+                height={400}
                 className="w-full h-[400px] object-cover rounded-2xl shadow-xl"
               />
             </div>
@@ -400,6 +411,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHJvb218ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Hotel room background"
+              width={1920}
+              height={1080}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0" style={{ backgroundColor: 'rgba(17, 30, 51, 0.9)' }}></div>
@@ -463,6 +476,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                   <ImageWithFallback
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBiYWNrJTIwdmlldyUyMHdhdGVyfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=400"
                     alt="Guest profile"
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
@@ -490,6 +505,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                   <ImageWithFallback
                     src="https://images.unsplash.com/photo-1494790108755-2616b612b786?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGJsb25kZSUyMGhhaXIlMjByZWQlMjBoYXR8ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=400"
                     alt="Guest profile"
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
@@ -518,6 +535,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                   <ImageWithFallback
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBiZWFjaCUyMHdhdGVyfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=400"
                     alt="Guest profile"
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
@@ -818,248 +837,8 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
         </div>
       </section>
 
-      {/* Start Your Project Section */}
-      <section className="pt-8 pb-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-2">
-              Start Your Project
-            </h2>
-            <h3 className="text-4xl font-bold text-orange-500 mb-6">
-              With Sara Global
-            </h3>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Ready to transform your hospitality space? Contact our team of experts for a consultation and discover how we can bring your vision to life.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8 lg:items-stretch">
-            {/* Left Column - Contact Information */}
-            <div className="space-y-6 flex flex-col">
-              <h3 className="text-3xl font-bold mb-6">Contact Information</h3>
-              <p className="text-gray-600 mb-8">
-                Ready to start your project? Our team is here to help you every step of the way.
-              </p>
-              
-              <div className="space-y-6">
-                {/* Phone */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20 text-[#f26d35]">
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold mb-2 text-gray-900">Phone</h4>
-                    <p className="text-gray-900 mb-1">+1-678-431-9041</p>
-                    <p className="text-sm text-[#f26d35]">Mon-Fri 8AM-6PM EST</p>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20 text-[#f26d35]">
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold mb-2 text-gray-900">Email</h4>
-                    <p className="text-gray-900 mb-1">info@saraglobal.com</p>
-                    <p className="text-gray-900 mb-1">sales@saraglobal.com</p>
-                    <p className="text-sm text-[#f26d35]">24/7 Email Support</p>
-                  </div>
-                </div>
-
-                {/* Headquarters */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20 text-[#f26d35]">
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold mb-2 text-gray-900">Headquarters</h4>
-                    <p className="text-gray-900 mb-1">Sara Global Hospitality</p>
-                    <p className="text-gray-900 mb-2">2600 Pleasantdale Rd. Ste 12, Atlanta, GA 30340</p>
-                    <Link href="/contact" className="text-[#f26d35] hover:text-[#f26d35]/80 font-medium">
-                      Visit our showroom
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Global Offices */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-r from-[#f26d35]/10 to-[#f26d35]/20 text-[#f26d35]">
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold mb-2 text-gray-900">Global Offices</h4>
-                    <p className="text-gray-900 mb-2">Dubai • London • Singapore</p>
-                    <p className="text-gray-900 mb-2">Mumbai • Shanghai • Toronto</p>
-                    <Link href="/contact" className="text-[#f26d35] hover:text-[#f26d35]/80 font-medium">
-                      Worldwide presence
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Spacer to fill remaining height */}
-              <div className="flex-1"></div>
-            </div>
-
-            {/* Right Column - Project Inquiry Form */}
-            <div className="lg:col-span-2">
-              <div className="border-0 shadow-2xl bg-gradient-to-br from-white to-gray-50 rounded-lg">
-                  <div className="pb-3 p-6">
-                    <h3 className="flex items-center gap-2 text-2xl font-bold mb-2">
-                      <svg className="w-6 h-6 text-[#f26d35]" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                      </svg>
-                      Project Inquiry Form
-                    </h3>
-                    <p className="text-gray-600">
-                      Tell us about your project and we&apos;ll get back to you within 24 hours with a detailed proposal.
-                    </p>
-                  </div>
-                  <div className="space-y-4 p-6">
-                    <form className="space-y-4">
-                      {/* Name & Email */}
-                      <div className="grid grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                            <svg className="w-4 h-4 text-[#f26d35]" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                            </svg>
-                            Name *
-                          </label>
-                          <input 
-                            type="text"
-                            placeholder="Enter your full name" 
-                            className="w-full h-12 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 rounded-lg px-4"
-                            style={{ backgroundColor: '#f3f3f5' }}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                            <svg className="w-4 h-4 text-[#f26d35]" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                            </svg>
-                            Email Address *
-                          </label>
-                          <input 
-                            type="email"
-                            placeholder="your@email.com" 
-                            className="w-full h-12 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 rounded-lg px-4"
-                            style={{ backgroundColor: '#f3f3f5' }}
-                          />
-                        </div>
-                      </div>
-
-                      {/* Phone & Location */}
-                      <div className="grid grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                            <svg className="w-4 h-4 text-[#f26d35]" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                            </svg>
-                            Phone Number *
-                          </label>
-                          <input 
-                            type="tel"
-                            placeholder="+1-678-431-9041" 
-                            className="w-full h-12 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 rounded-lg px-4"
-                            style={{ backgroundColor: '#f3f3f5' }}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                            <svg className="w-4 h-4 text-[#f26d35]" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                            </svg>
-                            Location *
-                          </label>
-                          <input 
-                            type="text"
-                            placeholder="City, State, Country" 
-                            className="w-full h-12 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 rounded-lg px-4"
-                            style={{ backgroundColor: '#f3f3f5' }}
-                          />
-                        </div>
-                      </div>
-
-                      {/* Message - Full Width */}
-                      <div className="space-y-2">
-                        <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                          <svg className="w-4 h-4 text-[#f26d35]" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
-                          </svg>
-                          Message from the Client *
-                        </label>
-                        <textarea 
-                          placeholder="Please describe your project, specific furniture needs, timeline, and any special requirements..."
-                          className="w-full h-24 border-gray-200 focus:ring-2 focus:ring-[#f26d35]/20 resize-none rounded-lg px-4 py-3"
-                          style={{ backgroundColor: '#f3f3f5' }}
-                        />
-                      </div>
-
-                      {/* Interests */}
-                      <div className="space-y-2">
-                        <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                          <svg className="w-4 h-4 text-[#f26d35]" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clipRule="evenodd" />
-                          </svg>
-                          Interested In
-                        </label>
-                        <div className="grid grid-cols-3 gap-3">
-                          {[
-                            'Casegoods',
-                            'FF&E',
-                            'Reception Items',
-                            'Bedroom Furniture',
-                            'Restaurant Furniture',
-                            'Lobby Items',
-                            'Outdoor Furniture',
-                            'Custom Solutions'
-                          ].map((interest, index) => (
-                            <div key={index} className="flex items-center space-x-2">
-                              <input 
-                                type="checkbox"
-                                className="border-gray-300 text-[#f26d35] focus:ring-[#f26d35] rounded"
-                              />
-                              <label className="text-sm cursor-pointer text-gray-700">
-                                {interest}
-                              </label>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Submit Button */}
-                      <Button 
-                        className="w-full bg-[#f26d35] hover:bg-[#f26d35]/90 text-white h-12"
-                      >
-                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                        </svg>
-                        Send Inquiry
-                      </Button>
-
-                      <p className="text-sm text-gray-600 text-center">
-                        We&apos;ll review your inquiry and respond within 24 hours with next steps.
-                      </p>
-                    </form>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Contact Section */}
+      <ContactSection />
 
     </div>
   );
