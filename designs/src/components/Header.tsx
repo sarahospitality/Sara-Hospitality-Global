@@ -117,13 +117,13 @@ export default function Header({ onNavigate, currentPage = "home", selectedCount
                     <SelectValue placeholder="Select Country" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="usa-atlanta">USA, Atlanta</SelectItem>
-                    <SelectItem value="uae-dubai">UAE, Dubai</SelectItem>
-                    <SelectItem value="uk-london">UK, London</SelectItem>
-                    <SelectItem value="singapore">Singapore</SelectItem>
-                    <SelectItem value="india-mumbai">India, Mumbai</SelectItem>
-                    <SelectItem value="china-shanghai">China, Shanghai</SelectItem>
-                    <SelectItem value="canada-toronto">Canada, Toronto</SelectItem>
+                    <SelectItem value="usa-atlanta">🇺🇸 United States</SelectItem>
+                    <SelectItem value="uae-dubai">🇦🇪 United Arab Emirates</SelectItem>
+                    <SelectItem value="uk-london">🇬🇧 United Kingdom</SelectItem>
+                    <SelectItem value="singapore">🇸🇬 Singapore</SelectItem>
+                    <SelectItem value="india-mumbai">🇮🇳 India</SelectItem>
+                    <SelectItem value="china-shanghai">🇨🇳 China</SelectItem>
+                    <SelectItem value="canada-toronto">🇨🇦 Canada</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

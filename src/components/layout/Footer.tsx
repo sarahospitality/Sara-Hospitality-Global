@@ -99,15 +99,15 @@ export function Footer() {
               <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
               <div className="space-y-3">
                 <div className="flex items-center">
-                  <Mail className="w-5 h-5 text-gray-400 mr-3" />
+                  <Mail className="w-6 h-6 text-gray-400 mr-3" />
                   <span className="text-gray-400">info@saraglobalhospitality.com</span>
                 </div>
                 <div className="flex items-center">
-                  <Phone className="w-5 h-5 text-gray-400 mr-3" />
+                  <Phone className="w-6 h-6 text-gray-400 mr-3" />
                   <span className="text-gray-400">+1 (555) 123-4567</span>
                 </div>
                 <div className="flex items-center">
-                  <MapPin className="w-5 h-5 text-gray-400 mr-3" />
+                  <MapPin className="w-9 h-9 text-gray-400 mr-3" />
                   <span className="text-gray-400">Global Headquarters</span>
                 </div>
               </div>
@@ -249,15 +249,15 @@ export function Footer() {
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <div className="space-y-3">
               <div className="flex items-center text-gray-400">
-                <Phone className="w-4 h-4 mr-3" />
+                <Phone className="w-6 h-6 mr-3" />
                 <span>+1-678-431-9041</span>
               </div>
               <div className="flex items-center text-gray-400">
-                <Mail className="w-4 h-4 mr-3" />
+                <Mail className="w-6 h-6 mr-3" />
                 <span>info@saraglobal.com</span>
               </div>
               <div className="flex items-center text-gray-400">
-                <MapPin className="w-4 h-4 mr-3" />
+                <MapPin className="w-9 h-9 mr-3" />
                 <span>1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024</span>
               </div>
             </div>

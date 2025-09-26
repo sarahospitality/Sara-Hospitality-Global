@@ -93,15 +93,15 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4 text-white">Contact Info</h3>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-gray-400" />
+                <Phone className="w-6 h-6 text-gray-400" />
                 <span className="text-gray-300 text-sm">+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-gray-400" />
+                <Mail className="w-6 h-6 text-gray-400" />
                 <span className="text-gray-300 text-sm">info@saraglobal.com</span>
               </div>
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-gray-400 mt-0.5" />
+              <div className="flex items-center gap-2">
+                <MapPin className="w-9 h-9 text-gray-400" />
                 <span className="text-gray-300 text-sm">Global Headquarters</span>
               </div>
             </div>

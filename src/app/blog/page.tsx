@@ -176,31 +176,37 @@ export default function BlogPage() {
     { name: "Sustainability", count: 5, active: false }
   ];
 
-  const recentPosts = [
+  // Manually curated popular posts - can be easily updated to showcase specific articles
+  const popularPosts = [
     {
-      title: "2024 Hotel Design Awards Winners",
-      date: "Dec 18, 2024",
-      image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300"
+      title: "Modern Hotel Furniture Trends for 2024: Sustainability Meets Luxury",
+      date: "Dec 15, 2024",
+      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGZ1cm5pdHVyZXxlbnwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
+      slug: "modern-hotel-furniture-trends-2024"
     },
     {
-      title: "Eco-Friendly Furniture Materials Guide",
-      date: "Dec 16, 2024",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300"
+      title: "How to Choose the Right Furniture for Different Hotel Room Types",
+      date: "Dec 12, 2024",
+      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
+      slug: "choosing-right-furniture-hotel-rooms"
     },
     {
-      title: "Budget Planning for Hotel Renovations",
-      date: "Dec 14, 2024",
-      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300"
+      title: "The Impact of Custom Furniture on Guest Experience",
+      date: "Dec 10, 2024",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
+      slug: "custom-furniture-guest-experience"
     },
     {
-      title: "Color Psychology in Hotel Interiors",
-      date: "Dec 11, 2024",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300"
+      title: "Restaurant and Bar Furniture: Creating the Perfect Atmosphere",
+      date: "Dec 5, 2024",
+      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
+      slug: "restaurant-bar-furniture-dining-atmosphere"
     },
     {
-      title: "Outdoor Furniture Trends for 2024",
-      date: "Dec 9, 2024",
-      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300"
+      title: "Luxury Hotel Furniture Trends: Elevating Guest Experience",
+      date: "Dec 1, 2024",
+      image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
+      slug: "luxury-hotel-furniture-trends-2024"
     }
   ];
 
@@ -286,105 +292,56 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Featured Post */}
-      {featuredPost && (
-        <section className="py-12">
-          <div className="container mx-auto px-6 sm:px-4">
-            <motion.div 
-              className="mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <Badge className="bg-[#f26d35] text-white mb-4">
-                Featured Article
-              </Badge>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="overflow-hidden border-0 shadow-2xl">
-                <div className="grid lg:grid-cols-2 gap-0">
-                  <div className="relative h-80 lg:h-full">
-                    <ImageWithFallback
-                      src={featuredPost.image}
-                      alt={featuredPost.title}
-                      className="w-full h-full object-cover"
-                      width={600}
-                      height={400}
-                    />
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-[#f26d35]/90 text-white">
-                        {featuredPost.category}
-                      </Badge>
-                    </div>
-                  </div>
-                  
-                  <CardContent className="p-8 lg:p-12 flex flex-col justify-center">
-                    <div className="space-y-6">
-                      <div className="flex flex-wrap gap-2">
-                        {featuredPost.tags.map((tag, index) => (
-                          <Badge key={index} variant="outline" className="text-xs">
-                            <Tag className="w-3 h-3 mr-1" />
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                      
-                      <h2 className="text-2xl lg:text-3xl font-bold leading-tight">
-                        {featuredPost.title}
-                      </h2>
-                      
-                      <p className="text-lg text-gray-600">
-                        {featuredPost.description}
-                      </p>
-                      
-                      <div className="flex items-center gap-6 text-sm text-gray-600">
-                        <div className="flex items-center gap-2">
-                          <User className="w-4 h-4" />
-                          <span>{featuredPost.author}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" />
-                          <span>{featuredPost.date}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="w-4 h-4" />
-                          <span>{featuredPost.readTime}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="flex gap-4">
-                        <Link href={`/blog/${featuredPost.slug}`}>
-                          <Button 
-                            size="lg" 
-                            className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white"
-                          >
-                            Read Full Article
-                            <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-                          </Button>
-                        </Link>
-                        <Button size="lg" variant="outline" className="flex items-center gap-2">
-                          <Share2 className="w-4 h-4" />
-                          Share
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </div>
-              </Card>
-            </motion.div>
-          </div>
-        </section>
-      )}
+      {/* Categories Section */}
+      <section className="py-8 bg-white border-b">
+        <div className="container mx-auto px-6 sm:px-4">
+          <motion.div 
+            className="text-center mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold mb-4">Browse by Category</h2>
+            <p className="text-gray-600">Explore our content by topic</p>
+          </motion.div>
+          
+          <motion.div 
+            className="flex flex-wrap justify-center gap-3"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            {categories.map((category, index) => (
+              <button 
+                key={index}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 hover:scale-105 ${
+                  category.active 
+                    ? 'bg-[#f26d35] text-white border-[#f26d35] shadow-lg' 
+                    : 'bg-white text-gray-700 border-gray-300 hover:border-[#f26d35] hover:text-[#f26d35] hover:bg-[#f26d35]/5'
+                }`}
+              >
+                <FolderOpen className="w-4 h-4" />
+                <span className="font-medium">{category.name}</span>
+                <Badge 
+                  variant="outline" 
+                  className={`text-xs ${
+                    category.active 
+                      ? 'bg-white/20 text-white border-white/30' 
+                      : 'bg-gray-100 text-gray-600 border-gray-200'
+                  }`}
+                >
+                  {category.count}
+                </Badge>
+              </button>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* Main Content with Sidebar */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-6 sm:px-4">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Main Content Area */}
@@ -484,42 +441,7 @@ export default function BlogPage() {
 
             {/* Sidebar */}
             <div className="lg:col-span-1 space-y-6">
-              {/* Categories */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <Card className="border-0 shadow-md">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <FolderOpen className="w-5 h-5 text-[#f26d35]" />
-                      Categories
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    {categories.map((category, index) => (
-                      <div key={index}>
-                        <button className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-[#f26d35]/5 transition-colors group">
-                          <span className={`${category.active ? 'text-[#f26d35] font-medium' : 'text-gray-900'} group-hover:text-[#f26d35] transition-colors`}>
-                            {category.name}
-                          </span>
-                          <div className="flex items-center gap-2">
-                            <Badge variant="outline" className="text-xs">
-                              {category.count}
-                            </Badge>
-                            <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-[#f26d35] transition-colors" />
-                          </div>
-                        </button>
-                        {index < categories.length - 1 && <Separator className="my-1" />}
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              {/* Recent Posts */}
+              {/* Popular Posts */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -529,14 +451,14 @@ export default function BlogPage() {
                 <Card className="border-0 shadow-md">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Star className="w-5 h-5 text-[#f26d35]" />
-                      Recent Posts
+                      <TrendingUp className="w-5 h-5 text-[#f26d35]" />
+                      Popular Posts
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {recentPosts.map((post, index) => (
+                    {popularPosts.map((post, index) => (
                       <div key={index} className="group">
-                        <div className="flex gap-3 cursor-pointer">
+                        <Link href={`/blog/${post.slug}`} className="flex gap-3 cursor-pointer">
                           <div className="w-16 h-16 flex-shrink-0 overflow-hidden rounded-lg">
                             <ImageWithFallback
                               src={post.image}
@@ -555,8 +477,8 @@ export default function BlogPage() {
                               <span>{post.date}</span>
                             </div>
                           </div>
-                        </div>
-                        {index < recentPosts.length - 1 && <Separator className="mt-4" />}
+                        </Link>
+                        {index < popularPosts.length - 1 && <Separator className="mt-4" />}
                       </div>
                     ))}
                   </CardContent>
@@ -594,70 +516,11 @@ export default function BlogPage() {
                 </Card>
               </motion.div>
 
-              {/* Newsletter Signup */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <Card className="border-0 shadow-md bg-gradient-to-br from-[#f26d35]/5 to-gray-100">
-                  <CardContent className="p-6 text-center">
-                    <div className="mb-4">
-                      <MessageCircle className="w-8 h-8 text-[#f26d35] mx-auto mb-2" />
-                      <h3 className="font-bold mb-2">Stay Updated</h3>
-                      <p className="text-sm text-gray-600">
-                        Get the latest insights delivered to your inbox
-                      </p>
-                    </div>
-                    <div className="space-y-3">
-                      <input 
-                        type="email" 
-                        placeholder="Your email address"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#f26d35]/20"
-                      />
-                      <Button size="sm" className="w-full bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
-                        Subscribe
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Ready to Transform Your Hotel?
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
-              Get expert advice on your hospitality furniture project. Our team is here to help 
-              you create exceptional spaces that delight your guests.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
-                View Our Portfolio
-                <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-              </Button>
-              <Button size="lg" variant="outline" className="border-[#f26d35] text-[#f26d35] hover:bg-[#f26d35]/10">
-                Contact Our Experts
-                <MessageCircle className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 }

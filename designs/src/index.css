@@ -6873,7 +6873,7 @@ html {
 }
 
 .animate-scroll-logos {
-  animation: 15s linear infinite scroll-logos;
+  animation: 8s linear infinite scroll-logos;
 }
 
 .animate-scroll-logos:hover {

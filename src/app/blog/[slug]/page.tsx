@@ -207,7 +207,8 @@ export default function BlogDetailPage() {
     }
   };
 
-  const relatedPosts = [
+  // All available blog posts for related articles
+  const allBlogPosts = [
     {
       id: "choosing-right-furniture-hotel-rooms",
       title: "How to Choose the Right Furniture for Different Hotel Room Types",
@@ -228,10 +229,79 @@ export default function BlogDetailPage() {
       image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
       category: "Space Planning",
       readTime: "7 min read"
+    },
+    {
+      id: "restaurant-bar-furniture-dining-atmosphere",
+      title: "Restaurant and Bar Furniture: Creating the Perfect Atmosphere",
+      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+      category: "Restaurant Design",
+      readTime: "6 min read"
+    },
+    {
+      id: "maintenance-tips-long-lasting-hotel-furniture",
+      title: "Maintenance Tips for Long-lasting Hotel Furniture",
+      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+      category: "Maintenance",
+      readTime: "4 min read"
+    },
+    {
+      id: "luxury-hotel-furniture-trends-2024",
+      title: "Luxury Hotel Furniture Trends: Elevating Guest Experience",
+      image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+      category: "Design Trends",
+      readTime: "5 min read"
+    },
+    // Additional posts for better related article coverage
+    {
+      id: "sustainable-hotel-design-guide",
+      title: "Complete Guide to Sustainable Hotel Design Practices",
+      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+      category: "Design Trends",
+      readTime: "7 min read"
+    },
+    {
+      id: "hotel-room-furniture-buying-guide",
+      title: "Hotel Room Furniture Buying Guide: What to Consider",
+      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+      category: "Buying Guide",
+      readTime: "8 min read"
+    },
+    {
+      id: "enhancing-guest-satisfaction-furniture",
+      title: "Enhancing Guest Satisfaction Through Strategic Furniture Choices",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+      category: "Guest Experience",
+      readTime: "6 min read"
+    },
+    {
+      id: "compact-hotel-room-solutions",
+      title: "Compact Hotel Room Solutions: Maximizing Every Square Foot",
+      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+      category: "Space Planning",
+      readTime: "5 min read"
+    },
+    {
+      id: "restaurant-furniture-selection-tips",
+      title: "Restaurant Furniture Selection: Tips for Creating the Perfect Ambiance",
+      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+      category: "Restaurant Design",
+      readTime: "6 min read"
+    },
+    {
+      id: "hotel-furniture-maintenance-schedule",
+      title: "Hotel Furniture Maintenance Schedule: Keep Your Investment Looking New",
+      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=400",
+      category: "Maintenance",
+      readTime: "4 min read"
     }
   ];
 
   const currentPost = blogPosts[slug as keyof typeof blogPosts];
+
+  // Filter related posts based on current post's category
+  const relatedPosts = allBlogPosts
+    .filter(post => post.category === currentPost?.category && post.id !== slug)
+    .slice(0, 3); // Show maximum 3 related articles
 
   if (!currentPost) {
     return (
@@ -313,9 +383,6 @@ export default function BlogDetailPage() {
         <div className="bg-white border-b">
           <div className="container mx-auto px-6 sm:px-4 py-8">
             <div className="max-w-4xl">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                {currentPost.subtitle}
-              </h2>
               
               {/* Article Meta */}
               <div className="flex flex-wrap items-center gap-6 text-gray-600">
@@ -357,40 +424,6 @@ export default function BlogDetailPage() {
             {/* Article Content */}
             <div className="lg:col-span-3">
               <div className="max-w-none prose-lg">
-                {/* Article Actions */}
-                <div className="flex items-center justify-between mb-8 p-4 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-4">
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="flex items-center gap-2"
-                    >
-                      <Heart className="w-4 h-4" />
-                      <span>{currentPost.likes}</span>
-                    </Button>
-                    <Button size="sm" variant="outline" className="flex items-center gap-2">
-                      <Share2 className="w-4 h-4" />
-                      Share
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="flex items-center gap-2"
-                    >
-                      <Bookmark className="w-4 h-4" />
-                      Save
-                    </Button>
-                  </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <Button size="sm" variant="ghost">
-                      <Printer className="w-4 h-4" />
-                    </Button>
-                    <Button size="sm" variant="ghost">
-                      <Download className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
 
                 {/* Introduction */}
                 <div className="mb-12">
@@ -436,20 +469,71 @@ export default function BlogDetailPage() {
                       {section.heading}
                     </h2>
                     
-                    <div className="grid lg:grid-cols-2 gap-8 items-center mb-8">
-                      <div>
-                        <p className="text-lg leading-relaxed text-gray-600">
-                          {section.content}
-                        </p>
+                    {/* Content first */}
+                    <div className="mb-8">
+                      <p className="text-lg leading-relaxed text-gray-600 mb-6">
+                        {section.content}
+                      </p>
+                      
+                      {/* Additional content for each section */}
+                      <div className="prose prose-lg max-w-none">
+                        {index === 0 && (
+                          <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg mb-6">
+                            <h4 className="text-lg font-semibold text-blue-900 mb-3">Why This Matters</h4>
+                            <p className="text-blue-800 leading-relaxed">
+                              Sustainable materials not only benefit the environment but also create unique selling points for hotels. 
+                              Guests increasingly value properties that demonstrate environmental responsibility, leading to higher 
+                              satisfaction scores and positive reviews.
+                            </p>
+                          </div>
+                        )}
+                        
+                        {index === 1 && (
+                          <div className="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-lg mb-6">
+                            <h4 className="text-lg font-semibold text-green-900 mb-3">Implementation Tips</h4>
+                            <p className="text-green-800 leading-relaxed">
+                              Start small by incorporating natural textures in accent pieces. Consider using reclaimed wood for 
+                              headboards or live-edge tables in common areas. These elements create visual interest while 
+                              maintaining the sophisticated aesthetic guests expect.
+                            </p>
+                          </div>
+                        )}
+                        
+                        {index === 2 && (
+                          <div className="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-r-lg mb-6">
+                            <h4 className="text-lg font-semibold text-purple-900 mb-3">Cost Considerations</h4>
+                            <p className="text-purple-800 leading-relaxed">
+                              While modular systems may have higher upfront costs, they offer long-term savings through 
+                              reduced replacement needs and increased flexibility. Many hotels see ROI within 3-5 years 
+                              through reduced maintenance and reconfiguration costs.
+                            </p>
+                          </div>
+                        )}
+                        
+                        {index === 3 && (
+                          <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-6">
+                            <h4 className="text-lg font-semibold text-orange-900 mb-3">Future Trends</h4>
+                            <p className="text-orange-800 leading-relaxed">
+                              Technology integration is evolving rapidly. Look for furniture with built-in wireless charging, 
+                              smart lighting controls, and even voice-activated features. These innovations enhance guest 
+                              convenience while maintaining elegant design aesthetics.
+                            </p>
+                          </div>
+                        )}
                       </div>
-                      <div className="relative">
-                        <ImageWithFallback
-                          src={section.image}
-                          alt={section.heading}
-                          className="w-full h-64 object-cover rounded-lg shadow-lg"
-                          width={600}
-                          height={256}
-                        />
+                    </div>
+                    
+                    {/* Image below content */}
+                    <div className="relative mb-8">
+                      <ImageWithFallback
+                        src={section.image}
+                        alt={section.heading}
+                        className="w-full h-80 object-cover rounded-lg shadow-lg"
+                        width={800}
+                        height={320}
+                      />
+                      <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded text-sm">
+                        {section.heading}
                       </div>
                     </div>
                     
@@ -603,24 +687,6 @@ export default function BlogDetailPage() {
                   </CardContent>
                 </Card>
 
-                {/* Newsletter */}
-                <Card className="border-0 shadow-md bg-gradient-to-br from-[#f26d35]/5 to-gray-100">
-                  <CardContent className="p-6 text-center">
-                    <TrendingUp className="w-8 h-8 text-[#f26d35] mx-auto mb-3" />
-                    <h3 className="font-bold mb-2">Stay Updated</h3>
-                    <p className="text-sm text-gray-600 mb-4">
-                      Get the latest hospitality insights
-                    </p>
-                    <input 
-                      type="email" 
-                      placeholder="Your email"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-[#f26d35]/20"
-                    />
-                    <Button size="sm" className="w-full bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
-                      Subscribe
-                    </Button>
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </div>
@@ -690,36 +756,6 @@ export default function BlogDetailPage() {
         </div>
       </section>
 
-      {/* Comments Section */}
-      <section className="py-12">
-        <div className="container mx-auto px-6 sm:px-4">
-          <div className="max-w-4xl mx-auto">
-            <motion.div 
-              className="flex items-center gap-2 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <MessageCircle className="w-6 h-6 text-[#f26d35]" />
-              <h2 className="text-2xl font-bold">Comments & Discussion</h2>
-            </motion.div>
-            
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8 text-center">
-                <MessageCircle className="w-12 h-12 text-gray-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">Join the Conversation</h3>
-                <p className="text-gray-600 mb-6">
-                  Share your thoughts and insights with our community of hospitality professionals.
-                </p>
-                <Button className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
-                  Start Discussion
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

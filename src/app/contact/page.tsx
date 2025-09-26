@@ -87,40 +87,6 @@ export default function ContactPage() {
       {/* Contact Section */}
       <ContactSection />
 
-      {/* Call to Action */}
-      <section className="py-12 bg-gradient-to-r from-[#f26d35]/5 via-gray-50 to-[#f26d35]/5">
-        <div className="container mx-auto px-6 sm:px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Need More Information?
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Explore our portfolio and learn about our company 
-              to get started on your hospitality furniture project today.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/portfolio">
-                <Button size="lg" className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
-                  View Our Portfolio
-                  <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-                </Button>
-              </Link>
-              <Link href="/about">
-                <Button size="lg" variant="outline" className="border-[#f26d35] text-[#f26d35] hover:bg-[#f26d35]/10">
-                  Learn About Us
-                  <Globe className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 }
