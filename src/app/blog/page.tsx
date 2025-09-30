@@ -261,7 +261,7 @@ export default function BlogPage() {
 
           {/* Modern Search Bar */}
           <motion.div 
-            className="max-w-2xl mx-auto"
+            className="max-w-xs sm:max-w-2xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -273,17 +273,17 @@ export default function BlogPage() {
                 placeholder="Search blog.."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#f26d35]/20"
+                className="flex-1 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#f26d35]/20"
               />
               <button
                 onClick={handleSearch}
-                className="px-6 py-3 bg-[#f26d35] text-white font-medium hover:bg-[#f26d35]/90 transition-colors"
+                className="px-3 sm:px-6 py-2 sm:py-3 bg-[#f26d35] text-white text-xs sm:text-base font-medium hover:bg-[#f26d35]/90 transition-colors"
               >
                 Search
               </button>
               <button
                 onClick={handleReset}
-                className="px-6 py-3 bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition-colors"
+                className="px-3 sm:px-6 py-2 sm:py-3 bg-gray-200 text-gray-700 text-xs sm:text-base font-medium hover:bg-gray-300 transition-colors"
               >
                 Reset
               </button>
