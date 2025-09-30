@@ -325,7 +325,7 @@ export default function BlogDetailPage() {
       <section className="relative">
         {/* Breadcrumb */}
         <div className="bg-white border-b">
-          <div className="container mx-auto px-6 sm:px-4 py-4">
+          <div className="container mx-auto px-6 sm:px-4 py-2 sm:py-4">
             <motion.div 
               className="flex items-center gap-2 text-sm text-gray-600"
               variants={containerVariants}
@@ -344,7 +344,7 @@ export default function BlogDetailPage() {
         </div>
 
         {/* Hero Image and Title */}
-        <div className="relative h-96 lg:h-[500px]">
+        <div className="relative h-64 sm:h-96 lg:h-[500px]">
           <ImageWithFallback
             src={currentPost.image}
             alt={currentPost.title}
@@ -357,7 +357,7 @@ export default function BlogDetailPage() {
           <div className="absolute bottom-0 left-0 right-0 p-8">
             <div className="container mx-auto">
               <div className="max-w-4xl">
-                <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                   {currentPost.title}
                 </h1>
               </div>
@@ -381,11 +381,11 @@ export default function BlogDetailPage() {
 
         {/* Article Meta - Below Banner */}
         <div className="bg-white border-b">
-          <div className="container mx-auto px-6 sm:px-4 py-8">
+          <div className="container mx-auto px-6 sm:px-4 py-4 sm:py-8">
             <div className="max-w-4xl">
               
               {/* Article Meta */}
-              <div className="flex flex-wrap items-center gap-6 text-gray-600">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 text-gray-600">
                 <div className="flex items-center gap-3">
                   <ImageWithFallback
                     src={currentPost.author.avatar}
@@ -399,15 +399,13 @@ export default function BlogDetailPage() {
                     <span className="text-sm text-[#f26d35] font-medium">{currentPost.author.title}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-sm sm:text-base">
                   <Calendar className="w-4 h-4" />
                   <span>{currentPost.date}</span>
-                </div>
-                <div className="flex items-center gap-2">
+                  <span className="text-gray-400">|</span>
                   <Clock className="w-4 h-4" />
                   <span>{currentPost.readTime}</span>
-                </div>
-                <div className="flex items-center gap-2">
+                  <span className="text-gray-400">|</span>
                   <Eye className="w-4 h-4" />
                   <span>{currentPost.views.toLocaleString()} views</span>
                 </div>
@@ -418,25 +416,25 @@ export default function BlogDetailPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-12">
+      <section className="py-6 sm:py-12">
         <div className="container mx-auto px-6 sm:px-4">
-          <div className="grid lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8">
             {/* Article Content */}
             <div className="lg:col-span-3">
               <div className="max-w-none prose-lg">
 
                 {/* Introduction */}
                 <div className="mb-12">
-                  <div className="bg-[#f26d35]/5 border-l-4 border-[#f26d35] p-6 rounded-r-lg mb-8">
+                  <div className="bg-[#f26d35]/5 border-l-4 border-[#f26d35] p-4 sm:p-6 rounded-r-lg mb-6 sm:mb-8">
                     <Quote className="w-8 h-8 text-[#f26d35] mb-4" />
-                    <p className="text-lg italic leading-relaxed">
+                    <p className="text-base sm:text-lg italic leading-relaxed">
                       {currentPost.content.introduction}
                     </p>
                   </div>
                 </div>
 
                 {/* Key Points */}
-                <Card className="mb-12 border-0 shadow-lg">
+                <Card className="mb-8 sm:mb-12 border-0 shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Lightbulb className="w-5 h-5 text-[#f26d35]" />
@@ -448,7 +446,7 @@ export default function BlogDetailPage() {
                       {currentPost.content.keyPoints.map((point, index) => (
                         <li key={index} className="flex items-start gap-3">
                           <CheckCircle className="w-5 h-5 text-[#f26d35] mt-0.5 flex-shrink-0" />
-                          <span className="text-lg">{point}</span>
+                          <span className="text-base sm:text-lg">{point}</span>
                         </li>
                       ))}
                     </ul>
@@ -465,22 +463,22 @@ export default function BlogDetailPage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-900">
                       {section.heading}
                     </h2>
                     
                     {/* Content first */}
                     <div className="mb-8">
-                      <p className="text-lg leading-relaxed text-gray-600 mb-6">
+                      <p className="text-base sm:text-lg leading-relaxed text-gray-600 mb-4 sm:mb-6">
                         {section.content}
                       </p>
                       
                       {/* Additional content for each section */}
                       <div className="prose prose-lg max-w-none">
                         {index === 0 && (
-                          <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg mb-6">
-                            <h4 className="text-lg font-semibold text-blue-900 mb-3">Why This Matters</h4>
-                            <p className="text-blue-800 leading-relaxed">
+                          <div className="bg-blue-50 border-l-4 border-blue-400 p-4 sm:p-6 rounded-r-lg mb-4 sm:mb-6">
+                            <h4 className="text-base sm:text-lg font-semibold text-blue-900 mb-2 sm:mb-3">Why This Matters</h4>
+                            <p className="text-sm sm:text-base text-blue-800 leading-relaxed">
                               Sustainable materials not only benefit the environment but also create unique selling points for hotels. 
                               Guests increasingly value properties that demonstrate environmental responsibility, leading to higher 
                               satisfaction scores and positive reviews.
@@ -489,9 +487,9 @@ export default function BlogDetailPage() {
                         )}
                         
                         {index === 1 && (
-                          <div className="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-lg mb-6">
-                            <h4 className="text-lg font-semibold text-green-900 mb-3">Implementation Tips</h4>
-                            <p className="text-green-800 leading-relaxed">
+                          <div className="bg-green-50 border-l-4 border-green-400 p-4 sm:p-6 rounded-r-lg mb-4 sm:mb-6">
+                            <h4 className="text-base sm:text-lg font-semibold text-green-900 mb-2 sm:mb-3">Implementation Tips</h4>
+                            <p className="text-sm sm:text-base text-green-800 leading-relaxed">
                               Start small by incorporating natural textures in accent pieces. Consider using reclaimed wood for 
                               headboards or live-edge tables in common areas. These elements create visual interest while 
                               maintaining the sophisticated aesthetic guests expect.
@@ -500,9 +498,9 @@ export default function BlogDetailPage() {
                         )}
                         
                         {index === 2 && (
-                          <div className="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-r-lg mb-6">
-                            <h4 className="text-lg font-semibold text-purple-900 mb-3">Cost Considerations</h4>
-                            <p className="text-purple-800 leading-relaxed">
+                          <div className="bg-purple-50 border-l-4 border-purple-400 p-4 sm:p-6 rounded-r-lg mb-4 sm:mb-6">
+                            <h4 className="text-base sm:text-lg font-semibold text-purple-900 mb-2 sm:mb-3">Cost Considerations</h4>
+                            <p className="text-sm sm:text-base text-purple-800 leading-relaxed">
                               While modular systems may have higher upfront costs, they offer long-term savings through 
                               reduced replacement needs and increased flexibility. Many hotels see ROI within 3-5 years 
                               through reduced maintenance and reconfiguration costs.
@@ -511,9 +509,9 @@ export default function BlogDetailPage() {
                         )}
                         
                         {index === 3 && (
-                          <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg mb-6">
-                            <h4 className="text-lg font-semibold text-orange-900 mb-3">Future Trends</h4>
-                            <p className="text-orange-800 leading-relaxed">
+                          <div className="bg-orange-50 border-l-4 border-orange-400 p-4 sm:p-6 rounded-r-lg mb-4 sm:mb-6">
+                            <h4 className="text-base sm:text-lg font-semibold text-orange-900 mb-2 sm:mb-3">Future Trends</h4>
+                            <p className="text-sm sm:text-base text-orange-800 leading-relaxed">
                               Technology integration is evolving rapidly. Look for furniture with built-in wireless charging, 
                               smart lighting controls, and even voice-activated features. These innovations enhance guest 
                               convenience while maintaining elegant design aesthetics.
@@ -528,7 +526,7 @@ export default function BlogDetailPage() {
                       <ImageWithFallback
                         src={section.image}
                         alt={section.heading}
-                        className="w-full h-80 object-cover rounded-lg shadow-lg"
+                        className="w-full h-64 sm:h-80 object-cover rounded-lg shadow-lg"
                         width={800}
                         height={320}
                       />
@@ -544,25 +542,25 @@ export default function BlogDetailPage() {
                 ))}
 
                 {/* Conclusion */}
-                <div className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6">Conclusion</h2>
-                  <div className="bg-gradient-to-r from-[#f26d35]/5 to-gray-100 p-8 rounded-lg">
-                    <p className="text-lg leading-relaxed mb-6">
+                <div className="mb-8 sm:mb-12">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Conclusion</h2>
+                  <div className="bg-gradient-to-r from-[#f26d35]/5 to-gray-100 p-4 sm:p-8 rounded-lg">
+                    <p className="text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
                       {currentPost.content.conclusion}
                     </p>
                     <div className="border-t pt-6">
-                      <p className="text-lg font-medium text-[#f26d35]">
+                      <p className="text-base sm:text-lg font-medium text-[#f26d35]">
                         {currentPost.content.callToAction}
                       </p>
-                      <div className="flex gap-4 mt-4">
-                        <Link href="/portfolio">
-                          <Button className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
+                      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4">
+                        <Link href="/portfolio" className="w-full sm:w-auto">
+                          <Button className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white w-full sm:w-auto text-base sm:text-sm py-3 sm:py-2">
                             View Our Portfolio
                             <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                           </Button>
                         </Link>
-                        <Link href="/contact">
-                          <Button variant="outline" className="border-[#f26d35] text-[#f26d35] hover:bg-[#f26d35]/10">
+                        <Link href="/contact" className="w-full sm:w-auto">
+                          <Button variant="outline" className="border-[#f26d35] text-[#f26d35] hover:bg-[#f26d35]/10 w-full sm:w-auto text-base sm:text-sm py-3 sm:py-2">
                             Contact Our Experts
                             <ExternalLink className="w-4 h-4 ml-2" />
                           </Button>
@@ -573,8 +571,8 @@ export default function BlogDetailPage() {
                 </div>
 
                 {/* Tags */}
-                <div className="mb-12">
-                  <h3 className="text-xl font-bold mb-4">Tags</h3>
+                <div className="mb-8 sm:mb-12">
+                  <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {currentPost.tags.map((tag, index) => (
                       <Badge
@@ -590,14 +588,14 @@ export default function BlogDetailPage() {
                 </div>
 
                 {/* Author Bio */}
-                <Card className="mb-12 border-0 shadow-lg bg-gradient-to-r from-[#f26d35]/5 to-gray-50">
-                  <CardContent className="p-8">
-                    <div className="flex items-start gap-6">
+                <Card className="mb-8 sm:mb-12 border-0 shadow-lg bg-gradient-to-r from-[#f26d35]/5 to-gray-50">
+                  <CardContent className="p-4 sm:p-8">
+                    <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                       <div className="relative">
                         <ImageWithFallback
                           src={currentPost.author.avatar}
                           alt={currentPost.author.name}
-                          className="w-24 h-24 rounded-full flex-shrink-0 border-4 border-[#f26d35]/20"
+                          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex-shrink-0 border-4 border-[#f26d35]/20"
                           width={96}
                           height={96}
                         />
@@ -606,11 +604,11 @@ export default function BlogDetailPage() {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <div className="mb-4">
-                          <h3 className="text-2xl font-bold mb-2 text-gray-900">{currentPost.author.name}</h3>
-                          <p className="text-[#f26d35] font-semibold text-lg mb-3">{currentPost.author.title}</p>
+                        <div className="mb-3 sm:mb-4">
+                          <h3 className="text-xl sm:text-2xl font-bold mb-2 text-gray-900">{currentPost.author.name}</h3>
+                          <p className="text-[#f26d35] font-semibold text-base sm:text-lg mb-2 sm:mb-3">{currentPost.author.title}</p>
                         </div>
-                        <p className="text-gray-700 leading-relaxed text-lg mb-6">
+                        <p className="text-gray-700 leading-relaxed text-base sm:text-lg mb-4 sm:mb-6">
                           {currentPost.author.bio}
                         </p>
                         <div className="flex gap-3">
@@ -632,11 +630,11 @@ export default function BlogDetailPage() {
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-8 space-y-6">
+              <div className="sm:sticky sm:top-8 space-y-4 sm:space-y-6">
                 {/* Table of Contents */}
                 <Card className="border-0 shadow-md">
                   <CardHeader>
-                    <CardTitle className="text-lg">Table of Contents</CardTitle>
+                    <CardTitle className="text-base sm:text-lg">Table of Contents</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <a href="#introduction" className="block p-2 text-sm hover:bg-[#f26d35]/5 hover:text-[#f26d35] rounded transition-colors">
@@ -660,7 +658,7 @@ export default function BlogDetailPage() {
                 {/* Article Stats */}
                 <Card className="border-0 shadow-md">
                   <CardHeader>
-                    <CardTitle className="text-lg">Article Stats</CardTitle>
+                    <CardTitle className="text-base sm:text-lg">Article Stats</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center justify-between">
@@ -694,7 +692,7 @@ export default function BlogDetailPage() {
       </section>
 
       {/* Related Posts */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-6 sm:py-12 bg-gray-50">
         <div className="container mx-auto px-6 sm:px-4">
           <motion.div 
             className="text-center mb-8"
@@ -703,13 +701,13 @@ export default function BlogDetailPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-4">Related Articles</h2>
-            <p className="text-lg text-gray-600">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">Related Articles</h2>
+            <p className="text-base sm:text-lg text-gray-600">
               Continue exploring our hospitality insights
             </p>
           </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {relatedPosts.map((post, index) => (
               <motion.div
                 key={post.id}
@@ -733,8 +731,8 @@ export default function BlogDetailPage() {
                       </Badge>
                     </div>
                     
-                    <CardContent className="p-6">
-                      <h3 className="font-bold text-lg mb-3 group-hover:text-[#f26d35] transition-colors line-clamp-2">
+                    <CardContent className="p-4 sm:p-6">
+                      <h3 className="font-bold text-base sm:text-lg mb-3 group-hover:text-[#f26d35] transition-colors line-clamp-2">
                         {post.title}
                       </h3>
                       <div className="flex items-center justify-between text-sm text-gray-600">

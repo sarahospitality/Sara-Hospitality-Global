@@ -22,30 +22,30 @@ export function Header({ onQuoteRequest }: HeaderProps) {
       <div className="bg-[#f26d35] text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-sm">
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4">
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <span>+1-678-431-9041</span>
+                <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="text-xs sm:text-sm">+1-678-431-9041</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                <span>info@saraglobal.com</span>
+                <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="text-xs sm:text-sm">info@saraglobal.com</span>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span>Follow Us:</span>
+              <span className="text-xs sm:text-sm">Follow Us:</span>
               <div className="flex gap-2">
                 <a href="#" className="hover:text-gray-200 transition-colors" aria-label="Facebook">
-                  <Facebook className="w-4 h-4" />
+                  <Facebook className="w-3 h-3 sm:w-4 sm:h-4" />
                 </a>
                 <a href="#" className="hover:text-gray-200 transition-colors" aria-label="LinkedIn">
-                  <Linkedin className="w-4 h-4" />
+                  <Linkedin className="w-3 h-3 sm:w-4 sm:h-4" />
                 </a>
                 <a href="#" className="hover:text-gray-200 transition-colors" aria-label="Instagram">
-                  <Instagram className="w-4 h-4" />
+                  <Instagram className="w-3 h-3 sm:w-4 sm:h-4" />
                 </a>
                 <a href="#" className="hover:text-gray-200 transition-colors" aria-label="YouTube">
-                  <Youtube className="w-4 h-4" />
+                  <Youtube className="w-3 h-3 sm:w-4 sm:h-4" />
                 </a>
               </div>
             </div>
@@ -65,11 +65,11 @@ export function Header({ onQuoteRequest }: HeaderProps) {
               transition={{ duration: 0.5 }}
             >
               <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                <div className="w-10 h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">S</span>
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg sm:text-xl">S</span>
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-[#f26d35]">Sara Global</h1>
+                  <h1 className="text-lg sm:text-xl font-bold text-[#f26d35]">Sara Global</h1>
                   <p className="text-xs text-gray-600">Hospitality</p>
                 </div>
               </Link>
@@ -127,12 +127,13 @@ export function Header({ onQuoteRequest }: HeaderProps) {
 
             {/* Location Selector & CTA Button */}
             <motion.div 
-              className="flex items-center gap-4"
+              className="flex items-center gap-2 sm:gap-4"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <div className="flex items-center gap-2">
+              {/* Desktop Country Selector */}
+              <div className="hidden sm:flex items-center gap-2">
                 <Globe className="w-4 h-4 text-gray-500" />
                 <div className="relative">
                   <button
@@ -167,9 +168,48 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                   )}
                 </div>
               </div>
+              
+              {/* Mobile Country Selector */}
+              <div className="sm:hidden flex items-center gap-2">
+                <Globe className="w-4 h-4 text-gray-500" />
+                <div className="relative">
+                  <button
+                    onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                    className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
+                  >
+                    <span>Select Country</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform ${isMounted && isCountryDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  {isMounted && isCountryDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+                    >
+                      <div className="py-2">
+                        {Object.entries(COUNTRIES).map(([code, country]) => (
+                          <Link
+                            key={code}
+                            href={`/${code}`}
+                            className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#f26d35] transition-colors"
+                            onClick={() => setIsCountryDropdownOpen(false)}
+                          >
+                            <span className="text-lg mr-3">{country.flag}</span>
+                            <span>{country.name}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              </div>
+              
+              {/* Desktop CTA Button */}
               <button
                 onClick={onQuoteRequest}
-                className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                className="hidden sm:flex bg-[#f26d35] hover:bg-[#f26d35]/90 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
               >
                 Get Quote
               </button>
@@ -177,7 +217,8 @@ export function Header({ onQuoteRequest }: HeaderProps) {
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden text-gray-700 hover:text-[#f26d35] transition-colors"
+                className="md:hidden text-gray-700 hover:text-[#f26d35] transition-colors p-2"
+                aria-label="Toggle mobile menu"
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -190,45 +231,59 @@ export function Header({ onQuoteRequest }: HeaderProps) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-t border-gray-200"
+              className="md:hidden border-t border-gray-200 bg-white"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1">
+              <div className="px-4 pt-4 pb-6 space-y-2">
                 <Link
                   href="/about"
-                  className="block px-3 py-2 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-md transition-colors"
+                  className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   About
                 </Link>
-                {/* Products menu item hidden for now */}
-                {/* <Link
-                  href="/products"
-                  className="block px-3 py-2 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Products
-                </Link> */}
                 <Link
                   href="/portfolio"
-                  className="block px-3 py-2 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-md transition-colors"
+                  className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Portfolio
                 </Link>
                 <Link
                   href="/blog"
-                  className="block px-3 py-2 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-md transition-colors"
+                  className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Blog
                 </Link>
                 <Link
                   href="/contact"
-                  className="block px-3 py-2 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-md transition-colors"
+                  className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contact
                 </Link>
+                
+                
+                {/* Mobile Country Selector */}
+                <div className="px-4 py-4 border-t border-gray-200 mt-4">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Globe className="w-5 h-5 text-gray-500" />
+                    <span className="text-lg font-medium text-gray-700">Select Country</span>
+                  </div>
+                  <div className="space-y-3">
+                    {Object.entries(COUNTRIES).map(([code, country]) => (
+                      <Link
+                        key={code}
+                        href={`/${code}`}
+                        className="flex items-center px-4 py-3 text-base text-gray-600 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <span className="text-xl mr-4">{country.flag}</span>
+                        <span>{country.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}

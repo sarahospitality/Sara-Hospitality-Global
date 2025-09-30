@@ -231,7 +231,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-8 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-4 sm:py-8 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-6 sm:px-4">
           <motion.div 
             className="text-center mb-6"
@@ -246,13 +246,13 @@ export default function BlogPage() {
               </div>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <h1 className="text-4xl lg:text-6xl font-bold mb-4">
+              <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold mb-4">
                 Sara Global
                 <span className="text-[#f26d35] block">Hospitality Blog</span>
               </h1>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
+              <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-6">
                 Expert insights, design trends, and practical advice for the hospitality furniture industry. 
                 Stay informed with the latest developments in hotel furniture and interior design.
               </p>
@@ -293,7 +293,7 @@ export default function BlogPage() {
       </section>
 
       {/* Categories Section */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-4 sm:py-8 bg-white border-b">
         <div className="container mx-auto px-6 sm:px-4">
           <motion.div 
             className="text-center mb-6"
@@ -302,12 +302,12 @@ export default function BlogPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold mb-4">Browse by Category</h2>
-            <p className="text-gray-600">Explore our content by topic</p>
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">Browse by Category</h2>
+            <p className="text-sm sm:text-base text-gray-600">Explore our content by topic</p>
           </motion.div>
           
           <motion.div 
-            className="flex flex-wrap justify-center gap-3"
+            className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -341,9 +341,9 @@ export default function BlogPage() {
       </section>
 
       {/* Main Content with Sidebar */}
-      <section className="py-8 bg-gray-50">
+      <section className="py-4 sm:py-8 bg-gray-50">
         <div className="container mx-auto px-6 sm:px-4">
-          <div className="grid lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8">
             {/* Main Content Area */}
             <div className="lg:col-span-3">
               <motion.div 
@@ -353,13 +353,13 @@ export default function BlogPage() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold mb-4">Latest Articles</h2>
-                <p className="text-lg text-gray-600">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Latest Articles</h2>
+                <p className="text-base sm:text-lg text-gray-600">
                   Explore our collection of expert insights and industry knowledge
                 </p>
               </motion.div>
               
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 {regularPosts.map((post, index) => (
                   <motion.div
                     key={post.id}
@@ -390,7 +390,7 @@ export default function BlogPage() {
                           </div>
                         </div>
                         
-                        <CardContent className="p-6">
+                        <CardContent className="p-4 sm:p-6">
                         <div className="space-y-4">
                           <div className="flex flex-wrap gap-1">
                             {post.tags.slice(0, 2).map((tag, tagIndex) => (
@@ -400,11 +400,11 @@ export default function BlogPage() {
                             ))}
                           </div>
                           
-                          <h3 className="text-xl font-bold leading-tight group-hover:text-[#f26d35] transition-colors">
+                          <h3 className="text-lg sm:text-xl font-bold leading-tight group-hover:text-[#f26d35] transition-colors">
                             {post.title}
                           </h3>
                           
-                          <p className="text-gray-600 line-clamp-3">
+                          <p className="text-sm sm:text-base text-gray-600 line-clamp-3">
                             {post.description}
                           </p>
                           
@@ -440,7 +440,7 @@ export default function BlogPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="lg:col-span-1 space-y-4 sm:space-y-6">
               {/* Popular Posts */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
@@ -455,7 +455,7 @@ export default function BlogPage() {
                       Popular Posts
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-3 sm:space-y-4">
                     {popularPosts.map((post, index) => (
                       <div key={index} className="group">
                         <Link href={`/blog/${post.slug}`} className="flex gap-3 cursor-pointer">
@@ -469,7 +469,7 @@ export default function BlogPage() {
                             />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="font-medium text-sm leading-tight mb-1 group-hover:text-[#f26d35] transition-colors line-clamp-2">
+                            <h4 className="font-medium text-xs sm:text-sm leading-tight mb-1 group-hover:text-[#f26d35] transition-colors line-clamp-2">
                               {post.title}
                             </h4>
                             <div className="flex items-center gap-1 text-xs text-gray-600">
@@ -478,7 +478,7 @@ export default function BlogPage() {
                             </div>
                           </div>
                         </Link>
-                        {index < popularPosts.length - 1 && <Separator className="mt-4" />}
+                        {index < popularPosts.length - 1 && <Separator className="mt-3 sm:mt-4" />}
                       </div>
                     ))}
                   </CardContent>
@@ -500,7 +500,7 @@ export default function BlogPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1 sm:gap-2">
                       {popularTags.map((tag, index) => (
                         <Badge
                           key={index}

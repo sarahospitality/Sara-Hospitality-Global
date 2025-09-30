@@ -112,18 +112,18 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-12 bg-gradient-to-br from-[#f26d35]/5 via-gray-50 to-[#f26d35]/10 overflow-hidden">
+      <section className="relative py-6 sm:py-12 bg-gradient-to-br from-[#f26d35]/5 via-gray-50 to-[#f26d35]/10 overflow-hidden">
         <div className="container mx-auto px-6 sm:px-4 relative">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-primary px-4 py-2 rounded-full mb-6">
               <ExternalLink className="w-4 h-4" />
               <span>Our Portfolio</span>
             </div>
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold mb-6">
               Our Portfolio of
               <span className="text-primary block">Excellence</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-base sm:text-xl text-muted-foreground mb-8">
               Discover our diverse collection of hospitality projects spanning luxury resorts, 
               boutique hotels, and unique accommodations across the globe.
             </p>
@@ -139,11 +139,11 @@ export default function PortfolioPage() {
       </section>
 
       {/* Hotel Projects Carousel */}
-      <section className="pt-8 pb-4 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+      <section className="pt-4 sm:pt-8 pb-2 sm:pb-4 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
         <div className="container mx-auto px-6 sm:px-4">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-3">Our Hotel Projects</h2>
-            <p className="text-muted-foreground">Explore our diverse portfolio of luxury hospitality projects worldwide</p>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3">Our Hotel Projects</h2>
+            <p className="text-sm sm:text-base text-muted-foreground">Explore our diverse portfolio of luxury hospitality projects worldwide</p>
           </div>
           
           {/* Moving Carousel */}
@@ -155,10 +155,10 @@ export default function PortfolioPage() {
                   <button
                     key={`first-${index}`}
                     onClick={() => handleProjectClick(project.id)}
-                    className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-6 py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[240px]"
+                    className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-4 sm:px-6 py-2 sm:py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[200px] sm:min-w-[240px]"
                   >
                     <div className="text-center">
-                      <h3 className="font-medium text-sm leading-tight group-hover:text-white transition-colors mb-1">
+                      <h3 className="font-medium text-xs sm:text-sm leading-tight group-hover:text-white transition-colors mb-1">
                         {project.title}
                       </h3>
                       <div className="flex items-center justify-center gap-1">
@@ -176,10 +176,10 @@ export default function PortfolioPage() {
                   <button
                     key={`second-${index}`}
                     onClick={() => handleProjectClick(project.id)}
-                    className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-6 py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[240px]"
+                    className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-4 sm:px-6 py-2 sm:py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[200px] sm:min-w-[240px]"
                   >
                     <div className="text-center">
-                      <h3 className="font-medium text-sm leading-tight group-hover:text-white transition-colors mb-1">
+                      <h3 className="font-medium text-xs sm:text-sm leading-tight group-hover:text-white transition-colors mb-1">
                         {project.title}
                       </h3>
                       <div className="flex items-center justify-center gap-1">
@@ -198,20 +198,20 @@ export default function PortfolioPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="pt-8 pb-16">
+      <section className="pt-4 sm:pt-8 pb-8 sm:pb-16">
         <div className="container mx-auto px-6 sm:px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-bold mb-4">Featured Projects</h2>
+            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               Discover our complete portfolio of exceptional hospitality furniture projects from around the world
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project, index) => (
               <Card 
                 key={index} 
-                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden cursor-pointer"
+                className={`group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden cursor-pointer ${index === 0 ? 'first-portfolio-mobile' : ''}`}
                 onClick={() => handleProjectClick(project.id)}
               >
                 <div className="relative">
@@ -220,20 +220,20 @@ export default function PortfolioPage() {
                     alt={project.title}
                     width={400}
                     height={256}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 
-                <CardContent className="p-6">
-                  <div className="flex flex-wrap gap-1 mb-3">
+                <CardContent className="p-4 sm:p-6">
+                  <div className={`flex flex-nowrap sm:flex-wrap gap-1 mb-3 overflow-x-auto sm:overflow-x-visible ${index === 0 ? 'no-underline' : ''}`}>
                     {project.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="outline" className="text-xs">{tag}</Badge>
+                      <Badge key={tagIndex} variant="outline" className="text-xs whitespace-nowrap sm:whitespace-normal">{tag}</Badge>
                     ))}
                   </div>
                   
-                  <h3 className="text-lg font-bold mb-3">{project.title}</h3>
+                  <h3 className="text-base sm:text-lg font-bold mb-3">{project.title}</h3>
                   
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                  <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground mb-4">
                     <div className="flex items-center gap-1">
                       <MapPin className="w-3 h-3" />
                       <span>{project.location}</span>
@@ -244,7 +244,7 @@ export default function PortfolioPage() {
                     </div>
                   </div>
                   
-                  <p className="text-sm text-muted-foreground line-clamp-2">{project.description}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">{project.description}</p>
                 </CardContent>
               </Card>
             ))}

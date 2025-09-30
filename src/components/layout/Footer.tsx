@@ -138,8 +138,8 @@ export function Footer() {
   }
   return (
     <footer className="bg-gray-900 text-white" suppressHydrationWarning>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6">
           {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -149,87 +149,150 @@ export function Footer() {
             className="lg:col-span-1"
           >
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">S</span>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg sm:text-xl">S</span>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Sara Global</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white">Sara Global</h3>
                 <p className="text-xs text-gray-400">Hospitality</p>
               </div>
             </div>
-            <p className="text-gray-400 mb-6 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-400 mb-6 leading-relaxed">
               Premium B2B furniture solutions for hotels, resorts, and senior living facilities worldwide.
             </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook className="w-5 h-5" />
+            <div className="flex space-x-3 sm:space-x-4">
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+                <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter className="w-5 h-5" />
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+                <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin className="w-5 h-5" />
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="w-5 h-5" />
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Youtube className="w-5 h-5" />
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+                <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
             </div>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Mobile: Quick Links + Global Locations in one row */}
+          <div className="sm:hidden grid grid-cols-2 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h4 className="text-base font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/products" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                    Products
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/portfolio" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                    Portfolio
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h4 className="text-base font-semibold mb-4">Global Locations</h4>
+              <ul className="space-y-3">
+                {Object.entries(COUNTRIES).map(([code, country]) => (
+                  <li key={code}>
+                    <Link 
+                      href={`/${code}`} 
+                      className="text-sm text-gray-400 hover:text-white transition-colors flex items-center py-1"
+                    >
+                      <span className="mr-2">{country.flag}</span>
+                      {country.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+          {/* Desktop: Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
+            className="hidden sm:block"
           >
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-base sm:text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/products" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/products" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors block py-1">
                   Products
                 </Link>
               </li>
               <li>
-                <Link href="/portfolio" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/portfolio" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors block py-1">
                   Portfolio
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/about" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors block py-1">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/blog" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors block py-1">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/contact" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors block py-1">
                   Contact
                 </Link>
               </li>
             </ul>
           </motion.div>
 
-          {/* Global Locations */}
+          {/* Desktop: Global Locations */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="hidden sm:block"
           >
-            <h4 className="text-lg font-semibold mb-4">Global Locations</h4>
+            <h4 className="text-base sm:text-lg font-semibold mb-4">Global Locations</h4>
             <ul className="space-y-3">
               {Object.entries(COUNTRIES).map(([code, country]) => (
                 <li key={code}>
                   <Link 
                     href={`/${code}`} 
-                    className="text-gray-400 hover:text-white transition-colors flex items-center"
+                    className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors flex items-center py-1"
                   >
                     <span className="mr-2">{country.flag}</span>
                     {country.name}
@@ -246,19 +309,19 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
+            <h4 className="text-base sm:text-lg font-semibold mb-4">Contact Info</h4>
             <div className="space-y-3">
-              <div className="flex items-center text-gray-400">
-                <Phone className="w-6 h-6 mr-3" />
-                <span>+1-678-431-9041</span>
+              <div className="flex items-start text-gray-400">
+                <Phone className="w-5 h-5 mr-3 mt-1 flex-shrink-0" />
+                <span className="text-sm sm:text-base">+1-678-431-9041</span>
               </div>
-              <div className="flex items-center text-gray-400">
-                <Mail className="w-6 h-6 mr-3" />
-                <span>info@saraglobal.com</span>
+              <div className="flex items-start text-gray-400">
+                <Mail className="w-5 h-5 mr-3 mt-1 flex-shrink-0" />
+                <span className="text-sm sm:text-base">info@saraglobal.com</span>
               </div>
-              <div className="flex items-center text-gray-400">
-                <MapPin className="w-9 h-9 mr-3" />
-                <span>1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024</span>
+              <div className="flex items-start text-gray-400">
+                <MapPin className="w-5 h-5 mr-3 mt-1 flex-shrink-0" />
+                <span className="text-sm sm:text-base">1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024</span>
               </div>
             </div>
           </motion.div>
@@ -272,18 +335,18 @@ export function Footer() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="border-t border-gray-800 mt-12 pt-8"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
               © 2025 Sara Global Hospitality. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
+              <Link href="/privacy" className="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors py-1">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link href="/terms" className="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors py-1">
                 Terms of Service
               </Link>
-              <Link href="/sitemap" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link href="/sitemap" className="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors py-1">
                 Sitemap
               </Link>
             </div>

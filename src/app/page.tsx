@@ -252,6 +252,7 @@ export default function CommonHomepage() {
   ];
 
   const totalTestimonialSlides = Math.ceil(testimonials.length / 3);
+  const totalTestimonialSlidesMobile = testimonials.length;
 
   const nextTestimonialSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalTestimonialSlides);
@@ -259,6 +260,14 @@ export default function CommonHomepage() {
 
   const prevTestimonialSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + totalTestimonialSlides) % totalTestimonialSlides);
+  };
+
+  const nextTestimonialSlideMobile = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalTestimonialSlidesMobile);
+  };
+
+  const prevTestimonialSlideMobile = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalTestimonialSlidesMobile) % totalTestimonialSlidesMobile);
   };
 
 
@@ -325,53 +334,40 @@ export default function CommonHomepage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-6 sm:px-4 py-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Content */}
-            <div className="space-y-6">
-              <div className="space-y-2">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-0 sm:py-8 md:py-12">
+          {/* Mobile Layout - Clean Design with Content First */}
+          <div className="lg:hidden space-y-12">
+            {/* Content Section - First */}
+            <div className="space-y-8">
+              {/* Badge - At the top */}
+              <div className="flex justify-center pt-8">
                 <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full">
                   <Star className="w-4 h-4" />
-                  <span>Premium Hotel Furniture Manufacturer</span>
+                  <span className="text-sm font-medium">Premium Hotel Furniture Manufacturer</span>
                 </div>
-                <h1 className="text-4xl lg:text-6xl font-bold leading-tight leading-relaxed">
-                  Crafting Exceptional
-                  <span className="text-[#f26d35] block mt-2">Hotel Furniture</span>
-                  Since 1995
+              </div>
+              
+              {/* Main Heading */}
+              <div className="text-center space-y-3">
+                <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
+                  <span className="block">Crafting Exceptional</span>
+                  <span className="text-[#f26d35] block">Hotel Furniture Since 1995</span>
                 </h1>
-                <p className="text-lg text-gray-600 max-w-lg">
+                
+                {/* Description */}
+                <p className="text-base text-gray-600 leading-relaxed max-w-md mx-auto px-4">
                   Transform your hospitality spaces with our premium furniture solutions. 
                   We manufacture and supply world-class hotel furniture that combines 
                   luxury, durability, and timeless design.
                 </p>
               </div>
 
-              {/* Key Points */}
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="flex items-center gap-3">
-                  <Star className="w-5 h-5 text-green-500 flex-shrink-0" />
-                  <span>25+ Years Experience</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Star className="w-5 h-5 text-green-500 flex-shrink-0" />
-                  <span>500+ Hotels Furnished</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Star className="w-5 h-5 text-green-500 flex-shrink-0" />
-                  <span>Custom Design Solutions</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Star className="w-5 h-5 text-green-500 flex-shrink-0" />
-                  <span>Global Shipping</span>
-                </div>
-              </div>
-
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-3 px-4">
                 <Link href="/portfolio">
                   <Button 
                     size="lg" 
-                    className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white"
+                    className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white shadow-lg w-full"
                   >
                     View Our Portfolio
                     <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
@@ -381,7 +377,121 @@ export default function CommonHomepage() {
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="border-[#f26d35] text-[#f26d35] hover:bg-[#f26d35]/10"
+                    className="border-[#f26d35] text-[#f26d35] hover:bg-[#f26d35]/10 w-full"
+                  >
+                    Get Free Consultation
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Key Features - 2x2 Grid */}
+              <div className="grid grid-cols-2 gap-4 px-4">
+                <div className="text-center p-4 rounded-xl border border-orange-200" style={{ backgroundColor: '#faece7' }}>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: '#faece7' }}>
+                    <Star className="w-6 h-6" style={{ color: '#f26d35' }} />
+                  </div>
+                  <div className="font-semibold text-sm mb-1">25+ Years</div>
+                  <div className="text-xs text-muted-foreground">Experience</div>
+                </div>
+                <div className="text-center p-4 rounded-xl border border-orange-200" style={{ backgroundColor: '#faece7' }}>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: '#faece7' }}>
+                    <Star className="w-6 h-6" style={{ color: '#f26d35' }} />
+                  </div>
+                  <div className="font-semibold text-sm mb-1">500+ Hotels</div>
+                  <div className="text-xs text-muted-foreground">Furnished</div>
+                </div>
+                <div className="text-center p-4 rounded-xl border border-orange-200" style={{ backgroundColor: '#faece7' }}>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: '#faece7' }}>
+                    <Star className="w-6 h-6" style={{ color: '#f26d35' }} />
+                  </div>
+                  <div className="font-semibold text-sm mb-1">Custom Design</div>
+                  <div className="text-xs text-muted-foreground">Solutions</div>
+                </div>
+                <div className="text-center p-4 rounded-xl border border-orange-200" style={{ backgroundColor: '#faece7' }}>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: '#faece7' }}>
+                    <Star className="w-6 h-6" style={{ color: '#f26d35' }} />
+                  </div>
+                  <div className="font-semibold text-sm mb-1">Global</div>
+                  <div className="text-xs text-muted-foreground">Shipping</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hero Image Section - Below Content */}
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-2xl shadow-xl">
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb20lMjBmdXJuaXR1cmV8ZW58MXx8fHwxNzU2OTk4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  alt="Luxury hotel bedroom furniture"
+                  className="w-full h-64 sm:h-80 object-cover"
+                  width={1080}
+                  height={600}
+                />
+              </div>
+              
+              {/* Floating Elements */}
+              <div className="absolute -top-2 -left-2 w-16 h-16 bg-[#f26d35]/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-2 -right-2 w-20 h-20 bg-blue-500/30 rounded-full blur-xl"></div>
+            </div>
+
+          </div>
+
+          {/* Desktop Layout - Hidden on mobile */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Content */}
+            <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-3 py-2 sm:px-4 rounded-full text-xs sm:text-sm">
+                  <Star className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="text-xs sm:text-sm">Premium Hotel Furniture Manufacturer</span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight">
+                  <span className="block">Crafting Exceptional</span>
+                  <span className="text-[#f26d35] block mt-1 sm:mt-2">Hotel Furniture Since 1995</span>
+                </h1>
+                <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-lg leading-relaxed">
+                  Transform your hospitality spaces with our premium furniture solutions. 
+                  We manufacture and supply world-class hotel furniture that combines 
+                  luxury, durability, and timeless design.
+                </p>
+              </div>
+
+              {/* Key Points */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm md:text-base">25+ Years Experience</span>
+                </div>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm md:text-base">500+ Hotels Furnished</span>
+                </div>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm md:text-base">Custom Design Solutions</span>
+                </div>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm md:text-base">Global Shipping</span>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link href="/portfolio">
+                  <Button 
+                    size="lg" 
+                    className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white w-full sm:w-auto py-4 sm:py-3 text-base sm:text-sm font-medium"
+                  >
+                    View Our Portfolio
+                    <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="border-[#f26d35] text-[#f26d35] hover:bg-[#f26d35]/10 w-full sm:w-auto py-4 sm:py-3 text-base sm:text-sm font-medium"
                   >
                     Get free Consultation
                   </Button>
@@ -390,25 +500,25 @@ export default function CommonHomepage() {
             </div>
 
             {/* Hero Image */}
-            <div className="relative">
+            <div className="relative order-1 lg:order-2">
               <div className="relative z-10">
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb20lMjBmdXJuaXR1cmV8ZW58MXx8fHwxNzU2OTk4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                   alt="Luxury hotel bedroom furniture"
-                  className="w-full h-[600px] object-cover rounded-lg shadow-2xl"
+                  className="w-full h-48 sm:h-64 md:h-80 lg:h-[600px] object-cover rounded-lg shadow-2xl"
                   width={1080}
                   height={600}
                 />
               </div>
               
               {/* Floating Elements */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#f26d35]/20 rounded-full blur-xl"></div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-500/30 rounded-full blur-xl"></div>
+              <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-12 h-12 sm:w-16 md:w-24 sm:h-16 md:h-24 bg-[#f26d35]/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 w-16 h-16 sm:w-20 md:w-32 sm:h-20 md:h-32 bg-blue-500/30 rounded-full blur-xl"></div>
               
               {/* Quality Badge */}
-              <div className="absolute top-6 right-6 bg-white p-4 rounded-lg shadow-lg">
+              <div className="absolute top-2 right-2 sm:top-3 md:top-6 sm:right-3 md:right-6 bg-white p-2 sm:p-3 md:p-4 rounded-lg shadow-lg">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#f26d35]">A+</div>
+                  <div className="text-sm sm:text-lg md:text-2xl font-bold text-[#f26d35]">A+</div>
                   <div className="text-xs text-gray-600">Quality Rating</div>
                 </div>
               </div>
@@ -418,53 +528,53 @@ export default function CommonHomepage() {
       </section>
 
       {/* Trusted Brands Section */}
-      <section className="py-8 bg-white">
-        <div className="container mx-auto px-6 sm:px-4">
+      <section className="py-2 sm:py-6 md:py-8 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-2 sm:mb-6 md:mb-8 lg:mb-10">
             <div className="text-center">
-              <div className="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-2xl border border-white/20">
-                <div className="text-3xl text-[#f26d35] mb-1">500+</div>
-                <div className="text-sm text-gray-600">Hotels Served</div>
+              <div className="bg-white/95 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-2xl border border-white/20">
+                <div className="text-xl sm:text-2xl md:text-3xl text-[#f26d35] mb-1">500+</div>
+                <div className="text-xs sm:text-sm text-gray-600">Hotels Served</div>
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-2xl border border-white/20">
-                <div className="text-3xl text-[#f26d35] mb-1">50+</div>
-                <div className="text-sm text-gray-600">Countries</div>
+              <div className="bg-white/95 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-2xl border border-white/20">
+                <div className="text-xl sm:text-2xl md:text-3xl text-[#f26d35] mb-1">50+</div>
+                <div className="text-xs sm:text-sm text-gray-600">Countries</div>
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-2xl border border-white/20">
-                <div className="text-3xl text-[#f26d35] mb-1">25+</div>
-                <div className="text-sm text-gray-600">Years Experience</div>
+              <div className="bg-white/95 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-2xl border border-white/20">
+                <div className="text-xl sm:text-2xl md:text-3xl text-[#f26d35] mb-1">25+</div>
+                <div className="text-xs sm:text-sm text-gray-600">Years Experience</div>
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-2xl border border-white/20">
-                <div className="text-3xl text-[#f26d35] mb-1">4.9★</div>
-                <div className="text-sm text-gray-600">Global Rating</div>
+              <div className="bg-white/95 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-2xl border border-white/20">
+                <div className="text-xl sm:text-2xl md:text-3xl text-[#f26d35] mb-1">4.9★</div>
+                <div className="text-xs sm:text-sm text-gray-600">Global Rating</div>
               </div>
             </div>
           </div>
 
           {/* Brand Logos Section */}
-          <div className="pt-8 border-t border-gray-200">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl lg:text-4xl text-gray-900 mb-2">Trusted by Leading Hotel Chains Worldwide</h3>
-              <p className="text-gray-600">International hotel chains trust Sara Global for premium furniture solutions</p>
+          <div className="pt-6 sm:pt-8 border-t border-gray-200">
+            <div className="text-center mb-6 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-2">Trusted by Leading Hotel Chains Worldwide</h3>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600">International hotel chains trust Sara Global for premium furniture solutions</p>
             </div>
             
             <div className="overflow-hidden py-4">
-              <div className="flex animate-scroll-logos gap-16 items-center">
+              <div className="flex animate-scroll-logos gap-8 sm:gap-16 items-center">
                 {/* Duplicate the logos for seamless loop */}
                 {[...Array(2)].map((_, setIndex) => (
-                  <div key={setIndex} className="flex gap-16 items-center flex-shrink-0">
+                  <div key={setIndex} className="flex gap-8 sm:gap-16 items-center flex-shrink-0">
                     <div className="flex-shrink-0">
                       <ImageWithFallback
                         src="/assets/f31b2dfb28307640a195a389e2838f1c2a7dc156.png"
                         alt="La Quinta by Wyndham logo"
-                        className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
                         width={120}
                         height={48}
                       />
@@ -473,7 +583,7 @@ export default function CommonHomepage() {
                       <ImageWithFallback
                         src="/assets/6e7b3d1f8e168548d6b65e7dd7fb4691d792ff17.png"
                         alt="Holiday Inn Express & Suites logo"
-                        className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
                         width={120}
                         height={48}
                       />
@@ -482,7 +592,7 @@ export default function CommonHomepage() {
                       <ImageWithFallback
                         src="/assets/1a36f52dfb717910963752bf97e84ab00d9f89e9.png"
                         alt="Quality Inn logo"
-                        className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
                         width={120}
                         height={48}
                       />
@@ -491,7 +601,7 @@ export default function CommonHomepage() {
                       <ImageWithFallback
                         src="/assets/65e2b4ed424723dae6731b7df90d808c1d793105.png"
                         alt="Baymont by Wyndham logo"
-                        className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
                         width={120}
                         height={48}
                       />
@@ -500,7 +610,7 @@ export default function CommonHomepage() {
                       <ImageWithFallback
                         src="/assets/d3e30d7d50aff6f76bb0916c50dc15aa2919a066.png"
                         alt="Best Western Plus logo"
-                        className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
                         width={120}
                         height={48}
                       />
@@ -509,7 +619,7 @@ export default function CommonHomepage() {
                       <ImageWithFallback
                         src="/assets/61636d64a66e87acc43f2e63f91829fa6b8f0dea.png"
                         alt="Days Inn & Suites logo"
-                        className="h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
                         width={120}
                         height={48}
                       />
@@ -523,36 +633,36 @@ export default function CommonHomepage() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="pt-8 pb-4 bg-white">
-        <div className="container mx-auto px-6 sm:px-4">
+      <section id="about" className="pt-6 sm:pt-8 pb-4 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-4">
-              <Star className="w-4 h-4" />
+          <div className="text-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-3 py-2 sm:px-4 rounded-full mb-4 text-xs sm:text-sm">
+              <Star className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>About Sara Global Hospitality</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-relaxed">
               Pioneering Excellence in
-              <span className="text-[#f26d35] block mt-2">Hotel Furniture Manufacturing</span>
+              <span className="text-[#f26d35] block mt-1 sm:mt-2">Hotel Furniture Manufacturing</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
               For over 25 years, Sara Global Hospitality has been at the forefront of hotel furniture 
               manufacturing, creating exceptional pieces that define luxury hospitality experiences worldwide.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-8 sm:mb-12">
             {/* Content */}
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold">Our Story</h3>
-                <p className="text-gray-600">
+            <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
+              <div className="space-y-4 sm:space-y-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold">Our Story</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                   Founded in 1995, Sara Global Hospitality began as a small family business with a 
                   vision to transform the hospitality industry through exceptional furniture design 
                   and manufacturing. Today, we&apos;re proud to be a leading global supplier of premium 
                   hotel furniture solutions.
                 </p>
-                <p className="text-gray-600">
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                   Our journey has been marked by continuous innovation, unwavering commitment to 
                   quality, and deep understanding of the hospitality industry&apos;s evolving needs. 
                   We&apos;ve furnished over 500 hotels across 50 countries, establishing ourselves as 
@@ -562,34 +672,34 @@ export default function CommonHomepage() {
 
               {/* Values */}
               <div className="space-y-4">
-                <h4 className="font-bold">Our Core Values</h4>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="flex items-start gap-3">
-                    <Star className="w-5 h-5 text-[#f26d35] mt-1 flex-shrink-0" />
+                <h4 className="font-bold text-base sm:text-lg md:text-xl">Our Core Values</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] mt-1 flex-shrink-0" />
                     <div>
-                      <h5 className="font-medium">Excellence</h5>
-                      <p className="text-sm text-gray-600">Uncompromising quality in every piece</p>
+                      <h5 className="font-medium text-sm sm:text-sm md:text-base">Excellence</h5>
+                      <p className="text-sm sm:text-sm text-gray-600">Uncompromising quality in every piece</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <Star className="w-5 h-5 text-[#f26d35] mt-1 flex-shrink-0" />
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] mt-1 flex-shrink-0" />
                     <div>
-                      <h5 className="font-medium">Innovation</h5>
-                      <p className="text-sm text-gray-600">Cutting-edge design and manufacturing</p>
+                      <h5 className="font-medium text-sm sm:text-sm md:text-base">Innovation</h5>
+                      <p className="text-sm sm:text-sm text-gray-600">Cutting-edge design and manufacturing</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <Star className="w-5 h-5 text-[#f26d35] mt-1 flex-shrink-0" />
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] mt-1 flex-shrink-0" />
                     <div>
-                      <h5 className="font-medium">Partnership</h5>
-                      <p className="text-sm text-gray-600">Building lasting relationships</p>
+                      <h5 className="font-medium text-sm sm:text-sm md:text-base">Partnership</h5>
+                      <p className="text-sm sm:text-sm text-gray-600">Building lasting relationships</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <Star className="w-5 h-5 text-[#f26d35] mt-1 flex-shrink-0" />
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] mt-1 flex-shrink-0" />
                     <div>
-                      <h5 className="font-medium">Global Reach</h5>
-                      <p className="text-sm text-gray-600">Serving clients worldwide</p>
+                      <h5 className="font-medium text-sm sm:text-sm md:text-base">Global Reach</h5>
+                      <p className="text-sm sm:text-sm text-gray-600">Serving clients worldwide</p>
                     </div>
                   </div>
                 </div>
@@ -597,20 +707,20 @@ export default function CommonHomepage() {
             </div>
 
             {/* Image */}
-            <div className="relative">
+            <div className="relative order-1 lg:order-2">
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1710828865631-6fea9948a71b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXJuaXR1cmUlMjBmYWN0b3J5JTIwcHJvZHVjdGlvbnxlbnwxfHx8fDE3NTcwMDI5MDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt="Furniture manufacturing facility"
-                className="w-full h-[500px] object-cover rounded-lg shadow-lg"
+                  className="w-full h-48 sm:h-64 md:h-80 lg:h-[500px] object-cover rounded-lg shadow-lg"
                 width={1080}
                 height={500}
               />
               
               {/* Overlay Card */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl border">
+              <div className="absolute -bottom-2 -left-2 sm:-bottom-3 md:-bottom-6 sm:-left-3 md:-left-6 bg-white p-2 sm:p-3 md:p-6 rounded-lg shadow-xl border">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[#f26d35]">25+</div>
-                  <div className="text-sm text-gray-600">Years of Excellence</div>
+                  <div className="text-lg sm:text-2xl md:text-3xl font-bold text-[#f26d35]">25+</div>
+                  <div className="text-xs sm:text-sm text-gray-600">Years of Excellence</div>
                 </div>
               </div>
             </div>
@@ -619,54 +729,54 @@ export default function CommonHomepage() {
       </section>
 
       {/* Product Categories Section */}
-      <section id="products" className="pt-4 pb-8 bg-gray-50">
-        <div className="container mx-auto px-6 sm:px-4">
+      <section id="products" className="pt-4 pb-6 sm:pb-8 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-4">
-              <ArrowRight className="w-4 h-4 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
+          <div className="text-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-3 py-2 sm:px-4 rounded-full mb-4 text-sm">
+              <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
               <span>Product Categories</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-relaxed">
               Complete Furniture Solutions
-              <span className="text-[#f26d35] block mt-2">For Every Space</span>
+              <span className="text-[#f26d35] block mt-1 sm:mt-2">For Every Space</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
               From luxurious guest rooms to sophisticated lobbies, we provide comprehensive 
               furniture solutions that meet the highest standards of hospitality design.
             </p>
           </div>
 
           {/* Categories Carousel */}
-          <div className="relative mb-8">
+          <div className="relative mb-6 sm:mb-8">
             {/* Navigation Arrows */}
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex gap-3">
+            <div className="flex justify-center sm:justify-between items-center mb-4">
+              <div className="flex gap-2 sm:gap-3">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={prevSlide}
-                  className="rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-10 h-10 p-0"
+                  className="rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-8 h-8 sm:w-10 sm:h-10 p-0"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={nextSlide}
-                  className="rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-10 h-10 p-0"
+                  className="rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-8 h-8 sm:w-10 sm:h-10 p-0"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
               </div>
               
               {/* Slide Indicators */}
-              <div className="flex gap-2">
+              <div className="hidden sm:flex gap-1 sm:gap-2">
                 {Array.from({ length: totalSlides }).map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
+                    className={`w-0.5 h-0.5 sm:w-2 sm:h-2 rounded-full transition-colors ${
                       index === currentSlide ? 'bg-[#f26d35]' : 'bg-gray-300'
                     }`}
                   />
@@ -756,27 +866,34 @@ export default function CommonHomepage() {
                 </p>
                 
                 {/* Features grid */}
-                <div className="grid md:grid-cols-3 gap-6 mb-10">
-                  <div className="flex flex-col items-center p-4">
-                    <div className="w-12 h-12 bg-[#f26d35]/10 rounded-xl flex items-center justify-center mb-3">
-                      <Box className="w-6 h-6 text-[#f26d35]" />
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-10">
+                  <div className="flex flex-col items-center p-2 sm:p-4">
+                    <div className="w-8 h-8 sm:w-12 sm:h-12 bg-[#f26d35]/10 rounded-xl flex items-center justify-center mb-2 sm:mb-3">
+                      <Box className="w-4 h-4 sm:w-6 sm:h-6 text-[#f26d35]" />
                     </div>
-                    <h4 className="font-bold mb-2">3D Design</h4>
-                    <p className="text-sm text-gray-600">Visualize before you invest</p>
+                    <h4 className="font-bold mb-1 sm:mb-2 text-xs sm:text-base">3D Design</h4>
+                    <p className="text-xs sm:text-sm text-gray-600 text-center">Visualize before you invest</p>
                   </div>
-                  <div className="flex flex-col items-center p-4">
-                    <div className="w-12 h-12 bg-[#f26d35]/10 rounded-xl flex items-center justify-center mb-3">
-                      <Users className="w-6 h-6 text-[#f26d35]" />
+                  <div className="flex flex-col items-center p-2 sm:p-4">
+                    <div className="w-8 h-8 sm:w-12 sm:h-12 bg-[#f26d35]/10 rounded-xl flex items-center justify-center mb-2 sm:mb-3">
+                      <Users className="w-4 h-4 sm:w-6 sm:h-6 text-[#f26d35]" />
                     </div>
-                    <h4 className="font-bold mb-2">Expert Team</h4>
-                    <p className="text-sm text-gray-600">15+ years of experience</p>
+                    <h4 className="font-bold mb-1 sm:mb-2 text-xs sm:text-base">Expert Team</h4>
+                    <p className="text-xs sm:text-sm text-gray-600 text-center">15+ years of experience</p>
                   </div>
-                  <div className="flex flex-col items-center p-4">
-                    <div className="w-12 h-12 bg-[#f26d35]/10 rounded-xl flex items-center justify-center mb-3">
-                      <Award className="w-6 h-6 text-[#f26d35]" />
+                  <div className="flex flex-col items-center p-2 sm:p-4">
+                    <div className="w-8 h-8 sm:w-12 sm:h-12 bg-[#f26d35]/10 rounded-xl flex items-center justify-center mb-2 sm:mb-3">
+                      <Award className="w-4 h-4 sm:w-6 sm:h-6 text-[#f26d35]" />
                     </div>
-                    <h4 className="font-bold mb-2">Premium Quality</h4>
-                    <p className="text-sm text-gray-600">Luxury materials & finishes</p>
+                    <h4 className="font-bold mb-1 sm:mb-2 text-xs sm:text-base">Premium Quality</h4>
+                    <p className="text-xs sm:text-sm text-gray-600 text-center">Luxury materials & finishes</p>
+                  </div>
+                  <div className="flex flex-col items-center p-2 sm:p-4">
+                    <div className="w-8 h-8 sm:w-12 sm:h-12 bg-[#f26d35]/10 rounded-xl flex items-center justify-center mb-2 sm:mb-3">
+                      <Globe className="w-4 h-4 sm:w-6 sm:h-6 text-[#f26d35]" />
+                    </div>
+                    <h4 className="font-bold mb-1 sm:mb-2 text-xs sm:text-base">Global Sourcing</h4>
+                    <p className="text-xs sm:text-sm text-gray-600 text-center">Worldwide supply chain</p>
                   </div>
                 </div>
                 
@@ -784,16 +901,16 @@ export default function CommonHomepage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
                     size="lg" 
-                    className="bg-[#f26d35] hover:bg-[#f26d35]/90 shadow-lg hover:shadow-xl transition-all duration-300 group px-8"
+                    className="bg-[#f26d35] hover:bg-[#f26d35]/90 shadow-lg hover:shadow-xl transition-all duration-300 group px-6 sm:px-8 py-4 sm:py-3 w-full sm:w-auto"
                   >
                     Request A Quote
                     <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                   </Button>
-                  <Link href="/portfolio">
+                  <Link href="/portfolio" className="w-full sm:w-auto">
                     <Button 
                       size="lg" 
                       variant="outline" 
-                      className="border-2 hover:bg-[#f26d35]/5 hover:border-[#f26d35] transition-all duration-300"
+                      className="border-2 hover:bg-[#f26d35]/5 hover:border-[#f26d35] transition-all duration-300 px-6 sm:px-8 py-4 sm:py-3 w-full sm:w-auto"
                     >
                       View Portfolio
                     </Button>
@@ -832,7 +949,7 @@ export default function CommonHomepage() {
           </div>
 
           {/* Compact Stats Display */}
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
             {reasons.map((reason, index) => {
               const IconComponent = reason.icon;
               return (
@@ -868,7 +985,7 @@ export default function CommonHomepage() {
             <div className="relative">
               <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#f26d35]/20 via-[#f26d35] to-[#f26d35]/20 transform -translate-y-1/2"></div>
               
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
                   {
                     step: "01",
@@ -917,7 +1034,7 @@ export default function CommonHomepage() {
                             <IconComponent className="w-8 h-8 text-white" />
                           </div>
                           
-                          <h4 className="font-bold mb-3 text-lg">{process.title}</h4>
+                          <h4 className="font-bold mb-3 text-lg whitespace-nowrap sm:whitespace-normal">{process.title}</h4>
                           <p className="text-gray-600 text-sm leading-relaxed">{process.description}</p>
                         </div>
                       </div>
@@ -967,39 +1084,39 @@ export default function CommonHomepage() {
                   <ImageWithFallback
                     src={projects[0].image}
                     alt={projects[0].title}
-                    className="w-full h-80 lg:h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                    className="w-full h-64 sm:h-80 lg:h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                     width={800}
                     height={500}
                   />
-                  <div className="absolute top-4 left-4">
-                    <div className="bg-[#f26d35] text-white px-3 py-1 rounded-full text-sm font-medium">Featured Project</div>
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                    <div className="bg-[#f26d35] text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">Featured Project</div>
                   </div>
                 </div>
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {projects[0].tags.map((tag, index) => (
-                      <div key={index} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{tag}</div>
+                      <div key={index} className="bg-gray-100 text-gray-700 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">{tag}</div>
                     ))}
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold mb-4">{projects[0].title}</h3>
-                  <div className="flex items-center gap-6 text-sm text-gray-600 mb-4">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">{projects[0].title}</h3>
+                  <div className="flex flex-row sm:flex-row sm:items-center gap-2 sm:gap-6 text-xs sm:text-sm text-gray-600 mb-4">
                     <div className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
+                      <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>{projects[0].location}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
+                      <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>{projects[0].year}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
+                      <Users className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>{projects[0].rooms}</span>
                     </div>
                   </div>
-                  <p className="text-gray-600 mb-6">{projects[0].description}</p>
+                  <p className="text-sm sm:text-base text-gray-600 mb-6">{projects[0].description}</p>
                   <Link href="/portfolio">
                     <Button 
-                      className="w-fit bg-[#f26d35] hover:bg-[#f26d35]/90"
+                      className="w-full sm:w-fit bg-[#f26d35] hover:bg-[#f26d35]/90 py-3 sm:py-2"
                     >
                       View Details
                       <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
@@ -1011,32 +1128,32 @@ export default function CommonHomepage() {
           </div>
 
           {/* Project Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
             {projects.slice(1).map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md overflow-hidden">
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md overflow-hidden h-full">
                 <div className="relative">
                   <ImageWithFallback
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                    className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                     width={400}
                     height={192}
                   />
-                  <div className="absolute top-4 left-4">
-                    <div className="bg-white/90 text-gray-700 px-3 py-1 rounded-full text-sm">{project.type}</div>
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                    <div className="bg-white/90 text-gray-700 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">{project.type}</div>
                   </div>
                 </div>
                 
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6 flex flex-col h-full">
                   <div className="flex flex-wrap gap-1 mb-3">
                     {project.tags.map((tag, tagIndex) => (
                       <div key={tagIndex} className="border border-gray-300 text-gray-600 px-2 py-1 rounded-full text-xs">{tag}</div>
                     ))}
                   </div>
                   
-                  <h3 className="font-bold mb-2">{project.title}</h3>
+                  <h3 className="font-bold mb-2 text-base sm:text-lg">{project.title}</h3>
                   
-                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                  <div className="flex flex-row sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mb-3">
                     <div className="flex items-center gap-1">
                       <MapPin className="w-3 h-3" />
                       <span>{project.location}</span>
@@ -1047,15 +1164,15 @@ export default function CommonHomepage() {
                     </div>
                   </div>
                   
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-3">{project.description}</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mb-4 line-clamp-3 flex-1">{project.description}</p>
                   
-                  <Link href="/portfolio">
+                  <Link href="/portfolio" className="mt-auto">
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="p-0 h-auto hover:bg-transparent"
+                      className="p-0 h-auto hover:bg-transparent w-full sm:w-auto"
                     >
-                      <span className="text-[#f26d35]">View Details</span>
+                      <span className="text-[#f26d35] text-sm sm:text-base">View Details</span>
                       <ArrowRight className="w-3 h-3 ml-2 text-[#f26d35] animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                     </Button>
                   </Link>
@@ -1101,33 +1218,49 @@ export default function CommonHomepage() {
           {/* Testimonials Carousel */}
           <div className="relative mb-8">
             {/* Navigation Controls */}
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex gap-3">
+            <div className="flex justify-center sm:justify-between items-center mb-4 sm:mb-6">
+              <div className="flex gap-2 sm:gap-3">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={prevTestimonialSlideMobile}
+                  className="rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-8 h-8 sm:w-10 sm:h-10 p-0 sm:hidden"
+                >
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={nextTestimonialSlideMobile}
+                  className="rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-8 h-8 sm:w-10 sm:h-10 p-0 sm:hidden"
+                >
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </Button>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={prevTestimonialSlide}
-                  className="rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-10 h-10 p-0"
+                  className="hidden sm:flex rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-8 h-8 sm:w-10 sm:h-10 p-0"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={nextTestimonialSlide}
-                  className="rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-10 h-10 p-0"
+                  className="hidden sm:flex rounded-full border-2 hover:bg-[#f26d35] hover:text-white transition-colors w-8 h-8 sm:w-10 sm:h-10 p-0"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
               </div>
               
               {/* Slide Indicators */}
-              <div className="flex gap-2">
+              <div className="hidden sm:flex gap-1 sm:gap-2">
                 {Array.from({ length: totalTestimonialSlides }).map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
+                    className={`w-0.5 h-0.5 sm:w-2 sm:h-2 rounded-full transition-colors ${
                       index === currentSlide ? 'bg-[#f26d35]' : 'bg-gray-300'
                     }`}
                   />
@@ -1137,44 +1270,90 @@ export default function CommonHomepage() {
 
             {/* Carousel Content */}
             <div className="overflow-hidden">
+              {/* Mobile View - One testimonial per slide */}
               <div 
-                className="flex transition-transform duration-500 ease-in-out"
+                className="flex transition-transform duration-500 ease-in-out sm:hidden"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="w-full flex-shrink-0">
+                    <div className="px-1">
+                      <Card className="border-0 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.15)] hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full">
+                        <CardContent className="p-6 flex flex-col h-full">
+                          {/* Quote Icon */}
+                          <div className="w-10 h-10 bg-[#f26d35]/10 rounded-full flex items-center justify-center mb-4">
+                            <Quote className="w-5 h-5 text-[#f26d35]" />
+                          </div>
+
+                          {/* Rating */}
+                          <div className="flex gap-1 mb-3">
+                            {[...Array(testimonial.rating)].map((_, i) => (
+                              <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                            ))}
+                          </div>
+
+                          {/* Testimonial Text */}
+                          <p className="text-sm text-gray-600 mb-4 leading-relaxed flex-1">
+                            &quot;{testimonial.text}&quot;
+                          </p>
+
+                          {/* Author Info */}
+                          <div className="flex items-center gap-3 mt-auto">
+                            <div className="w-10 h-10 bg-[#f26d35] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                              {testimonial.name.split(' ').map(n => n[0]).join('')}
+                            </div>
+                            <div>
+                              <h4 className="font-bold text-sm">{testimonial.name}</h4>
+                              <p className="text-xs text-gray-600">{testimonial.title}</p>
+                              <p className="text-xs text-[#f26d35] font-medium">{testimonial.company}</p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop View - Three testimonials per slide */}
+              <div 
+                className="hidden sm:flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
                 {Array.from({ length: totalTestimonialSlides }).map((_, slideIndex) => (
                   <div key={slideIndex} className="w-full flex-shrink-0">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-1">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-1">
                       {testimonials
                         .slice(slideIndex * 3, (slideIndex + 1) * 3)
                         .map((testimonial, index) => (
                           <Card key={index} className="border-0 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.15)] hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full">
-                            <CardContent className="p-8 flex flex-col h-full">
+                            <CardContent className="p-6 sm:p-8 flex flex-col h-full">
                               {/* Quote Icon */}
-                              <div className="w-12 h-12 bg-[#f26d35]/10 rounded-full flex items-center justify-center mb-6">
-                                <Quote className="w-6 h-6 text-[#f26d35]" />
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#f26d35]/10 rounded-full flex items-center justify-center mb-4 sm:mb-6">
+                                <Quote className="w-5 h-5 sm:w-6 sm:h-6 text-[#f26d35]" />
                               </div>
 
                               {/* Rating */}
-                              <div className="flex gap-1 mb-4">
+                              <div className="flex gap-1 mb-3 sm:mb-4">
                                 {[...Array(testimonial.rating)].map((_, i) => (
-                                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                  <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-yellow-400 text-yellow-400" />
                                 ))}
                               </div>
 
                               {/* Testimonial Text */}
-                              <p className="text-gray-600 mb-6 leading-relaxed flex-1">
+                              <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed flex-1">
                                 &quot;{testimonial.text}&quot;
                               </p>
 
                               {/* Author Info */}
-                              <div className="flex items-center gap-4 mt-auto">
-                                <div className="w-12 h-12 bg-[#f26d35] text-white rounded-full flex items-center justify-center font-bold">
+                              <div className="flex items-center gap-3 sm:gap-4 mt-auto">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#f26d35] text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
                                   {testimonial.name.split(' ').map(n => n[0]).join('')}
                                 </div>
                                 <div>
-                                  <h4 className="font-bold">{testimonial.name}</h4>
-                                  <p className="text-sm text-gray-600">{testimonial.title}</p>
-                                  <p className="text-sm text-[#f26d35] font-medium">{testimonial.company}</p>
+                                  <h4 className="font-bold text-sm sm:text-base">{testimonial.name}</h4>
+                                  <p className="text-xs sm:text-sm text-gray-600">{testimonial.title}</p>
+                                  <p className="text-xs sm:text-sm text-[#f26d35] font-medium">{testimonial.company}</p>
                                 </div>
                               </div>
                             </CardContent>
@@ -1190,31 +1369,31 @@ export default function CommonHomepage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-10 bg-white">
+      <section className="py-4 sm:py-10 bg-white">
         <div className="container mx-auto px-6 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-3 sm:mb-6">
               Ready to Transform Your Hospitality Space?
             </h2>
             <p className="text-xl text-gray-600 mb-8">
               Let&apos;s discuss how Sara Global Hospitality can bring your vision to life with our 
               expert furniture solutions and global experience.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-5 justify-center">
+              <Link href="/contact" className="w-full sm:w-auto">
                 <Button 
                   size="lg" 
-                  className="bg-[#f26d35] text-white hover:bg-[#f26d35]/90"
+                  className="bg-[#f26d35] text-white hover:bg-[#f26d35]/90 w-full sm:w-auto"
                 >
                   Get Free Consultation
                   <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
               </Link>
-              <Link href="/portfolio">
+              <Link href="/portfolio" className="w-full sm:w-auto">
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="border-2 hover:bg-[#f26d35]/5 hover:border-[#f26d35] transition-all duration-300"
+                  className="border-2 hover:bg-[#f26d35]/5 hover:border-[#f26d35] transition-all duration-300 w-full sm:w-auto"
                 >
                   View Our Portfolio
                   <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />

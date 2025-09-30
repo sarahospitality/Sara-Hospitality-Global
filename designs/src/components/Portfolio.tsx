@@ -250,9 +250,9 @@ export default function Portfolio({ onNavigate, selectedCountry }: PortfolioProp
                 </div>
               </div>
               <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-nowrap sm:flex-wrap gap-2 mb-4 overflow-x-auto sm:overflow-x-visible">
                   {projects[0].tags.map((tag, index) => (
-                    <Badge key={index} variant="secondary">{tag}</Badge>
+                    <Badge key={index} variant="secondary" className="whitespace-nowrap sm:whitespace-normal">{tag}</Badge>
                   ))}
                 </div>
                 <h3 className="text-2xl lg:text-3xl font-bold mb-4">{projects[0].title}</h3>
@@ -298,9 +298,9 @@ export default function Portfolio({ onNavigate, selectedCountry }: PortfolioProp
               </div>
               
               <CardContent className="p-6">
-                <div className="flex flex-wrap gap-1 mb-3">
+                <div className="flex flex-nowrap sm:flex-wrap gap-1 mb-3 overflow-x-auto sm:overflow-x-visible">
                   {project.tags.map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="outline" className="text-xs">{tag}</Badge>
+                    <Badge key={tagIndex} variant="outline" className="text-xs whitespace-nowrap sm:whitespace-normal">{tag}</Badge>
                   ))}
                 </div>
                 
