@@ -117,12 +117,11 @@ export default function AboutSection({ selectedCountry, onNavigate }: AboutSecti
             <span>About Sara Global Hospitality</span>
           </div>
           <h2 className="text-3xl lg:text-5xl font-bold mb-2">
-            Pioneering Excellence in
-            <span className="text-primary block">Hotel Furniture Manufacturing</span>
+          Building Excellence in
+            <span className="text-primary block">Hospitality Furniture</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            For over 25 years, Sara Global Hospitality has been at the forefront of hotel furniture 
-            manufacturing, creating exceptional pieces that define luxury hospitality experiences worldwide.
+          For more than two decades, Sara Global Hospitality has been a leader in hotel furniture manufacturing, delivering exceptional pieces that define guest experiences around the world.
           </p>
         </div>
 
@@ -153,7 +152,7 @@ export default function AboutSection({ selectedCountry, onNavigate }: AboutSecti
                   <Award className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <h5 className="font-medium">Excellence</h5>
-                    <p className="text-sm text-muted-foreground">Uncompromising quality in every piece</p>
+                    <p className="text-sm text-muted-foreground">Uncompromising quality in every detail.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">

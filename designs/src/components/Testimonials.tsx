@@ -31,12 +31,13 @@ export default function Testimonials({ selectedCountry }: TestimonialsProps) {
   
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      title: "General Manager",
-      company: "Grand Palace Hotel Dubai",
+      name: "Lena Petrova",
+      title: "Resort Director",
+      company: "Azure Coast Resorts (Croatia)",
       avatar: "/api/placeholder/64/64",
       rating: 5,
-      text: "Sara Global delivered exceptional quality furniture that perfectly matched our luxury brand. Their attention to detail and project management made the entire process seamless. Our guests constantly compliment the beautiful interiors."
+      text: "The dedication to superior quality from Sara Global is evident in every piece...... They flawlessly captured the exclusive essence of our resort, and the comprehensive service, from design to delivery, was flawless...... Our client satisfaction scores have improved significantly.
+"
     },
     {
       name: "Michael Chen",

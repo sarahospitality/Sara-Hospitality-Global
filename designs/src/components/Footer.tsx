@@ -35,7 +35,7 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="font-bold text-lg text-white">Sara Global Hospitality</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Premium B2B furniture solutions for hotels, resorts, and senior living facilities worldwide
+            Premium B2B furniture solutions for hotels, resorts, and senior living communities across the globe. We combine quality craftsmanship with modern design to enhance guest experiences and elevate your brand.
             </p>
 
             {/* Social Links */}

@@ -4,11 +4,12 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { ExternalLink, MapPin, Calendar, ArrowRight } from "lucide-react";
+import { ExternalLink, MapPin, Calendar, ArrowRight, Filter } from "lucide-react";
 import Link from "next/link";
 
 export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [filterProject, setFilterProject] = useState<string>("all");
 
   const projects = [
     {
@@ -119,7 +120,7 @@ export default function PortfolioPage() {
               <ExternalLink className="w-4 h-4" />
               <span>Our Portfolio</span>
             </div>
-            <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               Our Portfolio of
               <span className="text-primary block">Excellence</span>
             </h1>
@@ -200,15 +201,47 @@ export default function PortfolioPage() {
       {/* Projects Grid */}
       <section className="pt-4 sm:pt-8 pb-8 sm:pb-16">
         <div className="container mx-auto px-6 sm:px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-bold mb-4">Featured Projects</h2>
-            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-              Discover our complete portfolio of exceptional hospitality furniture projects from around the world
-            </p>
+          <div className="mb-12">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
+              <div className="text-center sm:text-left flex-1">
+                <h2 className="text-2xl sm:text-4xl font-bold mb-2">Featured Projects</h2>
+                <p className="text-base sm:text-xl text-muted-foreground">
+                  Discover our complete portfolio of exceptional hospitality furniture projects from around the world
+                </p>
+              </div>
+              
+              {/* Filter Dropdown */}
+              <div className="relative">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+                  <Filter className="w-4 h-4 text-gray-600" />
+                </div>
+                <select
+                  value={filterProject}
+                  onChange={(e) => setFilterProject(e.target.value)}
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent bg-white text-sm font-medium min-w-[200px] appearance-none cursor-pointer"
+                >
+                  <option value="all">All Projects</option>
+                  <option value="grand-palace-hotel-dubai">Grand Palace Hotel Dubai</option>
+                  <option value="wellness-spa-resort">Wellness Spa Resort</option>
+                  <option value="metropolitan-boutique-hotel">Metropolitan Boutique Hotel</option>
+                  <option value="royal-heritage-hotel">Royal Heritage Hotel</option>
+                  <option value="beachfront-resort-paradise">Beachfront Resort Paradise</option>
+                  <option value="mountain-lodge-retreat">Mountain Lodge Retreat</option>
+                  <option value="urban-business-hotel">Urban Business Hotel</option>
+                  <option value="historic-mansion-hotel">Historic Mansion Hotel</option>
+                  <option value="desert-safari-lodge">Desert Safari Lodge</option>
+                </select>
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                  <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {projects.map((project, index) => (
+            {projects.filter(project => filterProject === "all" || project.id === filterProject).map((project, index) => (
               <Card 
                 key={index} 
                 className={`group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden cursor-pointer ${index === 0 ? 'first-portfolio-mobile' : ''}`}

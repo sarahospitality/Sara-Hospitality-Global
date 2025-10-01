@@ -105,7 +105,7 @@ export default function AboutPage() {
             <div>
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
                 <Award className="w-4 h-4" />
-                <span>About Sara Global Hospitality</span>
+                <span>Discover Sara Global Hospitality</span>
               </div>
               <h1 className="text-4xl lg:text-6xl font-bold mb-6">
                 Crafting Excellence in

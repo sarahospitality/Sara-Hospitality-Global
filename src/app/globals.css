@@ -20,6 +20,30 @@
   }
 }
 
+/* Smooth left-right wiggle for before/after arrow */
+@keyframes arrowSide {
+  0% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  100% { transform: translateX(-6px); }
+}
+
+.animate-arrow-side {
+  animation: arrowSide 1.8s ease-in-out infinite;
+}
+
+/* Mobile: make arrow move vertically instead of horizontally */
+@keyframes arrowSideY {
+  0% { transform: translateY(-6px); }
+  50% { transform: translateY(6px); }
+  100% { transform: translateY(-6px); }
+}
+
+@media (max-width: 640px) {
+  .animate-arrow-side {
+    animation: arrowSideY 1.8s ease-in-out infinite;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -141,6 +165,43 @@ a:hover {
   .first-portfolio-mobile .no-underline [class*="border"] {
     border: none !important;
   }
+}
+
+/* Ultra-small devices: iPhone SE and <400px width */
+@media (max-width: 400px) {
+  /* Avoid overflow by letting children shrink */
+  .shrinkable, .container, .flex, .grid, section, header, footer, main {
+    min-width: 0;
+  }
+
+  /* Tighten vertical rhythm */
+  h1 { font-size: 1.5rem; line-height: 1.875rem; }
+  h2 { font-size: 1.25rem; line-height: 1.75rem; }
+  h3 { font-size: 1.125rem; line-height: 1.5rem; }
+
+  /* Inputs and buttons slightly smaller for fit */
+  input, select, textarea {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  button, .btn {
+    padding-left: 0.625rem;  /* 2.5 */
+    padding-right: 0.625rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.8125rem; /* ~13px */
+  }
+
+  /* Reduce default container padding further */
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Tighter gaps for grids commonly used */
+  .gap-6 { gap: 1rem; }
+  .gap-8 { gap: 1.25rem; }
 }
 
 /* Tablet-specific styles */

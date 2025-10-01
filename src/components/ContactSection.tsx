@@ -237,9 +237,7 @@ export function ContactSection() {
                   </div>
                 </form>
 
-                <p className="text-sm text-gray-600 text-center">
-                  We&apos;ll review your inquiry and respond within 24 hours with next steps.
-                </p>
+                
               </CardContent>
             </Card>
           </div>

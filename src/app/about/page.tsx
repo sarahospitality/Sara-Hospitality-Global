@@ -58,19 +58,19 @@ export default function AboutPage() {
             initial="hidden"
             animate="visible"
           >
-            <motion.div variants={itemVariants}>
+            <motion.div className="text-center lg:text-left flex flex-col items-center lg:items-start" variants={itemVariants}>
               <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-6">
                 <Award className="w-4 h-4" />
-                <span>About Sara Global Hospitality</span>
+                <span>Discover Sara Global Hospitality</span>
               </div>
-              <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold mb-6">
-                Crafting Excellence in
-                <span className="text-[#f26d35] block">Hospitality Furniture</span>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                Elevating Global Hospitality with
+                <span className="text-[#f26d35] block">Signature Furniture</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                For nearly three decades, we&apos;ve been transforming hospitality spaces with custom-designed furniture 
-                that combines luxury, functionality, and sustainability. Our global presence spans across 
-                continents, bringing world-class craftsmanship to premium hotels and resorts.
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl lg:max-w-none">
+                For over twenty-five years, we have been setting the international standard for bespoke hospitality 
+                furnishings. We seamlessly merge high-end design, superior function, and ethical sustainability. 
+                Our extensive global footprint brings master craftsmanship to luxury properties everywhere.
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {stats.map((stat, index) => (
@@ -111,7 +111,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4">
-              Mission & <span className="text-[#f26d35]">Vision</span>
+              Our Purpose and <span className="text-[#f26d35]">Future Direction</span>
             </h2>
             <div className="h-1 w-24 bg-[#f26d35] mx-auto"></div>
           </motion.div>
@@ -131,23 +131,9 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#f26d35] mb-4 sm:mb-6">Our Mission</h3>
                   <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
-                    To revolutionize the hospitality industry by creating exceptional, sustainable furniture solutions 
-                    that transform spaces and enhance guest experiences.
+                    To fundamentally transform the hospitality sector by designing and providing highly sustainable, 
+                    beautiful furniture that enriches environments and elevates the worldwide guest experience.
                   </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center">
-                      <div className="text-sm font-semibold text-gray-700">Exceptional Quality</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-sm font-semibold text-gray-700">Space Transformation</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-sm font-semibold text-gray-700">Sustainable Solutions</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-sm font-semibold text-gray-700">Design Excellence</div>
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -166,23 +152,9 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#f26d35] mb-4 sm:mb-6">Our Vision</h3>
                   <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
-                    To become the world&apos;s leading hospitality furniture manufacturer, recognized for innovation, 
-                    sustainability, and unparalleled quality.
+                    We envision becoming the world&apos;s foremost hospitality furniture partner, recognized 
+                    globally for innovation, environmental stewardship, and supreme quality.
                   </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center">
-                      <div className="text-sm font-semibold text-gray-700">Global Leadership</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-sm font-semibold text-gray-700">Lasting Partnerships</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-sm font-semibold text-gray-700">Innovation Focus</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-sm font-semibold text-gray-700">Global Reach</div>
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -201,7 +173,7 @@ export default function AboutPage() {
                 <Card className="relative bg-white/80 backdrop-blur border-0 shadow-lg">
                   <CardContent className="p-4 sm:p-8 lg:p-12">
                     <blockquote className="text-lg sm:text-xl lg:text-2xl font-medium text-center leading-relaxed text-gray-700">
-                      &ldquo;Transforming spaces, creating experiences, and building dreams - one piece of furniture at a time.&rdquo;
+                      &ldquo;We build more than just furniture; we craft environments, enhance experiences, and realize dreams globally.&rdquo;
                     </blockquote>
                   </CardContent>
                 </Card>
@@ -220,9 +192,9 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 text-gray-900">Explore Our Story</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 text-gray-900">Uncover Our Legacy</h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto">
-              Dive deeper into different aspects of Sara Global Hospitality - from our rich history to the dedicated team that makes everything possible.
+              Journey through the evolution of Sara Global, from our humble beginnings to becoming the world-class organization we are today.
             </p>
           </motion.div>
 
@@ -231,17 +203,17 @@ export default function AboutPage() {
               {
                 icon: Calendar,
                 title: "Company History",
-                description: "Discover our journey from a small furniture workshop to a global hospitality leader with major milestones spanning nearly a decade."
+                description: "Delve into our nearly thirty-year path, tracing our transformation from a focused regional workshop to a globally recognized hospitality furniture powerhouse."
               },
               {
                 icon: Target,
                 title: "Our Motto & Values",
-                description: "Learn about our core philosophy and the fundamental values that drive our commitment to excellence in hospitality furniture."
+                description: "Explore the core tenets and guiding principles that fuel our day-to-day operations and inspire our dedication to unparalleled quality in every piece we create."
               },
               {
                 icon: Users,
                 title: "Meet Our Team",
-                description: "Get to know the talented professionals behind our success, from design experts to manufacturing specialists."
+                description: "Get acquainted with the diverse, expert talent behind our global success, spanning master artisans, visionary product designers, and international logistics specialists."
               }
             ].map((story, index) => {
               const IconComponent = story.icon;
@@ -283,10 +255,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
-              Ready to Transform Your Hospitality Space?
+              Ready to Reimagine Your Luxury Property?
             </h2>
             <p className="text-lg sm:text-xl mb-6 sm:mb-8 opacity-90 max-w-3xl mx-auto">
-              Let&apos;s discuss how Sara Global Hospitality can bring your vision to life with our expert furniture solutions and global experience.
+              Connect with us to see how Sara Global Hospitality&apos;s customized furniture solutions and best international service can fully realize your design ambitions.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/contact" className="w-full sm:w-auto">

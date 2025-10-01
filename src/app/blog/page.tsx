@@ -246,7 +246,7 @@ export default function BlogPage() {
               </div>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                 Sara Global
                 <span className="text-[#f26d35] block">Hospitality Blog</span>
               </h1>
@@ -261,7 +261,7 @@ export default function BlogPage() {
 
           {/* Modern Search Bar */}
           <motion.div 
-            className="max-w-xs sm:max-w-2xl mx-auto"
+            className="max-w-[18rem] sm:max-w-2xl mx-auto z-10"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -277,13 +277,13 @@ export default function BlogPage() {
               />
               <button
                 onClick={handleSearch}
-                className="px-3 sm:px-6 py-2 sm:py-3 bg-[#f26d35] text-white text-xs sm:text-base font-medium hover:bg-[#f26d35]/90 transition-colors"
+                className="px-3 sm:px-6 py-2 sm:py-3 bg-[#f26d35] text-white text-xs sm:text-base font-medium hover:bg-[#f26d35]/90 transition-colors flex items-center justify-center text-center min-w-[72px] sm:min-w-0 shrink-0"
               >
                 Search
               </button>
               <button
                 onClick={handleReset}
-                className="px-3 sm:px-6 py-2 sm:py-3 bg-gray-200 text-gray-700 text-xs sm:text-base font-medium hover:bg-gray-300 transition-colors"
+                className="px-3 sm:px-6 py-2 sm:py-3 bg-gray-200 text-gray-700 text-xs sm:text-base font-medium hover:bg-gray-300 transition-colors flex items-center justify-center text-center min-w-[72px] sm:min-w-0 shrink-0"
               >
                 Reset
               </button>

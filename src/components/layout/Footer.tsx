@@ -26,7 +26,7 @@ export function Footer() {
                 </div>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed">
-                Premium B2B furniture solutions for hotels, resorts, and senior living facilities worldwide.
+                Premium B2B furniture solutions for hotels, resorts, and senior living communities across the globe. We combine quality craftsmanship with modern design to enhance guest experiences and elevate your brand.
               </p>
               <div className="flex space-x-4">
                 <Link href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -158,7 +158,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm sm:text-base text-gray-400 mb-6 leading-relaxed">
-              Premium B2B furniture solutions for hotels, resorts, and senior living facilities worldwide.
+              Premium B2B furniture solutions for hotels, resorts, and senior living communities across the globe. We combine quality craftsmanship with modern design to enhance guest experiences and elevate your brand.
             </p>
             <div className="flex space-x-3 sm:space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">

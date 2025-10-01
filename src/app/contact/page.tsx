@@ -48,7 +48,7 @@ export default function ContactPage() {
               </div>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-relaxed">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-relaxed">
                 Let&apos;s Discuss Your
                 <span className="text-[#f26d35] block mt-2">Project Needs</span>
               </h1>

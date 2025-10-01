@@ -255,11 +255,11 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
                 </div>
                 
                 {/* Custom Arrow */}
-                <div className="flex-shrink-0 px-2 sm:px-4 flex items-center justify-center rotate-90 sm:rotate-0">
+                <div className="flex-shrink-0 px-2 sm:px-4 flex items-center justify-center animate-arrow-side">
                   <ImageWithFallback 
                     src="/down-left.svg" 
                     alt="Arrow" 
-                    className="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16"
+                    className="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rotate-[135deg] sm:rotate-0"
                     width={64}
                     height={64}
                   />

@@ -202,52 +202,52 @@ export default function CommonHomepage() {
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      title: "General Manager",
-      company: "Grand Palace Hotel Dubai",
+      name: "Lena Petrova",
+      title: "Resort Director",
+      company: "Azure Coast Resorts (Croatia)",
       avatar: "/api/placeholder/64/64",
       rating: 5,
-      text: "Sara Global delivered exceptional quality furniture that perfectly matched our luxury brand. Their attention to detail and project management made the entire process seamless. Our guests constantly compliment the beautiful interiors."
+      text: "The dedication to superior quality from Sara Global is evident in every piece...... They flawlessly captured the exclusive essence of our resort, and the comprehensive service, from design to delivery, was flawless...... Our client satisfaction scores have improved significantly."
     },
     {
-      name: "Michael Chen",
-      title: "Head of Operations",
-      company: "Metropolitan Hotels Group", 
+      name: "David Kim",
+      title: "Chief Procurement Officer",
+      company: "Global Stay Properties", 
       avatar: "/api/placeholder/64/64",
       rating: 5,
-      text: "Working with Sara Global has been a game-changer for our hotel chain. Their ability to deliver consistent quality across multiple properties while meeting tight deadlines is remarkable. Highly recommended!"
+      text: "For an international group like ours, consistent quality and on-time global logistics are non-negotiable...... Sara Global has become our trusted B2B partner, managing vast orders across three continents with unmatched reliability and excellence...... A truly global solution."
     },
     {
-      name: "Emily Rodriguez",
-      title: "Interior Design Director",
-      company: "Boutique Hotels International",
+      name: "Javier Morales",
+      title: "Principal Designer",
+      company: "Horizon Design Studio (London)",
       avatar: "/api/placeholder/64/64", 
       rating: 5,
-      text: "The custom furniture solutions from Sara Global brought our design vision to life perfectly. Their team understood our unique requirements and delivered beyond expectations. The craftsmanship is outstanding."
+      text: "Sara Global didn't just provide furniture...... they executed our complex design schematics with stunning precision...... Their team acted as a true extension of our studio, ensuring every custom detail aligned perfectly with our creative vision...... Absolutely world-class manufacturing."
     },
     {
-      name: "David Thompson",
-      title: "Property Owner",
-      company: "Seaside Resort Miami",
+      name: "Aisha Rahman",
+      title: "Facilities Manager",
+      company: "Harmony Senior Living (Canada)",
       avatar: "/api/placeholder/64/64",
       rating: 5,
-      text: "Sara Global's weather-resistant outdoor furniture has exceeded our expectations. After two years of coastal exposure, everything still looks brand new. Their warranty and support service is excellent."
+      text: "We needed durable, beautiful furniture for our high-traffic senior living facilities...... Sara Global understood the unique blend of residential comfort and commercial strength required...... The residents love the design, and the furniture is holding up exceptionally well."
     },
     {
-      name: "Lisa Wang",
-      title: "Procurement Manager", 
-      company: "Asia Pacific Hotels",
+      name: "Ben Carter",
+      title: "VP of Brand Development", 
+      company: "The EcoLuxe Hotel Group",
       avatar: "/api/placeholder/64/64",
       rating: 5,
-      text: "The most reliable furniture supplier we've worked with. Sara Global consistently delivers on time, within budget, and with superior quality. Their global logistics capabilities are impressive."
+      text: "What impressed us most was their commitment to sustainability - Sara Global provided eco-friendly options without compromising on the luxury look we demand...... It allowed us to meet our corporate responsibility goals while outfitting our new flagship hotel."
     },
     {
-      name: "Robert Mitchell",
-      title: "Development Director",
-      company: "Heritage Hotels UK",
+      name: "Kenji Tanaka",
+      title: "Project Manager",
+      company: "Tokyo Grand Hotels",
       avatar: "/api/placeholder/64/64",
       rating: 5,
-      text: "Sara Global's expertise in heritage hotel furnishing is unmatched. They created period-appropriate furniture that maintains historical authenticity while meeting modern comfort standards."
+      text: "From the initial consultation to final installation, the support from Sara Global was exceptional...... Their ability to customize materials and finishes to meet our regional fire and safety codes was a huge relief...... They made a complicated international project feel simple."
     }
   ];
 
@@ -343,22 +343,22 @@ export default function CommonHomepage() {
               <div className="flex justify-center pt-8">
                 <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full">
                   <Star className="w-4 h-4" />
-                  <span className="text-sm font-medium">Premium Hotel Furniture Manufacturer</span>
+                  <span className="text-sm font-medium">Premium Hospitality Furniture Manufacturer</span>
                 </div>
               </div>
               
               {/* Main Heading */}
               <div className="text-center space-y-3">
                 <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
-                  <span className="block">Crafting Exceptional</span>
-                  <span className="text-[#f26d35] block">Hotel Furniture Since 1995</span>
+                  <span className="block">Leading Hospitality Furniture</span>
+                  <span className="text-[#f26d35] block">Manufacturer & Suppliers Globally
+                  </span>
                 </h1>
                 
                 {/* Description */}
                 <p className="text-base text-gray-600 leading-relaxed max-w-md mx-auto px-4">
-                  Transform your hospitality spaces with our premium furniture solutions. 
-                  We manufacture and supply world-class hotel furniture that combines 
-                  luxury, durability, and timeless design.
+                We partner with hospitality businesses to create unforgettable guest experiences through premium, durable, and elegantly designed furniture, manufactured and supplied globally, professionally by us.
+
                 </p>
               </div>
 
@@ -390,29 +390,29 @@ export default function CommonHomepage() {
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: '#faece7' }}>
                     <Star className="w-6 h-6" style={{ color: '#f26d35' }} />
                   </div>
-                  <div className="font-semibold text-sm mb-1">25+ Years</div>
-                  <div className="text-xs text-muted-foreground">Experience</div>
+                  <div className="font-semibold text-sm mb-1">Over 25 Years</div>
+                  <div className="text-xs text-muted-foreground">of Expertise</div>
                 </div>
                 <div className="text-center p-4 rounded-xl border border-orange-200" style={{ backgroundColor: '#faece7' }}>
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: '#faece7' }}>
                     <Star className="w-6 h-6" style={{ color: '#f26d35' }} />
                   </div>
-                  <div className="font-semibold text-sm mb-1">500+ Hotels</div>
-                  <div className="text-xs text-muted-foreground">Furnished</div>
+                  <div className="font-semibold text-sm mb-1">Bespoke Design</div>
+                  <div className="text-xs text-muted-foreground">Capabilities</div>
                 </div>
                 <div className="text-center p-4 rounded-xl border border-orange-200" style={{ backgroundColor: '#faece7' }}>
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: '#faece7' }}>
                     <Star className="w-6 h-6" style={{ color: '#f26d35' }} />
                   </div>
-                  <div className="font-semibold text-sm mb-1">Custom Design</div>
-                  <div className="text-xs text-muted-foreground">Solutions</div>
+                  <div className="font-semibold text-sm mb-1">Furnished 500+</div>
+                  <div className="text-xs text-muted-foreground">Hotels</div>
                 </div>
                 <div className="text-center p-4 rounded-xl border border-orange-200" style={{ backgroundColor: '#faece7' }}>
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: '#faece7' }}>
                     <Star className="w-6 h-6" style={{ color: '#f26d35' }} />
                   </div>
-                  <div className="font-semibold text-sm mb-1">Global</div>
-                  <div className="text-xs text-muted-foreground">Shipping</div>
+                  <div className="font-semibold text-sm mb-1">Worldwide</div>
+                  <div className="text-xs text-muted-foreground">Logistics & Shipping</div>
                 </div>
               </div>
             </div>
@@ -439,20 +439,18 @@ export default function CommonHomepage() {
           {/* Desktop Layout - Hidden on mobile */}
           <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Content */}
-            <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
-              <div className="space-y-2">
+            <div className="space-y-3 sm:space-y-4 order-2 lg:order-1 -mt-4">
+              <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-3 py-2 sm:px-4 rounded-full text-xs sm:text-sm">
                   <Star className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span className="text-xs sm:text-sm">Premium Hotel Furniture Manufacturer</span>
+                  <span className="text-xs sm:text-sm">Premium Hospitality Furniture Manufacturer</span>
                 </div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight">
-                  <span className="block">Crafting Exceptional</span>
-                  <span className="text-[#f26d35] block mt-1 sm:mt-2">Hotel Furniture Since 1995</span>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                  <span className="block">Leading Hospitality<br className="hidden sm:block" /> Furniture</span>
+                  <span className="text-[#f26d35] block mt-1 sm:mt-2 text-xl sm:text-2xl md:text-3xl lg:text-4xl">Manufacturer & Suppliers<br className="hidden sm:block" /> Globally</span>
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-lg leading-relaxed">
-                  Transform your hospitality spaces with our premium furniture solutions. 
-                  We manufacture and supply world-class hotel furniture that combines 
-                  luxury, durability, and timeless design.
+                  We partner with hospitality businesses to create unforgettable guest experiences through premium, durable, and elegantly designed furniture, manufactured and supplied globally, professionally by us.
                 </p>
               </div>
 
@@ -460,19 +458,19 @@ export default function CommonHomepage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
-                  <span className="text-xs sm:text-sm md:text-base">25+ Years Experience</span>
+                  <span className="text-xs sm:text-sm md:text-base">Over 25 Years of Expertise</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
-                  <span className="text-xs sm:text-sm md:text-base">500+ Hotels Furnished</span>
+                  <span className="text-xs sm:text-sm md:text-base">Bespoke Design Capabilities</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
-                  <span className="text-xs sm:text-sm md:text-base">Custom Design Solutions</span>
+                  <span className="text-xs sm:text-sm md:text-base">Furnished 500+ Hotels</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
-                  <span className="text-xs sm:text-sm md:text-base">Global Shipping</span>
+                  <span className="text-xs sm:text-sm md:text-base">Worldwide Logistics & Shipping</span>
                 </div>
               </div>
 
@@ -561,8 +559,8 @@ export default function CommonHomepage() {
           {/* Brand Logos Section */}
           <div className="pt-6 sm:pt-8 border-t border-gray-200">
             <div className="text-center mb-6 sm:mb-8">
-              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-2">Trusted by Leading Hotel Chains Worldwide</h3>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600">International hotel chains trust Sara Global for premium furniture solutions</p>
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-2">Preferred Furniture Partner for Global Hotel Brands</h3>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600">Leading international hotel chains rely on Sara Global for dependable quality and premium furniture solutions.</p>
             </div>
             
             <div className="overflow-hidden py-4">
@@ -642,12 +640,12 @@ export default function CommonHomepage() {
               <span>About Sara Global Hospitality</span>
             </div>
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-relaxed">
-              Pioneering Excellence in
-              <span className="text-[#f26d35] block mt-1 sm:mt-2">Hotel Furniture Manufacturing</span>
+              Building Excellence in
+              <span className="text-[#f26d35] block mt-1 sm:mt-2">Hospitality Furniture</span>
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-              For over 25 years, Sara Global Hospitality has been at the forefront of hotel furniture 
-              manufacturing, creating exceptional pieces that define luxury hospitality experiences worldwide.
+              For more than two decades, Sara Global Hospitality has been a leader in hotel furniture 
+              manufacturing, delivering exceptional pieces that define guest experiences around the world.
             </p>
           </div>
 
@@ -657,16 +655,17 @@ export default function CommonHomepage() {
               <div className="space-y-4 sm:space-y-6">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold">Our Story</h3>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                  Founded in 1995, Sara Global Hospitality began as a small family business with a 
-                  vision to transform the hospitality industry through exceptional furniture design 
-                  and manufacturing. Today, we&apos;re proud to be a leading global supplier of premium 
-                  hotel furniture solutions.
+                  Sara Hospitality Global is a bespoke, complete furniture, fixture, and equipment 
+                  package supplier for the hospitality industry globally. We have been at the 
+                  forefront of designing and manufacturing quality furniture.
                 </p>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                  Our journey has been marked by continuous innovation, unwavering commitment to 
-                  quality, and deep understanding of the hospitality industry&apos;s evolving needs. 
-                  We&apos;ve furnished over 500 hotels across 50 countries, establishing ourselves as 
-                  a trusted partner for hospitality professionals worldwide.
+                  Founded in 1995, we began with a clear mission: to elevate hospitality spaces 
+                  through superior furniture design and manufacturing. Today, we are a trusted 
+                  global supplier known for our commitment to quality and a deep understanding 
+                  of the industry&apos;s needs. We have successfully furnished over 500 hotels 
+                  across 50 countries, building our reputation as a reliable partner for 
+                  hospitality professionals.
                 </p>
               </div>
 
@@ -678,28 +677,28 @@ export default function CommonHomepage() {
                     <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] mt-1 flex-shrink-0" />
                     <div>
                       <h5 className="font-medium text-sm sm:text-sm md:text-base">Excellence</h5>
-                      <p className="text-sm sm:text-sm text-gray-600">Uncompromising quality in every piece</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] mt-1 flex-shrink-0" />
-                    <div>
-                      <h5 className="font-medium text-sm sm:text-sm md:text-base">Innovation</h5>
-                      <p className="text-sm sm:text-sm text-gray-600">Cutting-edge design and manufacturing</p>
+                      <p className="text-sm sm:text-sm text-gray-600">Uncompromising quality in every detail.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2 sm:gap-3">
                     <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] mt-1 flex-shrink-0" />
                     <div>
                       <h5 className="font-medium text-sm sm:text-sm md:text-base">Partnership</h5>
-                      <p className="text-sm sm:text-sm text-gray-600">Building lasting relationships</p>
+                      <p className="text-sm sm:text-sm text-gray-600">Building strong, lasting client relationships.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] mt-1 flex-shrink-0" />
+                    <div>
+                      <h5 className="font-medium text-sm sm:text-sm md:text-base">Innovation</h5>
+                      <p className="text-sm sm:text-sm text-gray-600">Advanced design and manufacturing techniques.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2 sm:gap-3">
                     <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] mt-1 flex-shrink-0" />
                     <div>
                       <h5 className="font-medium text-sm sm:text-sm md:text-base">Global Reach</h5>
-                      <p className="text-sm sm:text-sm text-gray-600">Serving clients worldwide</p>
+                      <p className="text-sm sm:text-sm text-gray-600">Serving the hospitality industry worldwide.</p>
                     </div>
                   </div>
                 </div>

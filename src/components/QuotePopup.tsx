@@ -51,9 +51,9 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg max-w-6xl w-full max-h-[95vh] overflow-y-auto shadow-xl border border-gray-200">
-        <div className="flex">
-          {/* Left Side - Trusted by 1000+ Hoteliers (Reduced Width) */}
-          <div className="w-2/5 bg-gray-50 p-6 flex flex-col justify-center items-center">
+        <div className="flex flex-col md:flex-row">
+          {/* Left Side - Trusted by 1000+ Hoteliers (hide on mobile) */}
+          <div className="hidden md:flex md:w-2/5 bg-gray-50 p-6 flex-col justify-center items-center">
             {/* Hotel Brand Logos - At the Very Top */}
             <div className="mb-10">
               <div className="text-center mb-4">
@@ -178,8 +178,8 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
             </div>
           </div>
 
-          {/* Right Side - Form (Increased Width) */}
-          <div className="w-3/5">
+          {/* Right Side - Form (Full width on mobile) */}
+          <div className="w-full md:w-3/5">
             {/* Header */}
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
@@ -206,7 +206,7 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
             </div>
 
             {/* Form Content */}
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Contact Details Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -292,7 +292,7 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
 
                 {/* reCAPTCHA Section */}
                 <div className="space-y-3">
-                  <div className="flex items-center space-x-2 p-3 border border-gray-300 rounded-md bg-gray-50">
+                <div className="flex items-center space-x-2 p-3 border border-gray-300 rounded-md bg-gray-50 overflow-x-auto">
                     <input 
                       type="checkbox"
                       id="recaptcha"
@@ -321,12 +321,7 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
                   </Button>
                 </div>
 
-                {/* Confirmation Text */}
-                <div className="text-center">
-                  <p className="text-sm text-gray-600">
-                    We&apos;ll review your inquiry and respond within 24 hours with next steps.
-                  </p>
-                </div>
+                
               </form>
             </div>
           </div>

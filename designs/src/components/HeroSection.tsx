@@ -6,7 +6,6 @@ interface HeroSectionProps {
   selectedCountry?: string;
   onNavigate?: (page: string) => void;
 }
-
 export default function HeroSection({ selectedCountry, onNavigate }: HeroSectionProps) {
   // Canadian-specific content
   const isCanada = selectedCountry === "canada-toronto";
@@ -152,7 +151,7 @@ export default function HeroSection({ selectedCountry, onNavigate }: HeroSection
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
                 {isCanada ? <Leaf className="w-4 h-4" /> : <CheckCircle className="w-4 h-4" />}
                 <span className="text-sm font-medium">
-                  {isCanada ? "Canadian Hotel Furniture Excellence" : "Premium Hotel Furniture Manufacturer"}
+                  {isCanada ? "Canadian Hotel Furniture Excellence" : "Premium Hospitality Furniture Manufacturer"}
                 </span>
               </div>
             </div>
@@ -168,7 +167,7 @@ export default function HeroSection({ selectedCountry, onNavigate }: HeroSection
                   </>
                 ) : (
                   <>
-                    Crafting Exceptional
+                    Leading Hospitality Furniture
                     <span className="text-primary block">Hotel Furniture</span>
                     Since 1995
                   </>
@@ -303,7 +302,7 @@ export default function HeroSection({ selectedCountry, onNavigate }: HeroSection
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
                 {isCanada ? <Leaf className="w-4 h-4" /> : <CheckCircle className="w-4 h-4" />}
-                <span>{isCanada ? "Canadian Hotel Furniture Excellence" : "Premium Hotel Furniture Manufacturer"}</span>
+                <span>{isCanada ? "Canadian Hotel Furniture Excellence" : "Premium Hospitality Furniture Manufacturer"}</span>
               </div>
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
                 {isCanada ? (
@@ -314,7 +313,7 @@ export default function HeroSection({ selectedCountry, onNavigate }: HeroSection
                   </>
                 ) : (
                   <>
-                    Crafting Exceptional
+                    Leading Hospitality Furniture
                     <span className="text-primary block">Hotel Furniture</span>
                     Since 1995
                   </>

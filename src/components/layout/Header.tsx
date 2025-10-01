@@ -68,9 +68,9 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-lg sm:text-xl">S</span>
                 </div>
-                <div>
-                  <h1 className="text-lg sm:text-xl font-bold text-[#f26d35]">Sara Global</h1>
-                  <p className="text-xs text-gray-600">Hospitality</p>
+                <div className="leading-tight">
+                  <h1 className="text-base [@media(max-width:400px)]:text-sm sm:text-xl font-bold text-[#f26d35] whitespace-nowrap">Sara Global</h1>
+                  <p className="text-[11px] [@media(max-width:400px)]:text-[10px] text-gray-600">Hospitality</p>
                 </div>
               </Link>
             </motion.div>

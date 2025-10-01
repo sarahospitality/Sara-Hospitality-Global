@@ -357,7 +357,7 @@ export default function BlogDetailPage() {
           <div className="absolute bottom-0 left-0 right-0 p-8">
             <div className="container mx-auto">
               <div className="max-w-4xl">
-                <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                   {currentPost.title}
                 </h1>
               </div>
