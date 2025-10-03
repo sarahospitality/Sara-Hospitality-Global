@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { ExternalLink, MapPin, Calendar, ArrowRight, Filter } from "lucide-react";
+import { ExternalLink, MapPin, ArrowRight, Filter } from "lucide-react";
 import Link from "next/link";
 
 export default function PortfolioPage() {
@@ -270,10 +270,6 @@ export default function PortfolioPage() {
                     <div className="flex items-center gap-1">
                       <MapPin className="w-3 h-3" />
                       <span>{project.location}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      <span>{project.year}</span>
                     </div>
                   </div>
                   

@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { ExternalLink, MapPin, Calendar, Users, ArrowRight } from "lucide-react";
+import { ExternalLink, MapPin, Users, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 interface PortfolioProps {
@@ -166,7 +166,6 @@ export default function Portfolio({ onNavigate, selectedCountry }: PortfolioProp
                     <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
                     <div className="flex items-center gap-4 text-white/80 text-sm mb-3">
                       <span>{project.location}</span>
-                      <span>{project.year}</span>
                     </div>
                     <p className="text-white/90 text-sm mb-4 line-clamp-2">{project.description}</p>
                     <Link href={`/portfolio/${generateSlug(project.title)}`}>
@@ -262,10 +261,6 @@ export default function Portfolio({ onNavigate, selectedCountry }: PortfolioProp
                     <span>{projects[0].location}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{projects[0].year}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
                     <Users className="w-4 h-4" />
                     <span>{projects[0].rooms}</span>
                   </div>
@@ -310,10 +305,6 @@ export default function Portfolio({ onNavigate, selectedCountry }: PortfolioProp
                   <div className="flex items-center gap-1">
                     <MapPin className="w-3 h-3" />
                     <span>{project.location}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-3 h-3" />
-                    <span>{project.year}</span>
                   </div>
                 </div>
                 

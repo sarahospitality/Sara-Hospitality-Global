@@ -1,7 +1,7 @@
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { ExternalLink, MapPin, Calendar } from "lucide-react";
+import { ExternalLink, MapPin } from "lucide-react";
 import Link from "next/link";
 
 interface PortfolioPageProps {
@@ -229,10 +229,6 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
                     <div className="flex items-center gap-1">
                       <MapPin className="w-3 h-3" />
                       <span>{project.location}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      <span>{project.year}</span>
                     </div>
                   </div>
                   

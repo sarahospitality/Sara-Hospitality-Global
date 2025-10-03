@@ -349,10 +349,9 @@ export default function CommonHomepage() {
               
               {/* Main Heading */}
               <div className="text-center space-y-3">
-                <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
+                <h1 className="text-2xl sm:text-4xl font-bold leading-tight">
                   <span className="block">Leading Hospitality Furniture</span>
-                  <span className="text-[#f26d35] block">Manufacturer & Suppliers Globally
-                  </span>
+                  <span className="text-[#f26d35] block mt-0 sm:mt-1">Manufacturer & Suppliers Globally</span>
                 </h1>
                 
                 {/* Description */}
@@ -447,7 +446,7 @@ export default function CommonHomepage() {
                 </div>
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
                   <span className="block">Leading Hospitality<br className="hidden sm:block" /> Furniture</span>
-                  <span className="text-[#f26d35] block mt-1 sm:mt-2 text-xl sm:text-2xl md:text-3xl lg:text-4xl">Manufacturer & Suppliers<br className="hidden sm:block" /> Globally</span>
+                  <span className="text-[#f26d35] block mt-0 sm:mt-1 text-xl sm:text-2xl md:text-3xl lg:text-4xl">Manufacturer & Suppliers<br className="hidden sm:block" /> Globally</span>
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-lg leading-relaxed">
                   We partner with hospitality businesses to create unforgettable guest experiences through premium, durable, and elegantly designed furniture, manufactured and supplied globally, professionally by us.
@@ -639,9 +638,9 @@ export default function CommonHomepage() {
               <Star className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>About Sara Global Hospitality</span>
             </div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-relaxed">
+            <h2 className="text-2xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-relaxed">
               Building Excellence in
-              <span className="text-[#f26d35] block mt-1 sm:mt-2">Hospitality Furniture</span>
+              <span className="text-[#f26d35] block mt-0 sm:mt-1">Hospitality Furniture</span>
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
               For more than two decades, Sara Global Hospitality has been a leader in hotel furniture 
@@ -653,7 +652,7 @@ export default function CommonHomepage() {
             {/* Content */}
             <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
               <div className="space-y-4 sm:space-y-6">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold">Our Story</h3>
+                <h3 className="text-3xl sm:text-xl md:text-2xl font-bold">Our Story</h3>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                   Sara Hospitality Global is a bespoke, complete furniture, fixture, and equipment 
                   package supplier for the hospitality industry globally. We have been at the 
@@ -738,7 +737,7 @@ export default function CommonHomepage() {
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-relaxed">
               Complete Furniture Solutions
-              <span className="text-[#f26d35] block mt-1 sm:mt-2">For Every Space</span>
+              <span className="text-[#f26d35] block mt-0 sm:mt-1">For Every Space</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
               From luxurious guest rooms to sophisticated lobbies, we provide comprehensive 
@@ -819,7 +818,7 @@ export default function CommonHomepage() {
                                 </div>
                                 
                                 <div className="p-6 pb-4">
-                                  <h3 className="text-xl font-bold mb-3 group-hover:text-[#f26d35] transition-colors">{category.title}</h3>
+                                  <h3 className="text-2xl font-bold mb-3 group-hover:text-[#f26d35] transition-colors">{category.title}</h3>
                                   <p className="text-gray-600 mb-4 line-clamp-2">{category.description}</p>
                                   
                                   <div className="grid grid-cols-2 gap-2 mb-3">
@@ -941,9 +940,9 @@ export default function CommonHomepage() {
               <Star className="w-4 h-4" />
               <span>Why Choose Sara Global</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
+            <h2 className="text-2xl lg:text-5xl font-bold mb-6 leading-relaxed">
               Industry Leaders in
-              <span className="text-[#f26d35] block mt-2">Hospitality Furniture</span>
+              <span className="text-[#f26d35] block mt-0 sm:mt-2">Hospitality Furniture</span>
             </h2>
           </div>
 
@@ -1055,9 +1054,9 @@ export default function CommonHomepage() {
               <ExternalLink className="w-4 h-4" />
               <span>Our Portfolio</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
+            <h2 className="text-2xl lg:text-5xl font-bold mb-6 leading-relaxed">
               Transforming Hospitality Spaces
-              <span className="text-[#f26d35] block mt-2">Worldwide</span>
+              <span className="text-[#f26d35] block mt-0 sm:mt-2">Worldwide</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Explore our diverse portfolio of completed projects spanning luxury resorts, 
@@ -1097,15 +1096,11 @@ export default function CommonHomepage() {
                       <div key={index} className="bg-gray-100 text-gray-700 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">{tag}</div>
                     ))}
                   </div>
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">{projects[0].title}</h3>
+                  <h3 className="text-base sm:text-2xl lg:text-3xl font-bold mb-4">{projects[0].title}</h3>
                   <div className="flex flex-row sm:flex-row sm:items-center gap-2 sm:gap-6 text-xs sm:text-sm text-gray-600 mb-4">
                     <div className="flex items-center gap-1">
                       <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>{projects[0].location}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span>{projects[0].year}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Users className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -1157,10 +1152,6 @@ export default function CommonHomepage() {
                       <MapPin className="w-3 h-3" />
                       <span>{project.location}</span>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      <span>{project.year}</span>
-                    </div>
                   </div>
                   
                   <p className="text-xs sm:text-sm text-gray-600 mb-4 line-clamp-3 flex-1">{project.description}</p>
@@ -1204,9 +1195,9 @@ export default function CommonHomepage() {
               <Star className="w-4 h-4" />
               <span>Client Testimonials</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
+            <h2 className="text-2xl lg:text-5xl font-bold mb-6 leading-relaxed">
               What Our Clients Say
-              <span className="text-[#f26d35] block mt-2">About Our Work</span>
+              <span className="text-[#f26d35] block mt-0 sm:mt-2">About Our Work</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Don&apos;t just take our word for it. Here&apos;s what hospitality professionals 
@@ -1371,7 +1362,7 @@ export default function CommonHomepage() {
       <section className="py-4 sm:py-10 bg-white">
         <div className="container mx-auto px-6 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-3 sm:mb-6">
+            <h2 className="text-2xl lg:text-4xl font-bold mb-3 sm:mb-6">
               Ready to Transform Your Hospitality Space?
             </h2>
             <p className="text-xl text-gray-600 mb-8">
@@ -1412,9 +1403,9 @@ export default function CommonHomepage() {
               <BookOpen className="w-4 h-4" />
               <span>Industry Insights</span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-relaxed">
+            <h2 className="text-2xl lg:text-5xl font-bold mb-6 leading-relaxed">
               Latest from Our
-              <span className="text-[#f26d35] block mt-2">Blog & Resources</span>
+              <span className="text-[#f26d35] block mt-0 sm:mt-2">Blog & Resources</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Stay updated with the latest trends, insights, and best practices in hospitality furniture design.
@@ -1455,7 +1446,7 @@ export default function CommonHomepage() {
                 </div>
                 <div className="lg:col-span-2 p-6 lg:p-8 flex flex-col justify-center">
                   <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm w-fit mb-3">{featuredPost.category}</div>
-                  <h3 className="text-xl lg:text-2xl font-bold mb-3 leading-tight">{featuredPost.title}</h3>
+                  <h3 className="text-sm lg:text-2xl font-bold mb-3 leading-tight">{featuredPost.title}</h3>
                   <p className="text-gray-600 mb-4 text-sm leading-relaxed">{featuredPost.excerpt}</p>
                   
                   <div className="flex items-center gap-4 text-xs text-gray-600 mb-4">
