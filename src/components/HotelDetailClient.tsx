@@ -426,7 +426,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
               Transform Your Vision Into Reality
             </h2>
             <p className="text-sm sm:text-base lg:text-xl text-white mb-6 sm:mb-8 px-2">
-              Brand identity and guest experience goals. Our award-winning design team specializes in creating bespoke furniture solutions that perfectly align with your hotel&apos;s vision.
+              Aligning brand identity and guest experience is key. Our award-winning design team creates bespoke furniture solutions that flawlessly match your hotel&apos;s distinct vision and global standards.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
               <Link href="http://localhost:3001/contact" className="w-full sm:w-auto">
@@ -471,88 +471,142 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
           </h2>
           
           <div className="grid md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
-            {/* Testimonial Card 1 */}
-            <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-100">
-              <div className="flex items-start space-x-3 sm:space-x-4">
-                <div className="relative flex-shrink-0">
-                  <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBiYWNrJTIwdmlldyUyMHdhdGVyfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=400"
-                    alt="Guest profile"
-                    width={64}
-                    height={64}
-                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover"
-                  />
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-orange-500 rounded-full flex items-center justify-center">
-                    <Star className="w-2 h-2 sm:w-3 sm:h-3 text-white fill-current" />
+            {/* Screenshot Testimonial 1 */}
+            <div className="relative group">
+              <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)' }}>
+                {/* Screenshot Header */}
+                <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                   </div>
+                  <div className="text-xs text-gray-500 font-mono">Review</div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed">
-                    &ldquo;Pool, <strong>hot tub</strong>, decent <strong>breakfast</strong> with eggs, sausage, cereal, <strong>waffles</strong>, <strong>coffee</strong>.&rdquo;
-                  </p>
-                  <div className="flex space-x-1">
-                    {[...Array(4)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
-                    ))}
-                    <Star className="w-3 h-3 sm:w-4 sm:h-4 text-gray-300" />
+                
+                {/* Review Content */}
+                <div className="p-4 sm:p-6">
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="relative flex-shrink-0">
+                      <ImageWithFallback
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBiYWNrJTIwdmlldyUyMHdhdGVyfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=400"
+                        alt="Guest profile"
+                        width={64}
+                        height={64}
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-100"
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-orange-500 rounded-full flex items-center justify-center border-2 border-white">
+                        <Star className="w-2 h-2 sm:w-3 sm:h-3 text-white fill-current" />
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <div className="flex space-x-1">
+                          {[...Array(4)].map((_, i) => (
+                            <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
+                          ))}
+                          <Star className="w-3 h-3 sm:w-4 sm:h-4 text-gray-300" />
+                        </div>
+                        <span className="text-xs text-gray-500">2 weeks ago</span>
+                      </div>
+                      <p className="text-sm sm:text-base text-gray-800 leading-relaxed font-medium">
+                        &ldquo;Pool, <span className="font-bold text-gray-900">hot tub</span>, decent <span className="font-bold text-gray-900">breakfast</span> with eggs, sausage, cereal, <span className="font-bold text-gray-900">waffles</span>, <span className="font-bold text-gray-900">coffee</span>.&rdquo;
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Testimonial Card 2 */}
-            <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-100">
-              <div className="flex items-start space-x-3 sm:space-x-4">
-                <div className="relative flex-shrink-0">
-                  <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGJsb25kZSUyMGhhaXIlMjByZWQlMjBoYXR8ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=400"
-                    alt="Guest profile"
-                    width={64}
-                    height={64}
-                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover"
-                  />
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-orange-500 rounded-full flex items-center justify-center">
-                    <Star className="w-2 h-2 sm:w-3 sm:h-3 text-white fill-current" />
+            {/* Screenshot Testimonial 2 */}
+            <div className="relative group">
+              <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)' }}>
+                {/* Screenshot Header */}
+                <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                   </div>
+                  <div className="text-xs text-gray-500 font-mono">Review</div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed">
-                    &ldquo;<strong>Easy access</strong> to the main drag for <strong>food</strong> and <strong>shopping</strong>.&rdquo;
-                  </p>
-                  <div className="flex space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
-                    ))}
+                
+                {/* Review Content */}
+                <div className="p-4 sm:p-6">
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="relative flex-shrink-0">
+                      <ImageWithFallback
+                        src="https://images.unsplash.com/photo-1494790108755-2616b612b786?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGJsb25kZSUyMGhhaXIlMjByZWQlMjBoYXR8ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=400"
+                        alt="Guest profile"
+                        width={64}
+                        height={64}
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-100"
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-orange-500 rounded-full flex items-center justify-center border-2 border-white">
+                        <Star className="w-2 h-2 sm:w-3 sm:h-3 text-white fill-current" />
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <div className="flex space-x-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                        <span className="text-xs text-gray-500">1 month ago</span>
+                      </div>
+                      <p className="text-sm sm:text-base text-gray-800 leading-relaxed font-medium">
+                        &ldquo;<span className="font-bold text-gray-900">Easy access</span> to the main drag for <span className="font-bold text-gray-900">food</span> and <span className="font-bold text-gray-900">shopping</span>.&rdquo;
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Testimonial Card 3 - Centered */}
+          {/* Screenshot Testimonial 3 - Centered */}
           <div className="flex justify-center">
-            <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-100 max-w-md w-full">
-              <div className="flex items-start space-x-3 sm:space-x-4">
-                <div className="relative flex-shrink-0">
-                  <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBiZWFjaCUyMHdhdGVyfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=400"
-                    alt="Guest profile"
-                    width={64}
-                    height={64}
-                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover"
-                  />
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-orange-500 rounded-full flex items-center justify-center">
-                    <Star className="w-2 h-2 sm:w-3 sm:h-3 text-white fill-current" />
+            <div className="relative group max-w-md w-full">
+              <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)' }}>
+                {/* Screenshot Header */}
+                <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                   </div>
+                  <div className="text-xs text-gray-500 font-mono">Review</div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed">
-                    &ldquo;Very very clean <strong>facility</strong> wonderful <strong>staff</strong> cheapest <strong>price</strong> in town&rdquo;
-                  </p>
-                  <div className="flex space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
-                    ))}
+                
+                {/* Review Content */}
+                <div className="p-4 sm:p-6">
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="relative flex-shrink-0">
+                      <ImageWithFallback
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBiZWFjaCUyMHdhdGVyfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=400"
+                        alt="Guest profile"
+                        width={64}
+                        height={64}
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-100"
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-orange-500 rounded-full flex items-center justify-center border-2 border-white">
+                        <Star className="w-2 h-2 sm:w-3 sm:h-3 text-white fill-current" />
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <div className="flex space-x-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                        <span className="text-xs text-gray-500">3 weeks ago</span>
+                      </div>
+                      <p className="text-sm sm:text-base text-gray-800 leading-relaxed font-medium">
+                        &ldquo;Very very clean <span className="font-bold text-gray-900">facility</span> wonderful <span className="font-bold text-gray-900">staff</span> cheapest <span className="font-bold text-gray-900">price</span> in town&rdquo;
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

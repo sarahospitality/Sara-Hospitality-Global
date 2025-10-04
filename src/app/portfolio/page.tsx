@@ -121,12 +121,12 @@ export default function PortfolioPage() {
               <span>Our Portfolio</span>
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Our Portfolio of
-              <span className="text-primary block">Excellence</span>
+              Showcase of Global
+              <span className="text-primary block">Craftsmanship</span>
             </h1>
             <p className="text-base sm:text-xl text-muted-foreground mb-8">
-              Discover our diverse collection of hospitality projects spanning luxury resorts, 
-              boutique hotels, and unique accommodations across the globe.
+              Explore our extensive, hand-selected collection of world-class furniture projects, 
+              encompassing luxury resorts, boutique hotels, and distinct accommodations across every continent.
             </p>
             <Link href="/contact">
               <button className="bg-[#f26d35] hover:bg-[#e55a2b] text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 mx-auto transition-all duration-300 shadow-2xl hover:shadow-3xl relative overflow-hidden">
@@ -204,9 +204,9 @@ export default function PortfolioPage() {
           <div className="mb-12">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
               <div className="text-center sm:text-left flex-1">
-                <h2 className="text-2xl sm:text-4xl font-bold mb-2">Featured Projects</h2>
+                <h2 className="text-2xl sm:text-4xl font-bold mb-2">Featured Global Installations</h2>
                 <p className="text-base sm:text-xl text-muted-foreground">
-                  Discover our complete portfolio of exceptional hospitality furniture projects from around the world
+                  Discover our curated portfolio of exceptional custom hospitality furniture projects from around the world.
                 </p>
               </div>
               

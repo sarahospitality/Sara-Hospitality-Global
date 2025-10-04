@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
@@ -116,12 +117,15 @@ export default function PortfolioPage({ onNavigate }: PortfolioPageProps) {
               <span>Our Portfolio</span>
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              Our Portfolio of
-              <span className="text-primary block">Excellence</span>
+              Showcase of Global
+              <span className="text-primary block">Craftsmanship</span>
+              <span className="text-2xl lg:text-3xl font-semibold text-muted-foreground block mt-2">
+                Hospitality Portfolio of Excellence
+              </span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Discover our diverse collection of hospitality projects spanning luxury resorts, 
-              boutique hotels, and unique accommodations across the globe.
+              Explore our extensive, hand-selected collection of world-class furniture projects, 
+              encompassing luxury resorts, boutique hotels, and distinct accommodations across every continent.
             </p>
           </div>
         </div>

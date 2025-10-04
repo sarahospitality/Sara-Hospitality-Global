@@ -652,7 +652,7 @@ export default function CommonHomepage() {
             {/* Content */}
             <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
               <div className="space-y-4 sm:space-y-6">
-                <h3 className="text-3xl sm:text-xl md:text-2xl font-bold">Our Story</h3>
+                <h3 className="text-base sm:text-xl md:text-2xl font-bold">Our Story</h3>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                   Sara Hospitality Global is a bespoke, complete furniture, fixture, and equipment 
                   package supplier for the hospitality industry globally. We have been at the 
