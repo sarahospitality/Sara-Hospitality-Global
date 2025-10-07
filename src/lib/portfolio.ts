@@ -73,7 +73,7 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
       // Safely extract error information with defensive checks
       const errorInfo = {
         message: error?.message || 'No error message available',
-        details: error?.details || error?.detail || 'No details available',
+        details: error?.details || 'No details available',
         hint: error?.hint || 'No hint available',
         code: error?.code || 'No error code',
         // Try multiple serialization methods
@@ -90,7 +90,7 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
         })(),
         // Get all enumerable properties
         allProperties: Object.getOwnPropertyNames(error || {}).reduce((acc, key) => {
-          acc[key] = (error as Record<string, unknown>)[key];
+          acc[key] = (error as unknown as Record<string, unknown>)[key];
           return acc;
         }, {} as Record<string, unknown>)
       };

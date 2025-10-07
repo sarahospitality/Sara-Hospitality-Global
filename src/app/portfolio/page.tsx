@@ -7,11 +7,12 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { ExternalLink, MapPin, ArrowRight, Filter, AlertCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { getPortfolioItems, extractSlug, getPortfolioImageUrl, PortfolioItem } from "@/lib/portfolio";
+import build from "next/dist/build"
 
 export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<string>("");
   const [filterProject, setFilterProject] = useState<string>("all");
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<PortfolioItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
