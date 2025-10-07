@@ -1,113 +1,112 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { ExternalLink, MapPin, ArrowRight, Filter } from "lucide-react";
+import { ExternalLink, MapPin, ArrowRight, Filter, AlertCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { getPortfolioItems, PortfolioItem } from "@/lib/portfolio";
+import { testSupabaseConnection } from "@/lib/test-supabase-connection";
 
 export default function PortfolioPage() {
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<string>("");
   const [filterProject, setFilterProject] = useState<string>("all");
+  const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const projects = [
-    {
-      id: "grand-palace-hotel-dubai",
-      title: "Grand Palace Hotel Dubai",
-      location: "Dubai, UAE",
-      year: "2023",
-      brand: "Holiday Inn",
-      description: "Complete furniture solution for a 5-star luxury resort featuring custom-designed bedroom sets, lobby furniture, and dining collections.",
-      image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHN1aXRlJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzU2OTE4Njk1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Luxury", "Custom Design", "Complete Furnishing"]
-    },
-    {
-      id: "wellness-spa-resort",
-      title: "Wellness Spa Resort",
-      location: "Bali, Indonesia",
-      year: "2023",
-      brand: "LaQuinta",
-      description: "Sustainable furniture solutions for an eco-luxury spa resort with focus on natural materials and wellness-oriented design.",
-      image: "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Eco-Friendly", "Spa Design", "Wellness"]
-    },
-    {
-      id: "metropolitan-boutique-hotel",
-      title: "Metropolitan Boutique Hotel",
-      location: "New York, USA",
-      year: "2022",
-      brand: "Best Western Plus",
-      description: "Modern urban design with space-efficient solutions for a trendy boutique hotel in Manhattan's financial district.",
-      image: "https://images.unsplash.com/photo-1718104717529-0059a1a860fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib3V0aXF1ZSUyMGhvdGVsJTIwcmVjZXB0aW9ufGVufDF8fHx8MTc1NzAwMzAzNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Urban Design", "Space Efficient", "Modern"]
-    },
-    {
-      id: "royal-heritage-hotel",
-      title: "Royal Heritage Hotel",
-      location: "London, UK",
-      year: "2022",
-      brand: "Marriott",
-      description: "Classic elegance meets modern comfort in this restored Victorian hotel with period-appropriate custom furniture.",
-      image: "https://images.unsplash.com/photo-1755644046048-989506b73a5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGxvYmJ5JTIwZnVybml0dXJlfGVufDF8fHx8MTc1NzAwMjkwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Heritage", "Classic Design", "Restoration"]
-    },
-    {
-      id: "beachfront-resort-paradise",
-      title: "Beachfront Resort Paradise",
-      location: "Maldives",
-      year: "2023",
-      brand: "Holiday Inn",
-      description: "Tropical luxury furniture collection designed for overwater villas and beachfront suites with weather-resistant materials.",
-      image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWFjaCUyMHJlc29ydCUyMGx1eHVyeXxlbnwxfHx8fDE3NTcwMDMwMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Tropical", "Weather-Resistant", "Villa Design"]
-    },
-    {
-      id: "mountain-lodge-retreat",
-      title: "Mountain Lodge Retreat",
-      location: "Swiss Alps, Switzerland",
-      year: "2023",
-      brand: "Quality Inn",
-      description: "Rustic elegance furniture collection featuring locally sourced wood and traditional Alpine craftsmanship.",
-      image: "https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMGxvZGdlJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzU3MDAzMDM2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Alpine", "Rustic", "Local Materials"]
-    },
-    {
-      id: "urban-business-hotel",
-      title: "Urban Business Hotel",
-      location: "Singapore",
-      year: "2022",
-      brand: "Best Western Plus",
-      description: "Contemporary business-focused furniture with integrated technology solutions for the modern corporate traveler.",
-      image: "https://images.unsplash.com/photo-1671722294182-ed01cbe66bd1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjBmdXJuaXR1cmUlMjBtYW51ZmFjdHVyaW5nfGVufDF8fHx8MTc1NzAwMjgwNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Business", "Tech Integration", "Corporate"]
-    },
-    {
-      id: "historic-mansion-hotel",
-      title: "Historic Mansion Hotel",
-      location: "Tuscany, Italy",
-      year: "2022",
-      brand: "LaQuinta",
-      description: "Restoration of antique furniture and creation of period-appropriate pieces for a 16th-century mansion converted into luxury hotel.",
-      image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaXN0b3JpYyUyMGhvdGVsJTIwaW50ZXJpb3J8ZW58MXx8fHx8MTc1NzAwMzAzNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Historic", "Restoration", "Italian Craftsmanship"]
-    },
-    {
-      id: "desert-safari-lodge",
-      title: "Desert Safari Lodge",
-      location: "Dubai, UAE",
-      year: "2023",
-      brand: "Hilton",
-      description: "Luxury desert camping experience furniture designed to withstand extreme temperatures while providing 5-star comfort.",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNlcnQlMjBsb2RnZSUyMGx1eHVyeXxlbnwxfHx8fDE3NTcwMDMwMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Desert", "Luxury Camping", "Traditional Design"]
-    }
-  ];
+  // Run connection test on mount (for debugging)
+  useEffect(() => {
+    console.log('🚀 Running Supabase connection test...');
+    testSupabaseConnection();
+  }, []);
 
-  const handleProjectClick = (projectId: string) => {
-    setSelectedProject(projectId);
+  // Fetch portfolio data from database
+  useEffect(() => {
+    const fetchPortfolioData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getPortfolioItems();
+        
+        // Set projects from database (will be empty array if no data or error)
+        setProjects(data);
+        
+        if (data.length === 0) {
+          setError('No portfolio items found. Please add items to the database.');
+        }
+      } catch (err) {
+        console.error('Unexpected error fetching portfolio data:', err);
+        setError('An unexpected error occurred while loading portfolio items.');
+        setProjects([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPortfolioData();
+  }, []);
+
+  // Loading skeleton component
+  const LoadingSkeleton = () => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {[...Array(6)].map((_, index) => (
+        <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden">
+          <div className="relative">
+            <div className="w-full h-48 sm:h-64 bg-gray-200 animate-pulse"></div>
+          </div>
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex flex-wrap gap-1 mb-3">
+              <div className="w-16 h-5 bg-gray-200 rounded animate-pulse"></div>
+              <div className="w-20 h-5 bg-gray-200 rounded animate-pulse"></div>
+            </div>
+            <div className="w-3/4 h-6 bg-gray-200 rounded animate-pulse mb-3"></div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-3 h-3 bg-gray-200 rounded animate-pulse"></div>
+              <div className="w-24 h-4 bg-gray-200 rounded animate-pulse"></div>
+            </div>
+            <div className="w-full h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+            <div className="w-2/3 h-4 bg-gray-200 rounded animate-pulse"></div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  // Error alert component
+  const ErrorAlert = () => (
+    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+      <div className="flex items-center">
+        <AlertCircle className="w-5 h-5 text-red-500 mr-2" />
+        <span className="text-red-700">{error}</span>
+      </div>
+    </div>
+  );
+
+  // Empty state component
+  const EmptyState = () => (
+    <div className="text-center py-16">
+      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 mb-4">
+        <ExternalLink className="w-10 h-10 text-gray-400" />
+      </div>
+      <h3 className="text-2xl font-bold mb-2">No Portfolio Items Found</h3>
+      <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+        There are currently no portfolio items in the database. Please add some items to display them here.
+      </p>
+      <Link href="/contact">
+        <button className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+          Contact Us to Add Projects
+        </button>
+      </Link>
+    </div>
+  );
+
+  const handleProjectClick = (projectSlug: string | null) => {
+    if (!projectSlug) return;
+    setSelectedProject(projectSlug);
     // Navigate to project detail page
-    window.location.href = `/portfolio/${projectId}`;
+    window.location.href = `/portfolio/${projectSlug}`;
   };
 
   return (
@@ -118,16 +117,18 @@ export default function PortfolioPage() {
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-primary px-4 py-2 rounded-full mb-6">
               <ExternalLink className="w-4 h-4" />
-              <span>Our Portfolio</span>
+              <span className="text-sm font-medium">Portfolio</span>
             </div>
+            
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               Showcase of Global
               <span className="text-primary block">Craftsmanship</span>
             </h1>
             <p className="text-base sm:text-xl text-muted-foreground mb-8">
-              Explore our extensive, hand-selected collection of world-class furniture projects, 
+              Explore our extensive, hand-selected collection of world-class furniture projects,
               encompassing luxury resorts, boutique hotels, and distinct accommodations across every continent.
             </p>
+            
             <Link href="/contact">
               <button className="bg-[#f26d35] hover:bg-[#e55a2b] text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 mx-auto transition-all duration-300 shadow-2xl hover:shadow-3xl relative overflow-hidden">
                 <span className="relative z-10">Request A Quote</span>
@@ -139,64 +140,74 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Hotel Projects Carousel */}
-      <section className="pt-4 sm:pt-8 pb-2 sm:pb-4 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-        <div className="container mx-auto px-6 sm:px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3">Our Hotel Projects</h2>
-            <p className="text-sm sm:text-base text-muted-foreground">Explore our diverse portfolio of luxury hospitality projects worldwide</p>
-          </div>
-          
-          {/* Moving Carousel */}
-          <div className="relative">
-            <div className="overflow-hidden">
-              <div className="flex animate-scroll-logos space-x-4">
-                {/* First set of projects */}
-                {projects.map((project, index) => (
+      {/* Hotel Projects Carousel - Only show if there are projects */}
+      {!loading && projects.length > 0 && (
+        <section className="pt-4 sm:pt-8 pb-2 sm:pb-4 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+          <div className="container mx-auto px-6 sm:px-4">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3">Our Hotel Projects</h2>
+              <p className="text-sm sm:text-base text-muted-foreground">Explore our diverse portfolio of luxury hospitality projects worldwide</p>
+            </div>
+            
+            {/* Moving Carousel */}
+            <div className="relative">
+              <div className="overflow-hidden">
+                <div className="flex animate-scroll-logos space-x-4">
+                  {/* First set of projects */}
+                  {projects.map((project, index) => (
                   <button
                     key={`first-${index}`}
-                    onClick={() => handleProjectClick(project.id)}
+                    onClick={() => handleProjectClick(project.slug)}
                     className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-4 sm:px-6 py-2 sm:py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[200px] sm:min-w-[240px]"
                   >
                     <div className="text-center">
-                      <h3 className="font-medium text-xs sm:text-sm leading-tight group-hover:text-white transition-colors mb-1">
-                        {project.title}
-                      </h3>
-                      <div className="flex items-center justify-center gap-1">
-                        <MapPin className="w-3 h-3 text-muted-foreground group-hover:text-white/80 transition-colors" />
-                        <span className="text-xs text-muted-foreground group-hover:text-white/80 transition-colors">
-                          {project.location}
-                        </span>
-                      </div>
+                      {project.title && (
+                        <h3 className="font-medium text-xs sm:text-sm leading-tight group-hover:text-white transition-colors mb-1">
+                          {project.title}
+                        </h3>
+                      )}
+                      {project.location && (
+                        <div className="flex items-center justify-center gap-1">
+                          <MapPin className="w-3 h-3 text-muted-foreground group-hover:text-white/80 transition-colors" />
+                          <span className="text-xs text-muted-foreground group-hover:text-white/80 transition-colors">
+                            {project.location}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </button>
                 ))}
                 
-                {/* Duplicate set for seamless loop */}
+                {/* Duplicate for seamless loop */}
                 {projects.map((project, index) => (
                   <button
                     key={`second-${index}`}
-                    onClick={() => handleProjectClick(project.id)}
+                    onClick={() => handleProjectClick(project.slug)}
                     className="group flex-shrink-0 bg-white hover:bg-primary hover:text-white transition-all duration-300 rounded-lg px-4 sm:px-6 py-2 sm:py-3 shadow-md hover:shadow-lg border-2 border-primary hover:border-primary min-w-[200px] sm:min-w-[240px]"
                   >
                     <div className="text-center">
-                      <h3 className="font-medium text-xs sm:text-sm leading-tight group-hover:text-white transition-colors mb-1">
-                        {project.title}
-                      </h3>
-                      <div className="flex items-center justify-center gap-1">
-                        <MapPin className="w-3 h-3 text-muted-foreground group-hover:text-white/80 transition-colors" />
-                        <span className="text-xs text-muted-foreground group-hover:text-white/80 transition-colors">
-                          {project.location}
-                        </span>
-                      </div>
+                      {project.title && (
+                        <h3 className="font-medium text-xs sm:text-sm leading-tight group-hover:text-white transition-colors mb-1">
+                          {project.title}
+                        </h3>
+                      )}
+                      {project.location && (
+                        <div className="flex items-center justify-center gap-1">
+                          <MapPin className="w-3 h-3 text-muted-foreground group-hover:text-white/80 transition-colors" />
+                          <span className="text-xs text-muted-foreground group-hover:text-white/80 transition-colors">
+                            {project.location}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </button>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Projects Grid */}
       <section className="pt-4 sm:pt-8 pb-8 sm:pb-16">
@@ -210,26 +221,18 @@ export default function PortfolioPage() {
                 </p>
               </div>
               
-              {/* Filter Dropdown */}
               <div className="relative">
-                <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none z-10">
-                  <Filter className="w-4 h-4 text-gray-600" />
-                </div>
                 <select
                   value={filterProject}
                   onChange={(e) => setFilterProject(e.target.value)}
                   className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent bg-white text-sm font-medium min-w-[200px] appearance-none cursor-pointer"
                 >
                   <option value="all">All Projects</option>
-                  <option value="grand-palace-hotel-dubai">Grand Palace Hotel Dubai</option>
-                  <option value="wellness-spa-resort">Wellness Spa Resort</option>
-                  <option value="metropolitan-boutique-hotel">Metropolitan Boutique Hotel</option>
-                  <option value="royal-heritage-hotel">Royal Heritage Hotel</option>
-                  <option value="beachfront-resort-paradise">Beachfront Resort Paradise</option>
-                  <option value="mountain-lodge-retreat">Mountain Lodge Retreat</option>
-                  <option value="urban-business-hotel">Urban Business Hotel</option>
-                  <option value="historic-mansion-hotel">Historic Mansion Hotel</option>
-                  <option value="desert-safari-lodge">Desert Safari Lodge</option>
+                  {projects.map((project) => (
+                    <option key={project.id} value={project.slug || ''}>
+                      {project.title || 'Untitled Project'}
+                    </option>
+                  ))}
                 </select>
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -240,17 +243,26 @@ export default function PortfolioPage() {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {projects.filter(project => filterProject === "all" || project.id === filterProject).map((project, index) => (
+          {/* Error Alert */}
+          {error && <ErrorAlert />}
+          
+          {/* Loading State */}
+          {loading ? (
+            <LoadingSkeleton />
+          ) : projects.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {projects.filter(project => filterProject === "all" || project.slug === filterProject).map((project, index) => (
               <Card 
-                key={index} 
+                key={project.id} 
                 className={`group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden cursor-pointer ${index === 0 ? 'first-portfolio-mobile' : ''}`}
-                onClick={() => handleProjectClick(project.id)}
+                onClick={() => handleProjectClick(project.slug)}
               >
                 <div className="relative">
                   <ImageWithFallback
-                    src={project.image}
-                    alt={project.title}
+                    src={project.main_image || "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHN1aXRlJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzU2OTE4Njk1fDA&ixlib=rb-4.1.0&q=80&w=1080"}
+                    alt={project.title || 'Project image'}
                     width={400}
                     height={256}
                     className="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
@@ -258,26 +270,39 @@ export default function PortfolioPage() {
                 </div>
                 
                 <CardContent className="p-4 sm:p-6">
-                  <div className={`flex flex-nowrap sm:flex-wrap gap-1 mb-3 overflow-x-auto sm:overflow-x-visible ${index === 0 ? 'no-underline' : ''}`}>
-                    {project.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="outline" className="text-xs whitespace-nowrap sm:whitespace-normal">{tag}</Badge>
-                    ))}
-                  </div>
+                  {/* Tags - Split by comma and show as separate badges */}
+                  {project.tags && (
+                    <div className={`flex flex-wrap gap-1.5 mb-3 ${index === 0 ? 'no-underline' : ''}`}>
+                      {project.tags.split(',').map((tag: string, tagIndex: number) => (
+                        <Badge key={tagIndex} variant="outline" className="text-xs">
+                          {tag.trim()}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
                   
-                  <h3 className="text-base sm:text-lg font-bold mb-3">{project.title}</h3>
+                  {/* Title - Only show if title exists */}
+                  {project.title && (
+                    <h3 className="text-base sm:text-lg font-bold mb-2">{project.title}</h3>
+                  )}
                   
-                  <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground mb-4">
-                    <div className="flex items-center gap-1">
+                  {/* Location - Only show if location exists */}
+                  {project.location && (
+                    <div className="flex items-center gap-1 text-xs sm:text-sm text-muted-foreground mb-3">
                       <MapPin className="w-3 h-3" />
                       <span>{project.location}</span>
                     </div>
-                  </div>
+                  )}
                   
-                  <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">{project.description}</p>
+                  {/* Subtitle - Only show if subtitle exists */}
+                  {project.subtitle && (
+                    <p className="text-sm text-muted-foreground mb-3">{project.subtitle}</p>
+                  )}
                 </CardContent>
               </Card>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>

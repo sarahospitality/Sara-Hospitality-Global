@@ -5,9 +5,12 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 // Debug logging for environment variables
-console.log('Supabase URL exists:', !!supabaseUrl);
-console.log('Supabase Anon Key exists:', !!supabaseAnonKey);
-console.log('Supabase Service Key exists:', !!supabaseServiceKey);
+console.log('🔐 Supabase Configuration Check:');
+console.log('  ✓ URL exists:', !!supabaseUrl);
+console.log('  ✓ URL value:', supabaseUrl ? `${supabaseUrl.substring(0, 30)}...` : 'NOT SET');
+console.log('  ✓ Anon Key exists:', !!supabaseAnonKey);
+console.log('  ✓ Anon Key length:', supabaseAnonKey?.length || 0);
+console.log('  ✓ Service Key exists:', !!supabaseServiceKey);
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.error('Missing Supabase environment variables:');

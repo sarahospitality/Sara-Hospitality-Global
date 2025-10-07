@@ -218,6 +218,7 @@ export default function HotelDetailClient({ slug }: HotelDetailClientProps) {
             <Link href="http://localhost:3001/contact">
               <Button className="bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
                 Request A Quote
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </div>

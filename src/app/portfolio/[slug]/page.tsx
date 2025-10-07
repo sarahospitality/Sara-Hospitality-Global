@@ -1,13 +1,13 @@
-import HotelDetailClient from "@/components/HotelDetailClient";
+import PortfolioDetailClient from "@/components/PortfolioDetailClient";
 
-interface HotelDetailPageProps {
+interface PortfolioDetailPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
 
-export default async function HotelDetailPage({ params }: HotelDetailPageProps) {
+export default async function PortfolioDetailPage({ params }: PortfolioDetailPageProps) {
   const { slug } = await params;
   
-  return <HotelDetailClient slug={slug} />;
+  return <PortfolioDetailClient slug={slug} />;
 }
