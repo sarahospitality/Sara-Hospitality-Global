@@ -6,6 +6,8 @@ export interface PortfolioItem {
   subtitle: string | null;
   heading_1: string | null;
   description: string | null;
+  hero_image: string | null;
+  main_image: string | null;
   old_image_1: string | null;
   new_image_1: string | null;
   old_image_2: string | null;
@@ -13,7 +15,9 @@ export interface PortfolioItem {
   old_image_3: string | null;
   new_image_3: string | null;
   project_challenge: string | null;
+  project_challenge_image: string | null;
   how_we_delivered: string | null;
+  delivered_image: string | null;
   vision: string | null;
   comfort_convenience: string | null;
   faq_1: string | null;
@@ -44,7 +48,7 @@ export interface PortfolioItem {
   slug: string | null;
   tags: string | null;
   location: string | null;
-  main_image: string | null;
+  brandName: string | null;
 }
 
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
@@ -68,10 +72,10 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
       
       // Safely extract error information with defensive checks
       const errorInfo = {
-        message: error?.message || error?.msg || 'No error message available',
+        message: error?.message || 'No error message available',
         details: error?.details || error?.detail || 'No details available',
         hint: error?.hint || 'No hint available',
-        code: error?.code || error?.status || 'No error code',
+        code: error?.code || 'No error code',
         // Try multiple serialization methods
         rawError: (() => {
           try {
@@ -86,9 +90,9 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
         })(),
         // Get all enumerable properties
         allProperties: Object.getOwnPropertyNames(error || {}).reduce((acc, key) => {
-          acc[key] = (error as any)[key];
+          acc[key] = (error as Record<string, unknown>)[key];
           return acc;
-        }, {} as Record<string, any>)
+        }, {} as Record<string, unknown>)
       };
       
       console.error('❌ Error fetching portfolio items from database:', errorInfo);
@@ -131,37 +135,42 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
 
 export async function getPortfolioItemBySlug(slug: string): Promise<PortfolioItem | null> {
   try {
-    const { data, error } = await supabase
+    // Clean the slug in case it contains URL parts
+    let cleanSlug = slug;
+    if (slug.includes('http://') || slug.includes('https://')) {
+      const parts = slug.split('/');
+      cleanSlug = parts[parts.length - 1] || parts[parts.length - 2];
+    }
+    if (cleanSlug.includes(' ')) {
+      const parts = cleanSlug.split(' ');
+      cleanSlug = parts[parts.length - 1];
+    }
+    
+    // Try to find by matching the end of the slug field
+    const { data: allData, error: fetchError } = await supabase
       .from('portfolio')
-      .select('*')
-      .eq('slug', slug)
-      .single();
-
-    if (error) {
-      // Safely extract error information with defensive checks
-      const errorInfo = {
-        message: error?.message || 'No error message available',
-        details: error?.details || 'No details available',
-        hint: error?.hint || 'No hint available',
-        code: error?.code || 'No error code',
-        slug,
-        rawError: JSON.stringify(error, null, 2)
-      };
-      
-      console.error(`❌ Error fetching portfolio item "${slug}" from database:`, errorInfo);
-      console.warn(`⚠️  Portfolio item "${slug}" not found due to error`);
-      
+      .select('*');
+    
+    if (fetchError) {
+      console.error('Error fetching all portfolio items:', fetchError);
       return null;
     }
-
-    // If no data found, return null
-    if (!data) {
-      console.info(`ℹ️  Portfolio item "${slug}" not found in database`);
+    
+    // Find the matching item by checking if slug field ends with cleanSlug
+    const matchedItem = allData?.find(item => {
+      if (!item.slug) return false;
+      const itemSlug = item.slug.toLowerCase();
+      const searchSlug = cleanSlug.toLowerCase();
+      return itemSlug.endsWith(searchSlug) || itemSlug === searchSlug || itemSlug.includes(searchSlug);
+    });
+    
+    if (!matchedItem) {
+      console.log(`Portfolio item not found for slug: ${cleanSlug}`);
       return null;
     }
-
-    console.log(`✅ Successfully fetched portfolio item: ${slug}`);
-    return data;
+    
+    console.log(`✅ Successfully fetched portfolio item: ${cleanSlug}`);
+    return matchedItem;
   } catch (error) {
     // Enhanced error logging for unexpected errors with safe serialization
     const errorInfo = {
@@ -184,6 +193,64 @@ export async function getPortfolioItemBySlug(slug: string): Promise<PortfolioIte
     
     return null;
   }
+}
+
+// Helper function to extract clean slug from URL or mixed string
+export function extractSlug(slugOrUrl: string): string {
+  let cleanSlug = slugOrUrl;
+  
+  // Remove URL protocol and domain
+  if (cleanSlug.includes('http://') || cleanSlug.includes('https://')) {
+    const parts = cleanSlug.split('/');
+    cleanSlug = parts[parts.length - 1] || parts[parts.length - 2];
+  }
+  
+  // Handle space-separated strings
+  if (cleanSlug.includes(' ')) {
+    const parts = cleanSlug.split(' ');
+    cleanSlug = parts[parts.length - 1];
+  }
+  
+  // Remove any trailing slashes or special characters
+  cleanSlug = cleanSlug.replace(/\/+$/, '').trim();
+  
+  return cleanSlug;
+}
+
+// Helper function to get portfolio image URL
+// Supports: filename.webp, subfolder/filename.webp, full URLs
+export function getPortfolioImageUrl(
+  imageValue: string | null, 
+  fallback: string = "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHN1aXRlJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzU2OTE4Njk1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+): string {
+  // Return fallback if no image value provided
+  if (!imageValue) {
+    return fallback;
+  }
+  
+  // Trim whitespace from the image value
+  const trimmedValue = imageValue.trim();
+  
+  // Return fallback if empty after trimming
+  if (!trimmedValue) {
+    return fallback;
+  }
+  
+  // If already a full URL (http:// or https://), return as-is
+  if (trimmedValue.startsWith('http://') || trimmedValue.startsWith('https://')) {
+    return trimmedValue;
+  }
+  
+  // If starts with /, return as-is (absolute path)
+  if (trimmedValue.startsWith('/')) {
+    return trimmedValue;
+  }
+  
+  // Otherwise, it's a relative path (supports subfolders)
+  // Examples:
+  //   "filename.webp" -> "/portfolio/filename.webp"
+  //   "best_western/filename.webp" -> "/portfolio/best_western/filename.webp"
+  return `/portfolio/${trimmedValue}`;
 }
 
 // Note: No fallback data - using database only

@@ -6,8 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { ExternalLink, MapPin, ArrowRight, Filter, AlertCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { getPortfolioItems, PortfolioItem } from "@/lib/portfolio";
-import { testSupabaseConnection } from "@/lib/test-supabase-connection";
+import { getPortfolioItems, extractSlug, getPortfolioImageUrl, PortfolioItem } from "@/lib/portfolio";
 
 export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<string>("");
@@ -15,12 +14,6 @@ export default function PortfolioPage() {
   const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Run connection test on mount (for debugging)
-  useEffect(() => {
-    console.log('🚀 Running Supabase connection test...');
-    testSupabaseConnection();
-  }, []);
 
   // Fetch portfolio data from database
   useEffect(() => {
@@ -104,9 +97,13 @@ export default function PortfolioPage() {
 
   const handleProjectClick = (projectSlug: string | null) => {
     if (!projectSlug) return;
-    setSelectedProject(projectSlug);
+    
+    // Extract clean slug from URL or mixed string
+    const cleanSlug = extractSlug(projectSlug);
+    
+    setSelectedProject(cleanSlug);
     // Navigate to project detail page
-    window.location.href = `/portfolio/${projectSlug}`;
+    window.location.href = `/portfolio/${cleanSlug}`;
   };
 
   return (
@@ -261,7 +258,7 @@ export default function PortfolioPage() {
               >
                 <div className="relative">
                   <ImageWithFallback
-                    src={project.main_image || "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHN1aXRlJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzU2OTE4Njk1fDA&ixlib=rb-4.1.0&q=80&w=1080"}
+                    src={getPortfolioImageUrl(project.main_image)}
                     alt={project.title || 'Project image'}
                     width={400}
                     height={256}

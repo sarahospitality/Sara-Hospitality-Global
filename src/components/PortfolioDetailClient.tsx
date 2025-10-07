@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, Check, MessageCircle, Star } from "lucide-react"
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import Link from "next/link";
 import { ContactSection } from '@/components/ContactSection';
-import { getPortfolioItemBySlug, fallbackProjects, PortfolioItem } from "@/lib/portfolio";
+import { getPortfolioItemBySlug, getPortfolioImageUrl, PortfolioItem } from "@/lib/portfolio";
 import { SeeWhatGuestSaySection, WhatOurClientSaySection, HospitalityBuyingGuideSection, FAQSection } from './PortfolioSections';
 
 interface PortfolioDetailClientProps {
@@ -26,28 +26,17 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
         setLoading(true);
         setError(null);
         
-        // First try to fetch from database
+        // Fetch from database
         const dbProject = await getPortfolioItemBySlug(slug);
         
         if (dbProject) {
           setProject(dbProject);
-        } else {
-          // Fallback to hardcoded data
-          const fallbackProject = fallbackProjects.find(p => p.id === slug);
-          if (fallbackProject) {
-            setProject(fallbackProject);
           } else {
             setError('Project not found');
-          }
         }
       } catch (err) {
         console.error('Error fetching project:', err);
         setError('Failed to load project data');
-        // Try fallback data
-        const fallbackProject = fallbackProjects.find(p => p.id === slug);
-        if (fallbackProject) {
-          setProject(fallbackProject);
-        }
       } finally {
         setLoading(false);
       }
@@ -89,8 +78,8 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
       {/* Hero Section - Exact match to live site */}
       <div className="relative h-[50vh] sm:h-[60vh] lg:h-[70vh] overflow-hidden">
         <ImageWithFallback
-          src={project.afterImageUrl || "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHN1aXRlJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzU2OTE4Njk1fDA&ixlib=rb-4.1.0&q=80&w=1080"}
-          alt={project.name}
+          src={getPortfolioImageUrl(project.hero_image)}
+          alt={project.title || 'Portfolio Project'}
           width={1920}
           height={1080}
           className="w-full h-full object-cover"
@@ -98,8 +87,8 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white max-w-4xl px-4">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 leading-tight">{project.name}</h1>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 lg:mb-8 px-2">{project.description}</p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 leading-tight">{project.title}</h1>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 lg:mb-8 px-2">{project.subtitle}</p>
             <Link href="/contact">
               <Button className="bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
                 Request A Quote
@@ -115,7 +104,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-4 px-2">
-              See Transformation {project.name}
+              {project.heading_1 || `See Transformation ${project.title}`}
             </h2>
             <p className="text-sm sm:text-base lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               {project.description}
@@ -129,7 +118,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
               <div className="flex-1 w-full sm:w-auto">
                 <div className="relative group">
                   <ImageWithFallback
-                    src={project.beforeImageUrl || "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=1080"}
+                    src={getPortfolioImageUrl(project.old_image_1, "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=1080")}
                     alt="Before transformation 1"
                     width={600}
                     height={400}
@@ -156,7 +145,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
               <div className="flex-1 w-full sm:w-auto">
                 <div className="relative group">
                   <ImageWithFallback
-                    src={project.afterImageUrl || "https://images.unsplash.com/photo-1571896349842-33c89424de2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080"}
+                    src={getPortfolioImageUrl(project.new_image_1, "https://images.unsplash.com/photo-1571896349842-33c89424de2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080")}
                     alt="After transformation 1"
                     width={600}
                     height={400}
@@ -175,7 +164,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
               <div className="flex-1 w-full sm:w-auto">
                 <div className="relative group">
                   <ImageWithFallback
-                    src={project.beforeImageUrl || "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=1080"}
+                    src={getPortfolioImageUrl(project.old_image_2, "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=1080")}
                     alt="Before transformation 2"
                     width={600}
                     height={400}
@@ -202,7 +191,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
               <div className="flex-1 w-full sm:w-auto">
                 <div className="relative group">
                   <ImageWithFallback
-                    src={project.afterImageUrl || "https://images.unsplash.com/photo-1571896349842-33c89424de2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080"}
+                    src={getPortfolioImageUrl(project.new_image_2, "https://images.unsplash.com/photo-1571896349842-33c89424de2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080")}
                     alt="After transformation 2"
                     width={600}
                     height={400}
@@ -221,7 +210,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
               <div className="flex-1 w-full sm:w-auto">
                 <div className="relative group">
                   <ImageWithFallback
-                    src={project.beforeImageUrl || "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=1080"}
+                    src={getPortfolioImageUrl(project.old_image_3, "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=1080")}
                     alt="Before transformation 3"
                     width={600}
                     height={400}
@@ -248,7 +237,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
               <div className="flex-1 w-full sm:w-auto">
                 <div className="relative group">
                   <ImageWithFallback
-                    src={project.afterImageUrl || "https://images.unsplash.com/photo-1571896349842-33c89424de2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080"}
+                    src={getPortfolioImageUrl(project.new_image_3, "https://images.unsplash.com/photo-1571896349842-33c89424de2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080")}
                     alt="After transformation 3"
                     width={600}
                     height={400}
@@ -296,35 +285,13 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
           </div>
           <div className="grid md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             <div className="order-2 md:order-1">
-              <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8 px-2">
-                Every transformation comes with unique challenges. Our team worked closely with the client to overcome space constraints, timeline requirements, and design specifications to deliver exceptional results.
-              </p>
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Custom design solutions</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Timeline optimization</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Quality assurance</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Stakeholder coordination</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Hospitality standards compliance</span>
-                </div>
+              <div className="text-sm sm:text-base lg:text-lg text-gray-600 px-2 whitespace-pre-line">
+                {project.project_challenge || 'Every transformation comes with unique challenges. Our team worked closely with the client to deliver exceptional results.'}
               </div>
             </div>
             <div className="order-1 md:order-2">
               <ImageWithFallback
-                src={project.beforeImageUrl || "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=1080"}
+                src={getPortfolioImageUrl(project.project_challenge_image, "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHx8MTc1NzAwMzAzNXww&ixlib=rb-4.1.0&q=80&w=1080")}
                 alt="Project challenges"
                 width={800}
                 height={400}
@@ -344,7 +311,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
           <div className="grid md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             <div className="order-2 md:order-1">
               <ImageWithFallback
-                src={project.afterImageUrl || "https://images.unsplash.com/photo-1571896349842-33c89424de2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080"}
+                src={getPortfolioImageUrl(project.delivered_image, "https://images.unsplash.com/photo-1571896349842-33c89424de2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb218ZW58MXx8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080")}
                 alt="How we delivered"
                 width={800}
                 height={400}
@@ -352,30 +319,8 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
               />
             </div>
             <div className="order-1 md:order-2">
-              <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8 px-2">
-                Our comprehensive approach ensured seamless project execution from concept to completion, delivering exceptional results that exceeded client expectations.
-              </p>
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Project management excellence</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Quality control processes</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Client communication</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Logistics coordination</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-gray-700">Installation expertise</span>
-                </div>
+              <div className="text-sm sm:text-base lg:text-lg text-gray-600 px-2 whitespace-pre-line">
+                {project.how_we_delivered || 'Our comprehensive approach ensured seamless project execution from concept to completion, delivering exceptional results that exceeded client expectations.'}
               </div>
             </div>
           </div>
@@ -425,32 +370,136 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
         </div>
       </section>
 
-      {/* Lorem ipsum content section */}
+      {/* Comfort and Convenience Section */}
       <section className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: '#111e33' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 lg:mb-8 px-2">
-            Lorem ipsum dolor sit amet consectetur
+            Comfort and Convenience at {project.title}
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-white mb-4 sm:mb-6 leading-relaxed px-2">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
-          </p>
-          <p className="text-sm sm:text-base lg:text-lg text-white leading-relaxed px-2">
-            but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          </p>
+          <div className="text-sm sm:text-base lg:text-lg text-white leading-relaxed px-2 whitespace-pre-line">
+            {project.comfort_convenience || 'Experience exceptional comfort and convenience with our premium furniture solutions designed for modern hospitality.'}
+          </div>
         </div>
       </section>
 
-      {/* See What Guest Say Section */}
-      <SeeWhatGuestSaySection project={project} />
+      {/* See What Guest Say Section - HIDDEN */}
+      {/* <SeeWhatGuestSaySection project={project} /> */}
 
-      {/* What Our Client Say About Our Work Section */}
-      <WhatOurClientSaySection project={project} />
+      {/* What Our Client Say About Our Work Section - HIDDEN */}
+      {/* <WhatOurClientSaySection project={project} /> */}
 
       {/* Hospitality Buying Guide Section */}
       <HospitalityBuyingGuideSection project={project} />
 
-      {/* FAQ Section */}
-      <FAQSection project={project} />
+      {/* Dynamic FAQ Section */}
+      <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">Frequently Asked Questions</h2>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600">Find answers to common questions about our projects</p>
+          </div>
+          
+          {(() => {
+            // Collect all FAQs
+            const allFAQs = [
+              { q: project.faq_1, a: project.answer_1 },
+              { q: project.faq_2, a: project.answer_2 },
+              { q: project.faq_3, a: project.answer_3 },
+              { q: project.faq_4, a: project.answer_4 },
+              { q: project.faq_5, a: project.answer_5 },
+              { q: project.faq_6, a: project.answer_6 },
+              { q: project.faq_7, a: project.answer_7 },
+              { q: project.faq_8, a: project.answer_8 },
+              { q: project.faq_9, a: project.answer_9 },
+              { q: project.faq_10, a: project.answer_10 },
+            ].filter(faq => faq.q && faq.a);
+
+            // If 5 or fewer FAQs, show single centered column
+            if (allFAQs.length <= 5) {
+              return (
+                <div className="max-w-3xl mx-auto space-y-4">
+                  {allFAQs.map((faq, index) => (
+                    <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+                      <button
+                        onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                        className="w-full text-left px-4 sm:px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                      >
+                        <span className="font-semibold text-sm sm:text-base text-gray-900 pr-4">{faq.q}</span>
+                        <span className={`transform transition-transform ${openFAQ === index ? 'rotate-180' : ''}`}>
+                          <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </span>
+                      </button>
+                      {openFAQ === index && (
+                        <div className="px-4 sm:px-6 pb-4">
+                          <p className="text-sm sm:text-base text-gray-600 whitespace-pre-line">{faq.a}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              );
+            }
+
+            // More than 5 FAQs, show 2 columns with 5 on each side
+            const leftFAQs = allFAQs.slice(0, 5);
+            const rightFAQs = allFAQs.slice(5, 10);
+
+            return (
+              <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+                {/* Left Column - FAQs 1-5 */}
+                <div className="space-y-4">
+                  {leftFAQs.map((faq, index) => (
+                    <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+                      <button
+                        onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                        className="w-full text-left px-4 sm:px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                      >
+                        <span className="font-semibold text-sm sm:text-base text-gray-900 pr-4">{faq.q}</span>
+                        <span className={`transform transition-transform ${openFAQ === index ? 'rotate-180' : ''}`}>
+                          <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </span>
+                      </button>
+                      {openFAQ === index && (
+                        <div className="px-4 sm:px-6 pb-4">
+                          <p className="text-sm sm:text-base text-gray-600 whitespace-pre-line">{faq.a}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Right Column - FAQs 6-10 */}
+                <div className="space-y-4">
+                  {rightFAQs.map((faq, index) => (
+                    <div key={index + 5} className="bg-white rounded-lg shadow-md overflow-hidden">
+                      <button
+                        onClick={() => setOpenFAQ(openFAQ === (index + 5) ? null : (index + 5))}
+                        className="w-full text-left px-4 sm:px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                      >
+                        <span className="font-semibold text-sm sm:text-base text-gray-900 pr-4">{faq.q}</span>
+                        <span className={`transform transition-transform ${openFAQ === (index + 5) ? 'rotate-180' : ''}`}>
+                          <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </span>
+                      </button>
+                      {openFAQ === (index + 5) && (
+                        <div className="px-4 sm:px-6 pb-4">
+                          <p className="text-sm sm:text-base text-gray-600 whitespace-pre-line">{faq.a}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      </section>
 
       {/* Contact Section */}
       <ContactSection />
