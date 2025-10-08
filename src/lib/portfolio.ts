@@ -284,9 +284,9 @@ export function getPortfolioImageUrl(
   
   // Otherwise, it's a relative path (supports subfolders)
   // Examples:
-  //   "filename.webp" -> "/portfolio/filename.webp"
-  //   "best_western/filename.webp" -> "/portfolio/best_western/filename.webp"
-  return `/portfolio/${trimmedValue}`;
+  //   "filename.webp" -> "/Portfolio/filename.webp"
+  //   "best_western/filename.webp" -> "/Portfolio/best_western/filename.webp"
+  return `/Portfolio/${trimmedValue}`;
 }
 
 // Note: No fallback data - using database only
