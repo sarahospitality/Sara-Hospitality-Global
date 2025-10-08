@@ -1,49 +1,47 @@
-"use client";
-
-import { ReactNode, useState } from 'react';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import FloatingActionButtons from '@/components/FloatingActionButtons';
-import QuotePopup from '@/components/QuotePopup';
+import { ReactNode } from 'react';
+import { Metadata, Viewport } from 'next';
+import { ClientLayout } from '@/components/layout/ClientLayout';
+import { generateMetadata as generateSiteMetadata, siteConfig, generateOrganizationSchema, createJsonLd } from '@/lib/metadata';
 import './globals.css';
 
 interface RootLayoutProps {
   children: ReactNode;
 }
 
+// ============================================
+// METADATA CONFIGURATION
+// ============================================
+export const metadata: Metadata = generateSiteMetadata({
+  title: siteConfig.tagline,
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  canonical: siteConfig.url,
+  noIndex: true, // Remove this when going live - currently blocking search engines
+});
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
+// ============================================
+// ROOT LAYOUT
+// ============================================
 export default function RootLayout({ children }: RootLayoutProps) {
-  const [isQuotePopupOpen, setIsQuotePopupOpen] = useState(false);
-
-  const handleQuoteRequest = () => {
-    setIsQuotePopupOpen(true);
-  };
-
-  const handleCloseQuotePopup = () => {
-    setIsQuotePopupOpen(false);
-  };
+  const organizationSchema = generateOrganizationSchema();
 
   return (
     <html lang="en">
       <head>
-        <meta name="robots" content="noindex" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="utf-8" />
-        <title>Sara Global Hospitality</title>
+        {/* JSON-LD Structured Data - Organization Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={createJsonLd(organizationSchema)}
+        />
       </head>
       <body className="bg-white text-gray-900">
-        <div className="min-h-screen flex flex-col">
-          <Header onQuoteRequest={handleQuoteRequest} />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          
-          {/* Global Floating Action Buttons */}
-          <FloatingActionButtons onQuoteRequest={handleQuoteRequest} />
-          
-          {/* Global Quote Popup */}
-          <QuotePopup isOpen={isQuotePopupOpen} onClose={handleCloseQuotePopup} />
-        </div>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
