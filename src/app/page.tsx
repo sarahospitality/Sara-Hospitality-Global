@@ -38,54 +38,102 @@ import {
   TrendingUp
 } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ContactSection } from '@/components/ContactSection';
+import { getPortfolioItemsByIds, PortfolioItem, getPortfolioImageUrl, extractSlug } from '@/lib/portfolio';
+
+// ============================================
+// PORTFOLIO CONFIGURATION
+// Update these IDs to change which portfolios display on the home page
+// ============================================
+const FEATURED_PORTFOLIO_ID = 1;        // Main featured portfolio (large display)
+const GRID_PORTFOLIO_IDS = [5, 6, 7];   // Portfolio items in grid (3 cards below featured)
 
 export default function CommonHomepage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const itemsPerPage = 3;
+  
+  // Portfolio state management
+  const [portfolioLoading, setPortfolioLoading] = useState(true);
+  const [featuredPortfolio, setFeaturedPortfolio] = useState<PortfolioItem | null>(null);
+  const [gridPortfolios, setGridPortfolios] = useState<PortfolioItem[]>([]);
+
+  // Fetch portfolio data on component mount
+  useEffect(() => {
+    const fetchPortfolioData = async () => {
+      try {
+        setPortfolioLoading(true);
+        
+        // Fetch all required portfolio items in one call
+        const allIds = [FEATURED_PORTFOLIO_ID, ...GRID_PORTFOLIO_IDS];
+        const portfolioData = await getPortfolioItemsByIds(allIds);
+        
+        // Separate featured and grid portfolios
+        const featured = portfolioData.find(item => item.id === FEATURED_PORTFOLIO_ID);
+        const grid = GRID_PORTFOLIO_IDS
+          .map(id => portfolioData.find(item => item.id === id))
+          .filter((item): item is PortfolioItem => item !== undefined);
+        
+        setFeaturedPortfolio(featured || null);
+        setGridPortfolios(grid);
+        
+        if (!featured) {
+          console.warn(`⚠️  Featured portfolio with ID ${FEATURED_PORTFOLIO_ID} not found`);
+        }
+        if (grid.length < GRID_PORTFOLIO_IDS.length) {
+          console.warn(`⚠️  Some grid portfolio items not found. Expected ${GRID_PORTFOLIO_IDS.length}, got ${grid.length}`);
+        }
+      } catch (error) {
+        console.error('❌ Error loading portfolio data for home page:', error);
+      } finally {
+        setPortfolioLoading(false);
+      }
+    };
+
+    fetchPortfolioData();
+  }, []);
   
   const categories = [
     {
       icon: Bath,
       title: "Bathroom Vanities",
       description: "Custom vanities, mirrors, and storage solutions for hotel bathrooms with premium finishes",
-      image: "https://images.unsplash.com/photo-1658595148900-c77873724e98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGJhdGhyb29tJTIwdmFuaXR5JTIwZnVybml0dXJlfGVufDF8fHx8MTc1NzAwMjk2OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: "/home/Bathroom-Vanities.webp",
       features: ["Water-resistant materials", "Custom sizing options", "Integrated storage", "LED lighting systems"]
     },
     {
       icon: Coffee,
       title: "Soft Seating",
       description: "Comfortable sofas, chairs, and lounge furniture for lobbies, guest rooms, and common areas",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBzb2Z0JTIwc2VhdGluZyUyMGZ1cm5pdHVyZXxlbnwxfHx8fDE3NTcwMDMxNTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: "/home/Soft-Seating.webp",
       features: ["Premium upholstery", "Modular designs", "Ergonomic support", "Easy maintenance"]
     },
     {
       icon: Users,
       title: "Countertops & Cabinets",
       description: "High-quality countertops, cabinets, and storage solutions for kitchens, bars, and workspaces",
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGtpdGNoZW4lMjBjYWJpbmV0cyUyMGNvdW50ZXJ0b3BzfGVufDF8fHx8MTc1NzAwMzE1OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: "/home/Countertops.webp",
       features: ["Durable materials", "Custom configurations", "Space optimization", "Modern finishes"]
     },
     {
       icon: Box,
       title: "Hospitality Casegoods",
       description: "Premium bedroom furniture including beds, nightstands, dressers, and wardrobes for guest rooms",
-      image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb20lMjBmdXJuaXR1cmV8ZW58MXx8fHwxNzU2OTk4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: "/home/Hospitality-Casegoods.webp",
       features: ["Solid wood construction", "Custom headboards", "Integrated storage", "Luxury finishes"]
     },
     {
       icon: Coffee,
       title: "Outdoor Furniture",
       description: "Weather-resistant patio, poolside, and garden furniture designed for hospitality environments",
-      image: "https://images.unsplash.com/photo-1661024768242-5fd7c8f1e3c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMG91dGRvb3IlMjBwYXRpbyUyMGZ1cm5pdHVyZXxlbnwxfHx8fDE3NTcwMDI5Njl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: "/home/Outdoor-Furniture.webp",
       features: ["All-weather materials", "UV resistant finishes", "Pool furniture sets", "Garden seating"]
     },
     {
       icon: Users,
       title: "Fixture & Equipment",
       description: "Professional fixtures, lighting, and specialized equipment for hospitality environments",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGZpeHR1cmVzJTIwZXF1aXBtZW50JTIwbGlnaHRpbmd8ZW58MXx8fHwxNzU3MDAzMTU5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: "/home/Fixture-&-Equipment.webp",
       features: ["LED lighting systems", "Specialized fixtures", "Commercial equipment", "Energy efficient"]
     }
   ];
@@ -142,54 +190,6 @@ export default function CommonHomepage() {
       description: "Dedicated customer service and post-installation support whenever you need it.",
       metric: "4.9/5 Rating",
       color: "bg-gray-100 text-[#f26d35]"
-    }
-  ];
-
-  const projects = [
-    {
-      slug: "grand-palace-hotel-dubai",
-      title: "Grand Palace Hotel Dubai",
-      location: "Dubai, UAE",
-      year: "2023",
-      type: "Luxury Resort",
-      rooms: "450 Rooms",
-      description: "Complete furniture solution for a 5-star luxury resort featuring custom-designed bedroom sets, lobby furniture, and dining collections.",
-      image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMHN1aXRlJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzU2OTE4Njk1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Luxury", "Custom Design", "Complete Furnishing"],
-      featured: true
-    },
-    {
-      slug: "wellness-spa-resort",
-      title: "Wellness Spa Resort",
-      location: "Bali, Indonesia",
-      year: "2023",
-      type: "Spa Resort",
-      rooms: "120 Rooms",
-      description: "Sustainable furniture solutions for an eco-luxury spa resort with focus on natural materials and wellness-oriented design.",
-      image: "https://images.unsplash.com/photo-1582533568805-78a15dcb01b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHNwYSUyMHJlbGF4YXRpb24lMjBhcmVhfGVufDF8fHwxNzU3MDAzMDM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Eco-Friendly", "Spa Design", "Wellness"]
-    },
-    {
-      slug: "metropolitan-boutique-hotel",
-      title: "Metropolitan Boutique Hotel",
-      location: "New York, USA",
-      year: "2022",
-      type: "Boutique Hotel",
-      rooms: "95 Rooms",
-      description: "Modern urban design with space-efficient solutions for a trendy boutique hotel in Manhattan's financial district.",
-      image: "https://images.unsplash.com/photo-1718104717529-0059a1a860fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib3V0aXF1ZSUyMGhvdGVsJTIwcmVjZXB0aW9ufGVufDF8fHx8MTc1NzAwMzAzNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Urban Design", "Space Efficient", "Modern"]
-    },
-    {
-      slug: "royal-heritage-hotel",
-      title: "Royal Heritage Hotel",
-      location: "London, UK",
-      year: "2022",
-      type: "Heritage Hotel",
-      rooms: "200 Rooms",
-      description: "Classic elegance meets modern comfort in this restored Victorian hotel with period-appropriate custom furniture.",
-      image: "https://images.unsplash.com/photo-1755644046048-989506b73a5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGxvYmJ5JTIwZnVybml0dXJlfGVufDF8fHx8MTc1NzAwMjkwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      tags: ["Heritage", "Classic Design", "Restoration"]
     }
   ];
 
@@ -420,7 +420,7 @@ export default function CommonHomepage() {
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl shadow-xl">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb20lMjBmdXJuaXR1cmV8ZW58MXx8fHwxNzU2OTk4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="/home/home_hero.webp"
                   alt="Luxury hotel bedroom furniture"
                   className="w-full h-64 sm:h-80 object-cover"
                   width={1080}
@@ -500,7 +500,7 @@ export default function CommonHomepage() {
             <div className="relative order-1 lg:order-2">
               <div className="relative z-10">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb20lMjBmdXJuaXR1cmV8ZW58MXx8fHwxNzU2OTk4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="/home/home_hero.webp"
                   alt="Luxury hotel bedroom furniture"
                   className="w-full h-48 sm:h-64 md:h-80 lg:h-[600px] object-cover rounded-lg shadow-2xl"
                   width={1080}
@@ -707,7 +707,7 @@ export default function CommonHomepage() {
             {/* Image */}
             <div className="relative order-1 lg:order-2">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1710828865631-6fea9948a71b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXJuaXR1cmUlMjBmYWN0b3J5JTIwcHJvZHVjdGlvbnxlbnwxfHx8fDE3NTcwMDI5MDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                src="/home/home_about.webp"
                 alt="Furniture manufacturing facility"
                   className="w-full h-48 sm:h-64 md:h-80 lg:h-[500px] object-cover rounded-lg shadow-lg"
                 width={1080}
@@ -1075,100 +1075,174 @@ export default function CommonHomepage() {
           </div>
 
           {/* Featured Project */}
-          <div className="mb-16">
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300">
-              <div className="grid lg:grid-cols-2">
-                <div className="relative overflow-hidden">
-                  <ImageWithFallback
-                    src={projects[0].image}
-                    alt={projects[0].title}
-                    className="w-full h-64 sm:h-80 lg:h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
-                    width={800}
-                    height={500}
-                  />
-                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                    <div className="bg-[#f26d35] text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">Featured Project</div>
+          {portfolioLoading ? (
+            <div className="mb-16">
+              <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+                <div className="grid lg:grid-cols-2">
+                  <div className="relative overflow-hidden">
+                    <div className="w-full h-64 sm:h-80 lg:h-96 bg-gray-200 animate-pulse"></div>
                   </div>
-                </div>
-                <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {projects[0].tags.map((tag, index) => (
-                      <div key={index} className="bg-gray-100 text-gray-700 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">{tag}</div>
-                    ))}
-                  </div>
-                  <h3 className="text-base sm:text-2xl lg:text-3xl font-bold mb-4">{projects[0].title}</h3>
-                  <div className="flex flex-row sm:flex-row sm:items-center gap-2 sm:gap-6 text-xs sm:text-sm text-gray-600 mb-4">
-                    <div className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span>{projects[0].location}</span>
+                  <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="w-20 h-6 bg-gray-200 rounded-full animate-pulse"></div>
+                      <div className="w-24 h-6 bg-gray-200 rounded-full animate-pulse"></div>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span>{projects[0].rooms}</span>
+                    <div className="w-3/4 h-8 bg-gray-200 rounded animate-pulse mb-4"></div>
+                    <div className="flex gap-4 mb-4">
+                      <div className="w-32 h-5 bg-gray-200 rounded animate-pulse"></div>
+                      <div className="w-28 h-5 bg-gray-200 rounded animate-pulse"></div>
                     </div>
+                    <div className="w-full h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                    <div className="w-full h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                    <div className="w-2/3 h-4 bg-gray-200 rounded animate-pulse mb-6"></div>
+                    <div className="w-32 h-10 bg-gray-200 rounded animate-pulse"></div>
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 mb-6">{projects[0].description}</p>
-                  <Link href="/portfolio">
-                    <Button 
-                      className="w-full sm:w-fit bg-[#f26d35] hover:bg-[#f26d35]/90 py-3 sm:py-2"
-                    >
-                      View Details
-                      <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-                    </Button>
-                  </Link>
                 </div>
               </div>
             </div>
-          </div>
+          ) : featuredPortfolio ? (
+            <div className="mb-16">
+              <Link href={`/portfolio/${extractSlug(featuredPortfolio.slug || '')}`} className="block">
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <div className="grid lg:grid-cols-2">
+                    <div className="relative overflow-hidden">
+                      <ImageWithFallback
+                        src={getPortfolioImageUrl(featuredPortfolio.main_image)}
+                        alt={featuredPortfolio.title || 'Featured Project'}
+                        className="w-full h-64 sm:h-80 lg:h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                        width={800}
+                        height={500}
+                      />
+                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                        <div className="bg-[#f26d35] text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">Featured Project</div>
+                      </div>
+                    </div>
+                    <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
+                      {featuredPortfolio.tags && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {featuredPortfolio.tags.split(',').map((tag, index) => (
+                            <div key={index} className="bg-gray-100 text-gray-700 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">{tag.trim()}</div>
+                          ))}
+                        </div>
+                      )}
+                      <h3 className="text-base sm:text-2xl lg:text-3xl font-bold mb-4">{featuredPortfolio.title}</h3>
+                      {featuredPortfolio.location && (
+                        <div className="flex flex-row sm:flex-row sm:items-center gap-2 sm:gap-6 text-xs sm:text-sm text-gray-600 mb-4">
+                          <div className="flex items-center gap-1">
+                            <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span>{featuredPortfolio.location}</span>
+                          </div>
+                          {featuredPortfolio.brandName && (
+                            <div className="flex items-center gap-1">
+                              <Users className="w-3 h-3 sm:w-4 sm:h-4" />
+                              <span>{featuredPortfolio.brandName}</span>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      {(featuredPortfolio.subtitle || featuredPortfolio.description) && (
+                        <p className="text-sm sm:text-base text-gray-600 mb-6">
+                          {featuredPortfolio.subtitle || featuredPortfolio.description}
+                        </p>
+                      )}
+                      <div className="inline-flex">
+                        <Button 
+                          className="w-full sm:w-fit bg-[#f26d35] hover:bg-[#f26d35]/90 py-3 sm:py-2"
+                        >
+                          View Details
+                          <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ) : null}
 
           {/* Project Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-            {projects.slice(1).map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md overflow-hidden h-full">
-                <div className="relative">
-                  <ImageWithFallback
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
-                    width={400}
-                    height={192}
-                  />
-                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                    <div className="bg-white/90 text-gray-700 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">{project.type}</div>
+            {portfolioLoading ? (
+              // Loading skeletons
+              [...Array(3)].map((_, index) => (
+                <Card key={index} className="border-0 shadow-md overflow-hidden h-full">
+                  <div className="relative">
+                    <div className="w-full h-40 sm:h-48 bg-gray-200 animate-pulse"></div>
                   </div>
-                </div>
-                
-                <CardContent className="p-4 sm:p-6 flex flex-col h-full">
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {project.tags.map((tag, tagIndex) => (
-                      <div key={tagIndex} className="border border-gray-300 text-gray-600 px-2 py-1 rounded-full text-xs">{tag}</div>
-                    ))}
-                  </div>
-                  
-                  <h3 className="font-bold mb-2 text-base sm:text-lg">{project.title}</h3>
-                  
-                  <div className="flex flex-row sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mb-3">
-                    <div className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3" />
-                      <span>{project.location}</span>
+                  <CardContent className="p-4 sm:p-6 flex flex-col h-full">
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      <div className="w-16 h-5 bg-gray-200 rounded-full animate-pulse"></div>
+                      <div className="w-20 h-5 bg-gray-200 rounded-full animate-pulse"></div>
                     </div>
-                  </div>
-                  
-                  <p className="text-xs sm:text-sm text-gray-600 mb-4 line-clamp-3 flex-1">{project.description}</p>
-                  
-                  <Link href="/portfolio" className="mt-auto">
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="p-0 h-auto hover:bg-transparent w-full sm:w-auto"
-                    >
-                      <span className="text-[#f26d35] text-sm sm:text-base">View Details</span>
-                      <ArrowRight className="w-3 h-3 ml-2 text-[#f26d35] animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+                    <div className="w-3/4 h-6 bg-gray-200 rounded animate-pulse mb-3"></div>
+                    <div className="w-32 h-4 bg-gray-200 rounded animate-pulse mb-3"></div>
+                    <div className="w-full h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                    <div className="w-full h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                    <div className="w-2/3 h-4 bg-gray-200 rounded animate-pulse mb-4"></div>
+                    <div className="w-24 h-4 bg-gray-200 rounded animate-pulse mt-auto"></div>
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              gridPortfolios.map((project, index) => (
+                <Link key={project.id} href={`/portfolio/${extractSlug(project.slug || '')}`} className="block h-full">
+                  <Card className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md overflow-hidden h-full cursor-pointer">
+                    <div className="relative">
+                      <ImageWithFallback
+                        src={getPortfolioImageUrl(project.main_image)}
+                        alt={project.title || 'Portfolio Project'}
+                        className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                        width={400}
+                        height={192}
+                      />
+                      {project.brandName && (
+                        <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                          <div className="bg-white/90 text-gray-700 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">{project.brandName}</div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <CardContent className="p-4 sm:p-6 flex flex-col h-full">
+                      {project.tags && (
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {project.tags.split(',').slice(0, 3).map((tag, tagIndex) => (
+                            <div key={tagIndex} className="border border-gray-300 text-gray-600 px-2 py-1 rounded-full text-xs">{tag.trim()}</div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      <h3 className="font-bold mb-2 text-base sm:text-lg">{project.title}</h3>
+                      
+                      {project.location && (
+                        <div className="flex flex-row sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mb-3">
+                          <div className="flex items-center gap-1">
+                            <MapPin className="w-3 h-3" />
+                            <span>{project.location}</span>
+                          </div>
+                        </div>
+                      )}
+                      
+                      {(project.subtitle || project.description) && (
+                        <p className="text-xs sm:text-sm text-gray-600 mb-4 line-clamp-3 flex-1">
+                          {project.subtitle || project.description}
+                        </p>
+                      )}
+                      
+                      <div className="mt-auto inline-flex">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="p-0 h-auto hover:bg-transparent w-full sm:w-auto"
+                        >
+                          <span className="text-[#f26d35] text-sm sm:text-base">View Details</span>
+                          <ArrowRight className="w-3 h-3 ml-2 text-[#f26d35] animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))
+            )}
           </div>
 
           {/* CTA */}

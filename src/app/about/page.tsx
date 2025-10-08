@@ -89,7 +89,7 @@ export default function AboutPage() {
             <motion.div className="relative" variants={itemVariants}>
               <div className="absolute inset-0 bg-gradient-to-tr from-[#f26d35]/20 to-blue-500/20 rounded-3xl transform rotate-6"></div>
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1709715357520-5e1047a2b691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW0lMjBtZWV0aW5nfGVufDF8fHx8MTc1NzIzNTUwNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                src="/About-_hero.webp"
                 alt="Sara Global Hospitality Team"
                 className="relative z-10 w-full h-64 sm:h-96 lg:h-[500px] object-cover rounded-3xl shadow-2xl"
                 width={1080}

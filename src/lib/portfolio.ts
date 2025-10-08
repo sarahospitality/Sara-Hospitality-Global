@@ -133,6 +133,42 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
   }
 }
 
+export async function getPortfolioItemsByIds(ids: number[]): Promise<PortfolioItem[]> {
+  try {
+    console.log('🔍 Fetching portfolio items by IDs:', ids);
+    
+    const { data, error } = await supabase
+      .from('portfolio')
+      .select('*')
+      .in('id', ids);
+    
+    if (error) {
+      console.error('❌ Error fetching portfolio items by IDs:', error);
+      return [];
+    }
+
+    if (!data || data.length === 0) {
+      console.warn('⚠️  No portfolio items found for IDs:', ids);
+      return [];
+    }
+
+    // Sort the results to match the order of requested IDs
+    const sortedData = ids
+      .map(id => data.find(item => item.id === id))
+      .filter((item): item is PortfolioItem => item !== undefined);
+
+    console.log('✅ Successfully fetched', sortedData.length, 'portfolio items by IDs');
+    return sortedData;
+  } catch (error) {
+    const errorInfo = {
+      type: error?.constructor?.name || typeof error,
+      message: error instanceof Error ? error.message : String(error),
+    };
+    console.error('❌ Unexpected error fetching portfolio items by IDs:', errorInfo);
+    return [];
+  }
+}
+
 export async function getPortfolioItemBySlug(slug: string): Promise<PortfolioItem | null> {
   try {
     // Clean the slug in case it contains URL parts
