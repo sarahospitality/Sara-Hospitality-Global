@@ -238,7 +238,7 @@ export function HospitalityBuyingGuideSection({ project }: PortfolioSectionsProp
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
-                    How to choose the right hotel Soft Seating design
+                    How to Choose the Right Hotel Design
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-600">
                     Strategic design selection that aligns with your brand identity and guest expectations for optimal hospitality experience.
@@ -309,12 +309,12 @@ export function HospitalityBuyingGuideSection({ project }: PortfolioSectionsProp
             {activeGuideItem === 0 && (
               <div>
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-                  How to Choose the Right Hotel Soft Seating Design
+                  How to Choose the Right Hotel Design
                 </h3>
                 <p className="text-orange-500 font-semibold mb-4 sm:mb-6 text-sm sm:text-base">Design Selection Excellence</p>
                 <div className="space-y-3 sm:space-y-4 text-gray-600 text-xs sm:text-sm lg:text-base">
                   <p>
-                    Consider your hotel&apos;s brand identity and target guest demographics to select seating that aligns with your overall aesthetic vision and guest expectations.
+                    Consider your hotel&apos;s brand identity and target guest demographics to aligns with your overall aesthetic vision and guest expectations.
                   </p>
                   <p>
                     Evaluate space constraints and traffic patterns to ensure optimal furniture placement that enhances guest flow and comfort throughout your property.

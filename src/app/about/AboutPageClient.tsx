@@ -100,123 +100,143 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* Our Driving Force - Mission & Vision */}
-      <section className="py-6 sm:py-16 bg-white">
+      {/* Our Purpose and Future Direction - Mission & Vision */}
+      <section className="py-8 sm:py-16 bg-white">
         <div className="container mx-auto px-6 sm:px-4">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="text-center mb-6 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
+              Our Purpose and Future Direction
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="bg-gradient-to-br from-[#f26d35]/5 to-white p-8 rounded-2xl shadow-lg"
             >
               <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-6">
                 <Target className="w-4 h-4" />
                 <span>Our Mission</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
-                Redefining Excellence in
-                <span className="text-[#f26d35] block">Hospitality Environments</span>
-              </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Our mission is to become the foremost global partner for hospitality furniture, 
-                consistently delivering exceptional design, unmatched quality, and sustainable 
-                practices that elevate guest experiences worldwide.
-              </p>
-              <p className="text-base text-gray-600 leading-relaxed">
-                We are dedicated to forging long-term partnerships with hotels, resorts, and senior 
-                living communities, understanding that our furniture is more than products—it&apos;s an 
-                integral part of creating memorable, comfortable, and inspiring spaces for guests around the globe.
+              <p className="text-lg text-gray-700 leading-relaxed">
+                To fundamentally transform the hospitality sector by designing and providing highly sustainable, 
+                beautiful furniture that enriches environments and elevates the worldwide guest experience.
               </p>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-gradient-to-br from-[#f26d35]/5 to-white p-8 rounded-2xl shadow-lg"
             >
-              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full mb-6">
+              <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-6">
                 <Globe className="w-4 h-4" />
                 <span>Our Vision</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
-                Shaping the Future of
-                <span className="text-blue-600 block">Global Hospitality</span>
-              </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We envision a world where hospitality spaces universally reflect excellence in design, 
-                sustainability, and guest comfort—powered by Sara Global&apos;s innovative furniture solutions.
-              </p>
-              <p className="text-base text-gray-600 leading-relaxed">
-                Through relentless innovation, strategic global expansion, and unwavering commitment 
-                to environmental responsibility, we aim to set new industry standards and become the 
-                most trusted name in hospitality furniture manufacturing across every continent.
+              <p className="text-lg text-gray-700 leading-relaxed">
+                We envision becoming the world&apos;s foremost hospitality furniture partner, recognized 
+                globally for innovation, environmental stewardship, and supreme quality.
               </p>
             </motion.div>
           </div>
+
+          {/* Inspirational Quote */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mt-12 max-w-4xl mx-auto"
+          >
+            <div className="bg-[#f26d35] p-8 rounded-2xl shadow-lg">
+              <blockquote className="text-2xl sm:text-3xl font-medium text-white leading-relaxed italic">
+                &quot;We build more than just furniture; we craft environments, enhance experiences, and realize dreams globally.&quot;
+              </blockquote>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Our Story Timeline */}
-      <section className="py-6 sm:py-16 bg-gradient-to-br from-gray-50 to-white">
+      {/* Uncover Our Legacy */}
+      <section className="py-8 sm:py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-6 sm:px-4">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-[#f26d35]/10 text-[#f26d35] px-4 py-2 rounded-full mb-4">
-              <Calendar className="w-4 h-4" />
-              <span>Our Journey</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
-              A Legacy of Excellence
-              <span className="text-[#f26d35] block">Since 1995</span>
+          <div className="text-center mb-6 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              Uncover Our Legacy
             </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Journey through the evolution of Sara Global, from our humble beginnings to becoming the world-class organization we are today.
+            </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-8">
-              {[
-                {
-                  year: "1995",
-                  title: "The Beginning",
-                  description: "Founded with a vision to revolutionize hospitality furniture manufacturing with focus on quality and innovation."
-                },
-                {
-                  year: "2005",
-                  title: "Global Expansion",
-                  description: "Expanded operations to serve clients across North America, establishing our reputation for excellence."
-                },
-                {
-                  year: "2015",
-                  title: "International Reach",
-                  description: "Achieved milestone of serving 25+ countries, completing 300+ projects with world-renowned hotel brands."
-                },
-                {
-                  year: "2025",
-                  title: "Industry Leader",
-                  description: "Recognized as a leading global manufacturer with 500+ projects, serving 50+ countries with sustainable solutions."
-                }
-              ].map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex gap-6 items-start"
-                >
-                  <div className="flex-shrink-0 w-20 text-right">
-                    <span className="text-2xl font-bold text-[#f26d35]">{milestone.year}</span>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Company History Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+                <CardContent className="p-8 text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-[#f26d35]/10 text-[#f26d35] rounded-full mb-6">
+                    <Calendar className="w-8 h-8" />
                   </div>
-                  <div className="flex-shrink-0 w-px h-full bg-[#f26d35]/30 relative">
-                    <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[#f26d35]"></div>
+                  <h3 className="text-2xl font-bold mb-4">Company History</h3>
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    Delve into our nearly thirty-year path, tracing our transformation from a focused regional 
+                    workshop to a globally recognized hospitality furniture powerhouse.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Our Motto & Values Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+                <CardContent className="p-8 text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-[#f26d35]/10 text-[#f26d35] rounded-full mb-6">
+                    <Target className="w-8 h-8" />
                   </div>
-                  <div className="flex-1 pb-8">
-                    <h3 className="text-xl font-bold mb-2">{milestone.title}</h3>
-                    <p className="text-gray-600">{milestone.description}</p>
+                  <h3 className="text-2xl font-bold mb-4">Our Motto &amp; Values</h3>
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    Explore the core tenets and guiding principles that fuel our day-to-day operations and inspire 
+                    our dedication to unparalleled quality in every piece we create.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Meet Our Team Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+                <CardContent className="p-8 text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-[#f26d35]/10 text-[#f26d35] rounded-full mb-6">
+                    <Users className="w-8 h-8" />
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  <h3 className="text-2xl font-bold mb-4">Meet Our Team</h3>
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    Get acquainted with the diverse, expert talent behind our global success, spanning master artisans, 
+                    visionary product designers, and international logistics specialists.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -232,11 +252,11 @@ export default function AboutPageClient() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
-                Ready to Transform Your Hospitality Space?
+                Ready to Reimagine Your Luxury Property?
               </h2>
               <p className="text-lg mb-8 opacity-90">
-                Let&apos;s discuss how Sara Global Hospitality can bring your vision to life with our 
-                expert furniture solutions and global experience.
+                Connect with us to see how Sara Global Hospitality&apos;s customized furniture solutions and best 
+                international service can fully realize your design ambitions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
