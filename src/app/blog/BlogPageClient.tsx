@@ -1,25 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
+import { Badge } from "@/components/ui/Badge";
+import { getAllBlogPostsFromDB, BlogPostListing } from "@/lib/blog-data";
 import { 
   ArrowRight, 
   Calendar, 
   User, 
   Clock, 
-  Tag,
   TrendingUp,
-  MessageCircle,
-  Share2,
   Bookmark,
-  ChevronRight,
   Hash,
   FolderOpen,
-  Star
+  Loader2
 } from "lucide-react";
 
 // Animation variants
@@ -38,21 +36,6 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 }
 };
 
-// Badge component
-const Badge = ({ children, variant = "default", className = "", ...props }: { children: React.ReactNode; variant?: "default" | "outline" | "secondary"; className?: string; [key: string]: unknown }) => {
-  const baseClasses = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium";
-  const variantClasses = {
-    default: "bg-[#f26d35] text-white",
-    outline: "border border-gray-300 bg-transparent text-gray-700 hover:bg-gray-50",
-    secondary: "bg-gray-100 text-gray-900"
-  };
-  
-  return (
-    <span className={`${baseClasses} ${variantClasses[variant]} ${className}`} {...props}>
-      {children}
-    </span>
-  );
-};
 
 // Separator component
 const Separator = ({ className = "" }: { className?: string }) => (
@@ -61,6 +44,32 @@ const Separator = ({ className = "" }: { className?: string }) => (
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [blogPosts, setBlogPosts] = useState<BlogPostListing[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch blog posts from database
+  useEffect(() => {
+    async function fetchBlogPosts() {
+      try {
+        console.log('🚀 BlogPageClient: Starting to fetch blog posts...');
+        setLoading(true);
+        setError(null);
+        
+        const posts = await getAllBlogPostsFromDB();
+        console.log('📝 BlogPageClient: Received posts:', posts);
+        console.log('📊 BlogPageClient: Posts count:', posts.length);
+        setBlogPosts(posts);
+      } catch (err) {
+        console.error('❌ BlogPageClient: Error loading blog posts:', err);
+        setError('Failed to load blog posts. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchBlogPosts();
+  }, []);
 
   const handleSearch = () => {
     // Search functionality will be implemented here
@@ -70,100 +79,6 @@ export default function BlogPage() {
   const handleReset = () => {
     setSearchQuery("");
   };
-
-  const blogPosts = [
-    {
-      id: 1,
-      slug: "modern-hotel-furniture-trends-2024",
-      title: "Modern Hotel Furniture Trends for 2024: Sustainability Meets Luxury",
-      description: "Discover the latest trends in hotel furniture design that balance environmental responsibility with guest comfort and aesthetic appeal.",
-      author: "Sarah Mitchell",
-      date: "December 15, 2024",
-      readTime: "8 min read",
-      category: "Design Trends",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGZ1cm5pdHVyZXxlbnwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      featured: true,
-      tags: ["Sustainability", "Modern Design", "Hotel Decor"]
-    },
-    {
-      id: 2,
-      slug: "choosing-right-furniture-hotel-rooms",
-      title: "How to Choose the Right Furniture for Different Hotel Room Types",
-      description: "A comprehensive guide to selecting appropriate furniture for various hotel accommodations, from standard rooms to luxury suites.",
-      author: "Michael Chen",
-      date: "December 12, 2024",
-      readTime: "6 min read",
-      category: "Buying Guide",
-      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      featured: false,
-      tags: ["Hotel Rooms", "Furniture Selection", "Interior Design"]
-    },
-    {
-      id: 3,
-      slug: "custom-furniture-guest-experience",
-      title: "The Impact of Custom Furniture on Guest Experience",
-      description: "Learn how personalized furniture solutions can enhance guest satisfaction and create memorable hospitality experiences.",
-      author: "Emma Rodriguez",
-      date: "December 10, 2024",
-      readTime: "5 min read",
-      category: "Guest Experience",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      featured: false,
-      tags: ["Custom Furniture", "Guest Satisfaction", "Hospitality"]
-    },
-    {
-      id: 4,
-      slug: "small-hotel-spaces-smart-solutions",
-      title: "Maximizing Small Hotel Spaces with Smart Furniture Solutions",
-      description: "Innovative furniture ideas and space-saving techniques to make the most of compact hotel rooms without compromising comfort.",
-      author: "David Thompson",
-      date: "December 8, 2024",
-      readTime: "7 min read",
-      category: "Space Planning",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      featured: false,
-      tags: ["Small Spaces", "Smart Design", "Efficiency"]
-    },
-    {
-      id: 5,
-      slug: "restaurant-bar-furniture-dining-atmosphere",
-      title: "Restaurant and Bar Furniture: Creating the Perfect Atmosphere",
-      description: "Essential tips for selecting restaurant and bar furniture that enhances dining experiences and complements your hotel's brand.",
-      author: "Lisa Wang",
-      date: "December 5, 2024",
-      readTime: "6 min read",
-      category: "Restaurant Design",
-      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      featured: false,
-      tags: ["Restaurant Furniture", "Bar Design", "Dining Experience"]
-    },
-    {
-      id: 6,
-      slug: "maintenance-tips-long-lasting-hotel-furniture",
-      title: "Maintenance Tips for Long-lasting Hotel Furniture",
-      description: "Expert advice on maintaining and extending the lifespan of your hotel furniture investment with proper care and maintenance protocols.",
-      author: "James Wilson",
-      date: "December 3, 2024",
-      readTime: "4 min read",
-      category: "Maintenance",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      featured: false,
-      tags: ["Maintenance", "Furniture Care", "Longevity"]
-    },
-    {
-      id: 7,
-      slug: "luxury-hotel-furniture-trends-2024",
-      title: "Luxury Hotel Furniture Trends: Elevating Guest Experience",
-      description: "Explore the latest luxury furniture trends that are transforming high-end hotels and creating unforgettable guest experiences.",
-      author: "Jennifer Martinez",
-      date: "December 1, 2024",
-      readTime: "5 min read",
-      category: "Luxury Design",
-      image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      featured: false,
-      tags: ["Luxury Hotels", "Premium Furniture", "Guest Experience"]
-    }
-  ];
 
   const categories = [
     { name: "Design Trends", count: 12, active: true },
@@ -176,39 +91,13 @@ export default function BlogPage() {
     { name: "Sustainability", count: 5, active: false }
   ];
 
-  // Manually curated popular posts - can be easily updated to showcase specific articles
-  const popularPosts = [
-    {
-      title: "Modern Hotel Furniture Trends for 2024: Sustainability Meets Luxury",
-      date: "Dec 15, 2024",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGZ1cm5pdHVyZXxlbnwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
-      slug: "modern-hotel-furniture-trends-2024"
-    },
-    {
-      title: "How to Choose the Right Furniture for Different Hotel Room Types",
-      date: "Dec 12, 2024",
-      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
-      slug: "choosing-right-furniture-hotel-rooms"
-    },
-    {
-      title: "The Impact of Custom Furniture on Guest Experience",
-      date: "Dec 10, 2024",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
-      slug: "custom-furniture-guest-experience"
-    },
-    {
-      title: "Restaurant and Bar Furniture: Creating the Perfect Atmosphere",
-      date: "Dec 5, 2024",
-      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
-      slug: "restaurant-bar-furniture-dining-atmosphere"
-    },
-    {
-      title: "Luxury Hotel Furniture Trends: Elevating Guest Experience",
-      date: "Dec 1, 2024",
-      image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx8fDE3NTY5OTgzMjF8MA&ixlib=rb-4.1.0&q=80&w=300",
-      slug: "luxury-hotel-furniture-trends-2024"
-    }
-  ];
+  // Popular posts from fetched data (first 5 posts)
+  const popularPosts = blogPosts.slice(0, 5).map(post => ({
+    title: post.title,
+    date: post.date.split(',')[0], // Extract short date
+    image: post.image,
+    slug: post.slug
+  }));
 
   const popularTags = [
     { name: "Modern Design", count: 24 },
@@ -225,8 +114,7 @@ export default function BlogPage() {
     { name: "Eco-Friendly", count: 16 }
   ];
 
-  const featuredPost = blogPosts.find(post => post.featured);
-  const regularPosts = blogPosts.filter(post => !post.featured);
+  const allPosts = blogPosts;
 
   return (
     <div className="min-h-screen bg-white">
@@ -358,19 +246,54 @@ export default function BlogPage() {
                   Explore our collection of expert insights and industry knowledge
                 </p>
               </motion.div>
+
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                {regularPosts.map((post, index) => (
+              {/* Loading State */}
+              {loading && (
+                <div className="flex items-center justify-center py-20">
+                  <div className="text-center">
+                    <Loader2 className="w-12 h-12 text-[#f26d35] animate-spin mx-auto mb-4" />
+                    <p className="text-gray-600">Loading blog posts...</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Error State */}
+              {error && !loading && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                  <p className="text-red-600 mb-4">{error}</p>
+                  <Button 
+                    onClick={() => window.location.reload()} 
+                    className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white"
+                  >
+                    Retry
+                  </Button>
+                </div>
+              )}
+
+              {/* Empty State */}
+              {!loading && !error && blogPosts.length === 0 && (
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-12 text-center">
+                  <p className="text-gray-600 text-lg mb-2">No blog posts available</p>
+                  <p className="text-gray-500 text-sm">Check back soon for new content!</p>
+                </div>
+              )}
+
+              {/* Blog Posts Grid */}
+              {!loading && !error && blogPosts.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                  {allPosts.map((post, index) => (
                   <motion.div
                     key={post.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
+                    className="h-full"
                   >
-                    <Link href={`/blog/${post.slug}`}>
-                      <Card className="group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
-                        <div className="relative overflow-hidden">
+                    <Link href={`/blog/${post.slug}`} className="h-full block">
+                      <Card className="group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer h-full flex flex-col">
+                        <div className="relative overflow-hidden flex-shrink-0">
                           <ImageWithFallback
                             src={post.image}
                             alt={post.title}
@@ -390,8 +313,8 @@ export default function BlogPage() {
                           </div>
                         </div>
                         
-                        <CardContent className="p-4 sm:p-6">
-                        <div className="space-y-4">
+                        <CardContent className="p-4 sm:p-6 flex-1 flex flex-col">
+                        <div className="space-y-4 flex-1 flex flex-col">
                           <div className="flex flex-wrap gap-1">
                             {post.tags.slice(0, 2).map((tag, tagIndex) => (
                               <Badge key={tagIndex} variant="outline" className="text-xs">
@@ -400,11 +323,11 @@ export default function BlogPage() {
                             ))}
                           </div>
                           
-                          <h3 className="text-lg sm:text-xl font-bold leading-tight group-hover:text-[#f26d35] transition-colors">
+                          <h3 className="text-lg sm:text-xl font-bold leading-tight group-hover:text-[#f26d35] transition-colors line-clamp-2">
                             {post.title}
                           </h3>
                           
-                          <p className="text-sm sm:text-base text-gray-600 line-clamp-3">
+                          <p className="text-sm sm:text-base text-gray-600 line-clamp-3 flex-1">
                             {post.description}
                           </p>
                           
@@ -436,7 +359,8 @@ export default function BlogPage() {
                     </Link>
                   </motion.div>
                 ))}
-              </div>
+                </div>
+              )}
             </div>
 
             {/* Sidebar */}

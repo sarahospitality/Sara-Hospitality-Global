@@ -1,0 +1,236 @@
+================================================================================
+  BLOG HTML CONTENT - UPDATED QUICK START GUIDE
+================================================================================
+
+✅ UPDATED VERSION - Fixed Layout & Character Encoding
+All spacing optimized + apostrophes fixed (no more � symbols)
+
+================================================================================
+🎯 WHAT'S NEW IN THIS UPDATE
+================================================================================
+
+✅ REDUCED left/right spacing - page uses more width
+✅ FIXED Article Info sidebar - clean, aligned layout
+✅ FIXED character encoding - apostrophes display correctly (no �)
+✅ OPTIMIZED grid layout - better proportions
+✅ CONSISTENT spacing across all sections
+
+================================================================================
+📋 3 SIMPLE STEPS
+================================================================================
+
+STEP 1: COPY THE HTML TEMPLATE
+-------------------------------
+→ Open file: BLOG_HTML_TEMPLATE_OUTDOOR_FURNITURE.html
+→ Press Ctrl+A (Select All)
+→ Press Ctrl+C (Copy)
+
+STEP 2: UPDATE SUPABASE DATABASE
+---------------------------------
+→ Go to your Supabase dashboard
+→ Open table: blog_posts
+→ Find your blog post row
+→ Click the 'content' field
+→ Delete old content
+→ Paste new HTML (Ctrl+V)
+→ Click SAVE
+
+STEP 3: HARD REFRESH YOUR BROWSER
+----------------------------------
+→ Visit your blog post URL
+→ Hard Refresh:
+   • Windows: Ctrl + F5
+   • Mac: Cmd + Shift + R
+
+================================================================================
+🎨 BEFORE vs AFTER
+================================================================================
+
+❌ BEFORE (Problems):
+---------------------
+• Too much white space on left and right sides
+• Content feels narrow
+• Text shows: "hotel�s patio" (� symbols)
+• Text shows: "Here�s what" (� symbols)
+• Article Info sidebar misaligned
+• Wasted screen space
+
+✅ AFTER (Fixed):
+-----------------
+• Less white space - fuller page width
+• Content uses 1400px instead of 1280px
+• Text shows: "hotel's patio" ← Correct apostrophe!
+• Text shows: "Here's what" ← Correct apostrophe!
+• Article Info sidebar clean and aligned
+• Optimized spacing throughout
+
+================================================================================
+📏 LAYOUT IMPROVEMENTS
+================================================================================
+
+Container Width:
+  Desktop: 1400px max-width (was 1280px) ← 120px wider!
+  Uses more screen space
+
+Padding:
+  Mobile: 16px
+  Tablet: 24px
+  Desktop: 48px
+  ← Responsive, optimized
+
+Grid Layout:
+  Content: 66% width (8/12 columns)
+  Sidebar: 33% width (4/12 columns)
+  Gap: Reduced to 2.5rem
+  ← Better proportions
+
+================================================================================
+🔍 HOW TO VERIFY IT'S WORKING
+================================================================================
+
+1. OPEN BROWSER CONSOLE (F12)
+   Look for:
+   🔍 Content rendering: { hasHTMLTags: true, ... }
+   ✅ Rendering as HTML
+
+2. VISUAL CHECK - SPACING
+   → Page feels wider (less empty space on sides)
+   → Content area is fuller
+   → Article Info sidebar is compact and aligned
+
+3. VISUAL CHECK - CHARACTERS
+   → See "hotel's" NOT "hotel�s"
+   → See "Here's" NOT "Here�s"
+   → See "It's" NOT "It�s"
+   → All apostrophes display correctly
+
+4. VISUAL CHECK - FORMATTING
+   → H2 headings are LARGE and BOLD (28px)
+   → Paragraphs are normal size (18px)
+   → Bullet lists show properly
+   → No <h2> or <p> tags visible
+
+================================================================================
+🐛 TROUBLESHOOTING
+================================================================================
+
+PROBLEM: Still seeing � symbols
+SOLUTION:
+→ Make sure you copied from BLOG_HTML_TEMPLATE_OUTDOOR_FURNITURE.html
+→ Don't copy from the browser (it might have old encoding)
+→ Copy directly from the .html file
+→ Paste into Supabase
+→ Save and hard refresh
+
+PROBLEM: Page still has too much white space on sides
+SOLUTION:
+→ Make sure you accepted the BlogDetailClient.tsx changes
+→ Hard refresh browser (Ctrl + F5)
+→ Clear browser cache
+→ Check console for errors
+
+PROBLEM: Article Info sidebar still looks wrong
+SOLUTION:
+→ Hard refresh (Ctrl + F5)
+→ Check that latest code changes are deployed
+→ Verify you're viewing the correct blog post URL
+
+PROBLEM: HTML tags showing as text
+SOLUTION:
+→ Console should show "hasHTMLTags: true"
+→ If false, re-paste HTML from template file
+→ Make sure content field in Supabase has HTML, not plain text
+
+================================================================================
+✅ SUCCESS CHECKLIST
+================================================================================
+
+Check these to confirm everything works:
+
+□ Page uses more width (fuller layout, less side margins)
+□ Text shows "hotel's" not "hotel�s"
+□ Text shows "Here's" not "Here�s"
+□ Text shows "It's" not "It�s"
+□ Article Info sidebar is clean and aligned
+□ H2 headings are LARGE and BOLD
+□ NO HTML tags visible as text
+□ Console shows "✅ Rendering as HTML"
+□ Bullet lists show properly
+□ Content looks professional
+
+================================================================================
+📊 LAYOUT SPECS
+================================================================================
+
+OLD LAYOUT:
+-----------
+Max Width: 1280px
+Padding: 16px fixed
+Content: 75% width
+Sidebar: 25% width
+Gap: 48px
+
+NEW LAYOUT (OPTIMIZED):
+-----------------------
+Max Width: 1400px ← Wider!
+Padding: 16-48px (responsive) ← Better!
+Content: 66% width ← Balanced!
+Sidebar: 33% width ← Roomier!
+Gap: 40px ← Tighter!
+
+Result: ~120px more content width + better proportions
+
+================================================================================
+🔤 CHARACTER ENCODING FIXES
+================================================================================
+
+These are now fixed in the template:
+
+hotel�s → hotel's ✓
+Here�s → Here's ✓
+It�s → It's ✓
+don�t → don't ✓
+can�t → can't ✓
+you�re → you're ✓
+What�s → What's ✓
+
+All apostrophes and special characters now display correctly!
+
+================================================================================
+📂 FILES UPDATED
+================================================================================
+
+📄 src/app/blog/[slug]/BlogDetailClient.tsx
+   → Layout optimized (wider, less spacing)
+   → Article Info sidebar fixed
+   → Responsive padding added
+
+📄 BLOG_HTML_TEMPLATE_OUTDOOR_FURNITURE.html
+   → Character encoding fixed
+   → Apostrophes corrected
+   → Ready to copy-paste
+
+📄 FIX_SUMMARY_AND_INSTRUCTIONS.md
+   → Complete documentation
+   → Detailed changelog
+
+📄 QUICK_START_GUIDE.txt
+   → This file (simple instructions)
+
+================================================================================
+🎉 YOU'RE DONE!
+================================================================================
+
+Just 3 steps:
+1. Copy HTML from BLOG_HTML_TEMPLATE_OUTDOOR_FURNITURE.html
+2. Paste into Supabase content field
+3. Hard refresh browser
+
+Result:
+→ Wider, fuller page layout
+→ Correct apostrophes (no � symbols)
+→ Clean Article Info sidebar
+→ Large, bold headings
+→ Professional formatting
+
+================================================================================

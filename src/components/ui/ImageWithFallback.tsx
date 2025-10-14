@@ -29,6 +29,28 @@ export function ImageWithFallback(props: ImageWithFallbackProps) {
 
   const { src, alt, style, className, fill, width, height, sizes, priority, quality, ...rest } = props;
 
+  // Handle empty or invalid src
+  if (!src || src.trim() === '') {
+    return (
+      <div
+        className={`inline-block bg-gray-100 text-center align-middle ${className ?? ''}`}
+        style={style}
+      >
+        <div className="flex items-center justify-center w-full h-full">
+          <Image 
+            src={ERROR_IMG_SRC} 
+            alt="No image available" 
+            width={width || 88}
+            height={height || 88}
+            className={className}
+            style={style}
+            {...rest} 
+          />
+        </div>
+      </div>
+    );
+  }
+
   if (didError) {
     return (
       <div
