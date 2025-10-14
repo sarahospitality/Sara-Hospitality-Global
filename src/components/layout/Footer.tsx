@@ -188,29 +188,29 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <h4 className="text-base font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-3">
+              <ul className="space-y-0 sm:space-y-3">
                 <li>
-                  <Link href="/products" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                  <Link href="/products" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
                     Products
                   </Link>
                 </li>
                 <li>
-                  <Link href="/portfolio" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                  <Link href="/portfolio" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
                     Portfolio
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                  <Link href="/about" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                  <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
+                  <Link href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
                     Contact
                   </Link>
                 </li>
@@ -224,12 +224,12 @@ export function Footer() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h4 className="text-base font-semibold mb-4">Global Locations</h4>
-              <ul className="space-y-3">
+              <ul className="space-y-0 sm:space-y-3">
                 {Object.entries(COUNTRIES).map(([code, country]) => (
                   <li key={code}>
                     <Link 
                       href={`/${code}`} 
-                      className="text-sm text-gray-400 hover:text-white transition-colors flex items-center py-1"
+                      className="text-sm text-gray-400 hover:text-white transition-colors flex items-center py-0 sm:py-1"
                     >
                       <span className="mr-2">{country.flag}</span>
                       {country.name}

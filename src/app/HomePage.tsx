@@ -1,18 +1,13 @@
 ﻿"use client";
 
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardContent } from '@/components/ui/Card';
 import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
-import { InquiryCategory } from '@/types/inquiries';
 import { 
   Globe, 
   ArrowRight, 
   Star, 
   Quote, 
-  MessageSquare, 
-  Send,
-  Phone,
-  Mail,
   MapPin,
   Clock,
   BookOpen,
@@ -29,8 +24,6 @@ import {
   Shield,
   Truck,
   Wrench,
-  CheckCircle,
-  AlertCircle,
   Headphones,
   Zap,
   Target,
@@ -41,6 +34,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { ContactSection } from '@/components/ContactSection';
 import { getPortfolioItemsByIds, PortfolioItem, getPortfolioImageUrl, extractSlug } from '@/lib/portfolio';
+import { getBlogPostFromDB, BlogPostDetail } from '@/lib/blog-data';
 
 // ============================================
 // PORTFOLIO CONFIGURATION
@@ -57,6 +51,13 @@ export default function HomePage() {
   const [portfolioLoading, setPortfolioLoading] = useState(true);
   const [featuredPortfolio, setFeaturedPortfolio] = useState<PortfolioItem | null>(null);
   const [gridPortfolios, setGridPortfolios] = useState<PortfolioItem[]>([]);
+
+  // Blog state management
+  const [featuredBlogPost, setFeaturedBlogPost] = useState<BlogPostDetail | null>(null);
+  const [gridBlogPost1, setGridBlogPost1] = useState<BlogPostDetail | null>(null);
+  const [gridBlogPost2, setGridBlogPost2] = useState<BlogPostDetail | null>(null);
+  const [gridBlogPost3, setGridBlogPost3] = useState<BlogPostDetail | null>(null);
+  const [gridBlogPost4, setGridBlogPost4] = useState<BlogPostDetail | null>(null);
 
   // Fetch portfolio data on component mount
   useEffect(() => {
@@ -91,6 +92,46 @@ export default function HomePage() {
     };
 
     fetchPortfolioData();
+  }, []);
+
+  // Fetch blog data on component mount
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        // Static URLs - can be easily updated later
+        const FEATURED_BLOG_SLUG = "how-to-choose-right-hotel-casegoods-manufacturer-partner";
+        
+        // Grid blog URLs - currently using same URL, can be updated individually later
+        const GRID_BLOG_SLUG_1 = "the-guide-to-modern-hospitality-outdoor-furniture-for-hotels-resorts";
+        const GRID_BLOG_SLUG_2 = "the-guide-to-modern-hospitality-outdoor-furniture-for-hotels-resorts";
+        const GRID_BLOG_SLUG_3 = "the-guide-to-modern-hospitality-outdoor-furniture-for-hotels-resorts";
+        const GRID_BLOG_SLUG_4 = "the-guide-to-modern-hospitality-outdoor-furniture-for-hotels-resorts";
+        
+        // Fetch featured blog post
+        const featuredPost = await getBlogPostFromDB(FEATURED_BLOG_SLUG);
+        if (featuredPost) {
+          setFeaturedBlogPost(featuredPost);
+        }
+        
+        // Fetch grid blog posts individually
+        const [gridPost1, gridPost2, gridPost3, gridPost4] = await Promise.all([
+          getBlogPostFromDB(GRID_BLOG_SLUG_1),
+          getBlogPostFromDB(GRID_BLOG_SLUG_2),
+          getBlogPostFromDB(GRID_BLOG_SLUG_3),
+          getBlogPostFromDB(GRID_BLOG_SLUG_4)
+        ]);
+        
+        if (gridPost1) setGridBlogPost1(gridPost1);
+        if (gridPost2) setGridBlogPost2(gridPost2);
+        if (gridPost3) setGridBlogPost3(gridPost3);
+        if (gridPost4) setGridBlogPost4(gridPost4);
+        
+      } catch (error) {
+        console.error('❌ Error loading blog data for home page:', error);
+      }
+    };
+
+    fetchBlogData();
   }, []);
   
   const categories = [
@@ -350,8 +391,8 @@ export default function HomePage() {
               {/* Main Heading */}
               <div className="text-center space-y-3">
                 <h1 className="text-2xl sm:text-4xl font-bold leading-tight">
-                  <span className="block">Leading Hospitality Furniture</span>
-                  <span className="text-[#f26d35] block mt-0 sm:mt-1">Manufacturer & Suppliers Globally</span>
+                  <div className="block">Leading Hospitality Furniture</div>
+                  <div className="text-[#f26d35] block mt-0 sm:mt-1 text-lg sm:text-4xl">Manufacturer & Suppliers Globally</div>
                 </h1>
                 
                 {/* Description */}
@@ -445,8 +486,8 @@ export default function HomePage() {
                   <span className="text-xs sm:text-sm">Premium Hospitality Furniture Manufacturer</span>
                 </div>
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                  <span className="block">Leading Hospitality<br className="hidden sm:block" /> Furniture</span>
-                  <span className="text-[#f26d35] block mt-0 sm:mt-1 text-xl sm:text-2xl md:text-3xl lg:text-4xl">Manufacturer & Suppliers<br className="hidden sm:block" /> Globally</span>
+                  <div className="block">Leading Hospitality Furniture</div>
+                  <div className="text-[#f26d35] block mt-0 sm:mt-1 text-lg sm:text-2xl md:text-3xl lg:text-4xl">Manufacturer & Suppliers Globally</div>
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-lg leading-relaxed">
                   We partner with hospitality businesses to create unforgettable guest experiences through premium, durable, and elegantly designed furniture, manufactured and supplied globally, professionally by us.
@@ -549,7 +590,7 @@ export default function HomePage() {
             </div>
             <div className="text-center">
               <div className="bg-white/95 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-2xl border border-white/20">
-                <div className="text-xl sm:text-2xl md:text-3xl text-[#f26d35] mb-1">4.9â˜…</div>
+                <div className="text-xl sm:text-2xl md:text-3xl text-[#f26d35] mb-1">4.9★</div>
                 <div className="text-xs sm:text-sm text-gray-600">Global Rating</div>
               </div>
             </div>
@@ -1055,8 +1096,8 @@ export default function HomePage() {
               <span>Our Portfolio</span>
             </div>
             <h2 className="text-2xl lg:text-5xl font-bold mb-6 leading-relaxed">
-              Transforming Hospitality Spaces
-              <span className="text-[#f26d35] block mt-0 sm:mt-2">Worldwide</span>
+              <div className="block text-lg sm:text-2xl lg:text-5xl">Transforming Hospitality Spaces</div>
+              <div className="text-[#f26d35] block mt-0 sm:mt-2 text-lg sm:text-2xl lg:text-5xl">Worldwide</div>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Explore our diverse portfolio of completed projects spanning luxury resorts, 
@@ -1184,7 +1225,7 @@ export default function HomePage() {
                 </Card>
               ))
             ) : (
-              gridPortfolios.map((project, index) => (
+              gridPortfolios.map((project) => (
                 <Link key={project.id} href={`/portfolio/${extractSlug(project.slug || '')}`} className="block h-full">
                   <Card className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md overflow-hidden h-full cursor-pointer">
                     <div className="relative">
@@ -1492,8 +1533,8 @@ export default function HomePage() {
               <div className="grid lg:grid-cols-5 gap-0">
                 <div className="lg:col-span-3 relative">
                   <ImageWithFallback
-                    src={featuredPost.image}
-                    alt={featuredPost.title}
+                    src={featuredBlogPost?.image_url || featuredPost.image}
+                    alt={featuredBlogPost?.title || featuredPost.title}
                     className="w-full h-64 lg:h-80 object-cover"
                     width={600}
                     height={320}
@@ -1509,32 +1550,32 @@ export default function HomePage() {
                     <div className="flex items-center gap-4 text-white text-sm">
                       <div className="flex items-center gap-1">
                         <Eye className="w-4 h-4" />
-                        <span>{featuredPost.views}</span>
+                        <span>2.3k</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
-                        <span>{featuredPost.readTime}</span>
+                        <span>{featuredBlogPost?.reading_time || featuredPost.readTime}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="lg:col-span-2 p-6 lg:p-8 flex flex-col justify-center">
-                  <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm w-fit mb-3">{featuredPost.category}</div>
-                  <h3 className="text-sm lg:text-2xl font-bold mb-3 leading-tight">{featuredPost.title}</h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{featuredPost.excerpt}</p>
+                  <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm w-fit mb-3">{featuredBlogPost?.category || featuredPost.category}</div>
+                  <h3 className="text-sm lg:text-2xl font-bold mb-3 leading-tight">{featuredBlogPost?.title || featuredPost.title}</h3>
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{featuredBlogPost?.excerpt || featuredPost.excerpt}</p>
                   
                   <div className="flex items-center gap-4 text-xs text-gray-600 mb-4">
                     <div className="flex items-center gap-1">
                       <User className="w-3 h-3" />
-                      <span>{featuredPost.author}</span>
+                      <span>{featuredBlogPost?.author || featuredPost.author}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
-                      <span>{featuredPost.date}</span>
+                      <span>{featuredBlogPost?.created_at ? new Date(featuredBlogPost.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : featuredPost.date}</span>
                     </div>
                   </div>
                   
-                  <Link href={`/blog/${featuredPost.slug}`}>
+                  <Link href={`/blog/${featuredBlogPost?.slug || featuredPost.slug}`}>
                     <Button size="sm" className="w-fit bg-[#f26d35] hover:bg-[#f26d35]/90">
                       Read Article
                       <ArrowRight className="w-3 h-3 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
@@ -1547,46 +1588,51 @@ export default function HomePage() {
 
           {/* Compact Article Grid */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {blogPosts.slice(0, 4).map((post, index) => (
+            {[
+              { post: gridBlogPost1, fallback: blogPosts[0] },
+              { post: gridBlogPost2, fallback: blogPosts[1] },
+              { post: gridBlogPost3, fallback: blogPosts[2] },
+              { post: gridBlogPost4, fallback: blogPosts[3] }
+            ].map((item, index) => (
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-sm overflow-hidden h-full">
                 <div className="flex gap-4 p-4">
                   <div className="relative flex-shrink-0">
                     <ImageWithFallback
-                      src={post.image}
-                      alt={post.title}
+                      src={item.post?.image_url || item.fallback?.image}
+                      alt={item.post?.title || item.fallback?.title}
                       className="w-24 h-24 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
                       width={96}
                       height={96}
                     />
                     <div className="absolute -top-1 -right-1">
                       <div className="bg-white/90 text-gray-700 px-2 py-0.5 rounded-full text-xs shadow-sm">
-                        {post.category}
+                        {item.post?.category || item.fallback?.category}
                       </div>
                     </div>
                   </div>
                   
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold mb-2 group-hover:text-[#f26d35] transition-colors line-clamp-2 text-sm leading-snug">
-                      {post.title}
+                      {item.post?.title || item.fallback?.title}
                     </h3>
                     
                     <p className="text-xs text-gray-600 mb-3 line-clamp-2 leading-relaxed">
-                      {post.excerpt}
+                      {item.post?.excerpt || item.fallback?.excerpt}
                     </p>
                     
                     <div className="flex items-center justify-between text-xs text-gray-600">
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-1">
                           <User className="w-3 h-3" />
-                          <span>{post.author}</span>
+                          <span>{item.post?.author || item.fallback?.author}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="w-3 h-3" />
-                          <span>{post.readTime}</span>
+                          <span>{item.post?.reading_time || item.fallback?.readTime}</span>
                         </div>
                       </div>
                       
-                      <Link href={`/blog/${post.slug}`}>
+                      <Link href={`/blog/${item.post?.slug || item.fallback?.slug}`}>
                         <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent group/btn text-xs">
                           <span className="text-[#f26d35]">Read</span>
                           <ArrowRight className="w-3 h-3 ml-1 text-[#f26d35] group-hover/btn:translate-x-1 transition-transform duration-300 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
