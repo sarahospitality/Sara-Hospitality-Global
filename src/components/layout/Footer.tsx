@@ -15,14 +15,14 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
-            <div className="lg:col-span-1">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">S</span>
+            <div className="md:col-span-2 lg:col-span-1">
+              <div className="flex items-center gap-1 mb-4">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#f26d35] rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-bold text-lg sm:text-xl">S</span>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white">Sara Global</h3>
-                  <p className="text-xs text-gray-400">Hospitality</p>
+                <div className="flex flex-col justify-center sm:justify-start mt-2">
+                  <h3 className="text-base [@media(max-width:400px)]:text-sm sm:text-xl font-bold text-white leading-none">Sara Global</h3>
+                  <p className="text-[11px] [@media(max-width:400px)]:text-[10px] text-gray-400 mt-0.5">Hospitality</p>
                 </div>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed">
@@ -146,15 +146,15 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-1"
+            className="sm:col-span-2 lg:col-span-1"
           >
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#f26d35] rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#f26d35] rounded-lg flex items-center justify-center flex-shrink-0">
                 <span className="text-white font-bold text-lg sm:text-xl">S</span>
               </div>
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-white">Sara Global</h3>
-                <p className="text-xs text-gray-400">Hospitality</p>
+              <div className="flex flex-col justify-start">
+                <h3 className="text-base [@media(max-width:400px)]:text-sm sm:text-xl font-bold text-white leading-none">Sara Global</h3>
+                <p className="text-[11px] [@media(max-width:400px)]:text-[10px] text-gray-400 mt-0.5">Hospitality</p>
               </div>
             </div>
             <p className="text-sm sm:text-base text-gray-400 mb-6 leading-relaxed">
@@ -187,30 +187,30 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <h4 className="text-base font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-0 sm:space-y-3">
+              <h4 className="text-base font-semibold mb-4 text-white">Quick Links</h4>
+              <ul className="space-y-2 sm:space-y-3">
                 <li>
-                  <Link href="/products" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
+                  <Link href="/products" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
                     Products
                   </Link>
                 </li>
                 <li>
-                  <Link href="/portfolio" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
+                  <Link href="/portfolio" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
                     Portfolio
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
+                  <Link href="/about" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
+                  <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors block py-0 sm:py-1">
+                  <Link href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors block py-1">
                     Contact
                   </Link>
                 </li>
@@ -223,13 +223,13 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h4 className="text-base font-semibold mb-4">Global Locations</h4>
-              <ul className="space-y-0 sm:space-y-3">
+              <h4 className="text-base font-semibold mb-4 text-white">Global Locations</h4>
+              <ul className="space-y-2 sm:space-y-3">
                 {Object.entries(COUNTRIES).map(([code, country]) => (
                   <li key={code}>
                     <Link 
                       href={`/${code}`} 
-                      className="text-sm text-gray-400 hover:text-white transition-colors flex items-center py-0 sm:py-1"
+                      className="text-sm text-gray-400 hover:text-white transition-colors flex items-center py-1"
                     >
                       <span className="mr-2">{country.flag}</span>
                       {country.name}
@@ -248,7 +248,7 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="hidden sm:block"
           >
-            <h4 className="text-base sm:text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-base sm:text-lg font-semibold mb-4 text-white">Quick Links</h4>
             <ul className="space-y-3">
               <li>
                 <Link href="/products" className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors block py-1">
@@ -286,7 +286,7 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="hidden sm:block"
           >
-            <h4 className="text-base sm:text-lg font-semibold mb-4">Global Locations</h4>
+            <h4 className="text-base sm:text-lg font-semibold mb-4 text-white">Global Locations</h4>
             <ul className="space-y-3">
               {Object.entries(COUNTRIES).map(([code, country]) => (
                 <li key={code}>
@@ -309,7 +309,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="text-base sm:text-lg font-semibold mb-4">Contact Info</h4>
+            <h4 className="text-base sm:text-lg font-semibold mb-4 text-white">Contact Info</h4>
             <div className="space-y-3">
               <div className="flex items-start text-gray-400">
                 <Phone className="w-5 h-5 mr-3 mt-1 flex-shrink-0" />

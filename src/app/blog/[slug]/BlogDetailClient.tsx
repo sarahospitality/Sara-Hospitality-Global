@@ -203,22 +203,22 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative">
         {/* Breadcrumb */}
         <div className="bg-white border-b">
-          <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-4">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Link href="/" className="hover:text-[#f26d35] transition-colors">
+          <div className="w-full max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-12 py-4">
+            <div className="flex items-center gap-2 text-sm text-gray-600 overflow-x-auto">
+              <Link href="/" className="hover:text-[#f26d35] transition-colors whitespace-nowrap">
                 Home
               </Link>
-              <ChevronRight className="w-4 h-4" />
-              <Link href="/blog" className="hover:text-[#f26d35] transition-colors">
+              <ChevronRight className="w-4 h-4 flex-shrink-0" />
+              <Link href="/blog" className="hover:text-[#f26d35] transition-colors whitespace-nowrap">
                 Blog
               </Link>
-              <ChevronRight className="w-4 h-4" />
-              <span className="text-gray-900">{currentPost.category}</span>
+              <ChevronRight className="w-4 h-4 flex-shrink-0" />
+              <span className="text-gray-900 truncate">{currentPost.category}</span>
             </div>
           </div>
         </div>
@@ -234,13 +234,13 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           
-          <div className="absolute bottom-0 left-0 right-0 p-8">
-            <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-              <div className="max-w-none">
-                <Badge className="bg-[#f26d35] text-white mb-4">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
+            <div className="w-full max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-12">
+              <div className="max-w-none pr-8 sm:pr-0">
+                <Badge className="bg-[#f26d35] text-white mb-3 sm:mb-4 text-xs sm:text-sm">
                   {currentPost.category}
                 </Badge>
-                <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight break-words">
                   {currentPost.title}
                 </h1>
               </div>
@@ -249,10 +249,10 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
 
           {/* Back Button */}
           <div className="absolute top-4 left-0 right-0">
-            <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div className="w-full max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-12">
               <Link href="/blog">
-                <Button variant="outline" size="sm" className="bg-white/90 hover:bg-white text-gray-900">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
+                <Button variant="outline" size="sm" className="bg-white/90 hover:bg-white text-gray-900 text-xs sm:text-sm">
+                  <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                   Back to Blog
                 </Button>
               </Link>
@@ -262,25 +262,25 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
 
         {/* Article Meta - Below Banner */}
         <div className="bg-white border-b">
-          <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-6">
+          <div className="w-full max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-12 py-4 sm:py-6">
             {/* Article Meta */}
-            <div className="flex flex-wrap items-center gap-6 text-gray-600">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-gray-600 text-sm">
               <div className="flex items-center gap-2">
-                <User className="w-10 h-10 text-[#f26d35]" />
+                <User className="w-8 h-8 sm:w-10 sm:h-10 text-[#f26d35] flex-shrink-0" />
                 <div className="flex flex-col">
-                  <span className="text-gray-900 font-medium">
+                  <span className="text-gray-900 font-medium text-sm sm:text-base">
                     {currentPost.author || 'Sara Global Team'}
                   </span>
-                  <span className="text-sm">Content Writer</span>
+                  <span className="text-xs sm:text-sm">Content Writer</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                <span>{formatDate(currentPost.created_at)}</span>
+              <div className="flex items-center gap-2 whitespace-nowrap">
+                <Calendar className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                <span className="text-xs sm:text-base">{formatDate(currentPost.created_at)}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                <span>{currentPost.reading_time || '5 min read'}</span>
+              <div className="flex items-center gap-2 whitespace-nowrap">
+                <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                <span className="text-xs sm:text-base">{currentPost.reading_time || '5 min read'}</span>
               </div>
             </div>
           </div>
@@ -288,18 +288,18 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
       </section>
 
       {/* Main Content */}
-      <section className="py-10">
-        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+      <section className="py-6 sm:py-10">
+        <div className="w-full max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-12">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
             {/* Article Content */}
-            <div className="lg:col-span-8">
-              <div className="w-full max-w-none">
+            <div className="lg:col-span-8 pr-4 sm:pr-0">
+              <div className="w-full max-w-none overflow-x-hidden">
                 {/* Excerpt/Introduction */}
                 {currentPost.excerpt && (
-                  <div className="mb-12">
-                    <div className="bg-[#f26d35]/5 border-l-4 border-[#f26d35] p-6 rounded-r-lg mb-8">
-                      <Quote className="w-8 h-8 text-[#f26d35] mb-4" />
-                      <p className="text-lg italic leading-relaxed text-gray-700">
+                  <div className="mb-8 sm:mb-12">
+                    <div className="bg-[#f26d35]/5 border-l-4 border-[#f26d35] p-4 sm:p-6 rounded-r-lg mb-6 sm:mb-8">
+                      <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-[#f26d35] mb-3 sm:mb-4" />
+                      <p className="text-base sm:text-lg italic leading-relaxed text-gray-700 break-words">
                         {currentPost.excerpt}
                       </p>
                     </div>
@@ -341,22 +341,22 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
                 )}
 
                 {/* Call to Action */}
-                <div className="mb-12">
-                  <div className="bg-gradient-to-r from-[#f26d35]/5 to-orange-50 p-8 rounded-lg">
-                    <p className="text-lg leading-relaxed mb-6 text-gray-700">
+                <div className="mb-8 sm:mb-12">
+                  <div className="bg-gradient-to-r from-[#f26d35]/5 to-orange-50 p-4 sm:p-8 rounded-lg">
+                    <p className="text-base sm:text-lg leading-relaxed mb-4 sm:mb-6 text-gray-700 break-words">
                       Ready to transform your hospitality space with quality furniture? Our team of experts can help you create spaces that delight guests while meeting your business goals.
                     </p>
-                    <div className="flex gap-4 mt-4 flex-wrap">
+                    <div className="flex gap-3 sm:gap-4 mt-3 sm:mt-4 flex-wrap">
                       <Link href="/portfolio">
-                        <Button className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white">
+                        <Button className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white text-xs sm:text-sm px-3 sm:px-4 py-2">
                           View Our Portfolio
-                          <ArrowRight className="w-4 h-4 ml-2" />
+                          <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
                         </Button>
                       </Link>
                       <Link href="/contact">
-                        <Button variant="outline">
+                        <Button variant="outline" className="text-xs sm:text-sm px-3 sm:px-4 py-2">
                           Contact Our Experts
-                          <ExternalLink className="w-4 h-4 ml-2" />
+                          <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
                         </Button>
                       </Link>
                     </div>
@@ -383,20 +383,20 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
                 )}
 
                 {/* Share Section */}
-                <div className="mb-12">
-                  <div className="flex items-center justify-between p-6 bg-gray-50 rounded-lg">
-                    <div className="flex items-center gap-3">
-                      <Share2 className="w-5 h-5 text-[#f26d35]" />
-                      <span className="font-medium">Share this article</span>
+                <div className="mb-8 sm:mb-12">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-4 p-4 sm:p-6 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <Share2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#f26d35] flex-shrink-0" />
+                      <span className="font-medium text-sm sm:text-base">Share this article</span>
                     </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm">
+                    <div className="flex gap-2 flex-wrap">
+                      <Button variant="outline" size="sm" className="text-xs sm:text-sm">
                         Twitter
                       </Button>
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" className="text-xs sm:text-sm">
                         LinkedIn
                       </Button>
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" className="text-xs sm:text-sm">
                         Facebook
                       </Button>
                     </div>
@@ -445,16 +445,16 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <section className="py-10 bg-gray-50">
-          <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Related Articles</h2>
-              <p className="text-lg text-gray-600">
+        <section className="py-6 sm:py-10 bg-gray-50">
+          <div className="w-full max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-12">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Related Articles</h2>
+              <p className="text-base sm:text-lg text-gray-600">
                 Continue exploring our hospitality insights
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
               {relatedPosts.map((post) => (
                 <Link key={post.id} href={`/blog/${post.slug}`}>
                   <Card className="group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">

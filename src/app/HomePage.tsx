@@ -34,7 +34,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { ContactSection } from '@/components/ContactSection';
 import { getPortfolioItemsByIds, PortfolioItem, getPortfolioImageUrl, extractSlug } from '@/lib/portfolio';
-import { getBlogPostFromDB, BlogPostDetail } from '@/lib/blog-data';
+import { getBlogPostFromDB, getAllBlogPostsFromDB, BlogPostDetail, BlogPostListing } from '@/lib/blog-data';
 
 // ============================================
 // PORTFOLIO CONFIGURATION
@@ -52,12 +52,9 @@ export default function HomePage() {
   const [featuredPortfolio, setFeaturedPortfolio] = useState<PortfolioItem | null>(null);
   const [gridPortfolios, setGridPortfolios] = useState<PortfolioItem[]>([]);
 
-  // Blog state management
-  const [featuredBlogPost, setFeaturedBlogPost] = useState<BlogPostDetail | null>(null);
-  const [gridBlogPost1, setGridBlogPost1] = useState<BlogPostDetail | null>(null);
-  const [gridBlogPost2, setGridBlogPost2] = useState<BlogPostDetail | null>(null);
-  const [gridBlogPost3, setGridBlogPost3] = useState<BlogPostDetail | null>(null);
-  const [gridBlogPost4, setGridBlogPost4] = useState<BlogPostDetail | null>(null);
+  // Blog state management - Fetch all blogs from database
+  const [featuredBlogPost, setFeaturedBlogPost] = useState<BlogPostListing | null>(null);
+  const [gridBlogPosts, setGridBlogPosts] = useState<BlogPostListing[]>([]);
 
   // Fetch portfolio data on component mount
   useEffect(() => {
@@ -94,37 +91,32 @@ export default function HomePage() {
     fetchPortfolioData();
   }, []);
 
-  // Fetch blog data on component mount
+  // Fetch all blog data from database on component mount
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        // Static URLs - can be easily updated later
-        const FEATURED_BLOG_SLUG = "how-to-choose-right-hotel-casegoods-manufacturer-partner";
+        // ============================================
+        // FETCH ALL BLOGS FROM DATABASE
+        // ============================================
+        console.log('🔍 Fetching all blogs from database...');
         
-        // Grid blog URLs - currently using same URL, can be updated individually later
-        const GRID_BLOG_SLUG_1 = "the-guide-to-modern-hospitality-outdoor-furniture-for-hotels-resorts";
-        const GRID_BLOG_SLUG_2 = "the-guide-to-modern-hospitality-outdoor-furniture-for-hotels-resorts";
-        const GRID_BLOG_SLUG_3 = "the-guide-to-modern-hospitality-outdoor-furniture-for-hotels-resorts";
-        const GRID_BLOG_SLUG_4 = "the-guide-to-modern-hospitality-outdoor-furniture-for-hotels-resorts";
+        const allBlogs = await getAllBlogPostsFromDB();
         
-        // Fetch featured blog post
-        const featuredPost = await getBlogPostFromDB(FEATURED_BLOG_SLUG);
-        if (featuredPost) {
-          setFeaturedBlogPost(featuredPost);
+        if (allBlogs && allBlogs.length > 0) {
+          console.log(`✅ Fetched ${allBlogs.length} blogs from database`);
+          
+          // First blog is featured (or you can mark it with a 'featured' flag in DB)
+          setFeaturedBlogPost(allBlogs[0]);
+          
+          // Remaining blogs for the grid (max 4)
+          const gridBlogs = allBlogs.slice(1, 5); // Get blogs 2-5 for the grid
+          setGridBlogPosts(gridBlogs);
+          
+          console.log('✅ Featured blog:', allBlogs[0].title);
+          console.log('✅ Grid blogs:', gridBlogs.map(b => b.title));
+        } else {
+          console.warn('⚠️ No blogs found in database');
         }
-        
-        // Fetch grid blog posts individually
-        const [gridPost1, gridPost2, gridPost3, gridPost4] = await Promise.all([
-          getBlogPostFromDB(GRID_BLOG_SLUG_1),
-          getBlogPostFromDB(GRID_BLOG_SLUG_2),
-          getBlogPostFromDB(GRID_BLOG_SLUG_3),
-          getBlogPostFromDB(GRID_BLOG_SLUG_4)
-        ]);
-        
-        if (gridPost1) setGridBlogPost1(gridPost1);
-        if (gridPost2) setGridBlogPost2(gridPost2);
-        if (gridPost3) setGridBlogPost3(gridPost3);
-        if (gridPost4) setGridBlogPost4(gridPost4);
         
       } catch (error) {
         console.error('❌ Error loading blog data for home page:', error);
@@ -312,64 +304,7 @@ export default function HomePage() {
   };
 
 
-  const featuredPost = {
-    slug: "future-hospitality-design-sustainable-luxury-hotel-furniture",
-    title: "The Future of Hospitality Design: Sustainable Luxury in Hotel Furniture",
-    excerpt: "Discover how leading hotels are embracing sustainable furniture solutions without compromising on luxury and guest experience.",
-    image: "https://images.unsplash.com/photo-1593589279419-7da07fd2148d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJsZSUyMGZ1cm5pdHVyZSUyMG1hdGVyaWFsc3xlbnwxfHx8fDE3NTcwMDMxNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    category: "Sustainability",
-    date: "March 15, 2024",
-    readTime: "8 min read",
-    author: "Sarah Mitchell",
-    views: "2.3k"
-  };
-
-  const blogPosts = [
-    {
-      slug: "hotel-room-furniture-maximizing-space-comfort",
-      title: "Hotel Room Furniture: Maximizing Space Without Compromising Comfort",
-      excerpt: "Space optimization strategies for boutique hotels and urban properties where every square foot matters.",
-      image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGJlZHJvb20lMjBmdXJuaXR1cmV8ZW58MXx8fHwxNzU2OTk4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      category: "Design Tips",
-      date: "March 12, 2024",
-      readTime: "6 min read",
-      author: "Michael Chen",
-      featured: false
-    },
-    {
-      slug: "behind-scenes-furniture-manufacturing-process",
-      title: "Behind the Scenes: Our Furniture Manufacturing Process",
-      excerpt: "Take a virtual tour of our state-of-the-art manufacturing facility and learn about our quality control processes.",
-      image: "https://images.unsplash.com/photo-1653971858625-9cb23d0dca80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXJuaXR1cmUlMjBkZXNpZ24lMjBwcm9jZXNzfGVufDF8fHx8MTc1NzAwMzE1Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      category: "Manufacturing",
-      date: "March 10, 2024",
-      readTime: "7 min read",
-      author: "David Thompson",
-      featured: false
-    },
-    {
-      slug: "2024-hospitality-design-trends-whats-hot-not",
-      title: "2024 Hospitality Design Trends: What's Hot and What's Not",
-      excerpt: "Explore the latest design trends influencing hotel interiors and guest preferences in the post-pandemic era.",
-      image: "https://images.unsplash.com/photo-1647336811715-d7c7837c50d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGludGVyaW9yJTIwZGVzaWduJTIwdHJlbmRzfGVufDF8fHx8MTc1NzAwMzE1N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      category: "Trends",
-      date: "March 8, 2024", 
-      readTime: "5 min read",
-      author: "Emily Rodriguez",
-      featured: false
-    },
-    {
-      slug: "maintenance-made-easy-caring-hotel-furniture-investment",
-      title: "Maintenance Made Easy: Caring for Your Hotel Furniture Investment",
-      excerpt: "Essential maintenance tips to extend the life of your hotel furniture and keep it looking pristine for years.",
-      image: "https://images.unsplash.com/photo-1755644046048-989506b73a5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGxvYmJ5JTIwZnVybml0dXJlfGVufDF8fHx8MTc1NzAwMjkwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      category: "Maintenance",
-      date: "March 5, 2024",
-      readTime: "4 min read", 
-      author: "Lisa Wang",
-      featured: false
-    }
-  ];
+  // All blog data now comes from database - no dummy fallback data
 
   return (
     <div className="min-h-screen bg-white">
@@ -1533,8 +1468,8 @@ export default function HomePage() {
               <div className="grid lg:grid-cols-5 gap-0">
                 <div className="lg:col-span-3 relative">
                   <ImageWithFallback
-                    src={featuredBlogPost?.image_url || featuredPost.image}
-                    alt={featuredBlogPost?.title || featuredPost.title}
+                    src={featuredBlogPost?.image || '/blog/outdoor furniture for hotels/outdoor-furniture.webp'}
+                    alt={featuredBlogPost?.title || 'Featured Blog Post'}
                     className="w-full h-64 lg:h-80 object-cover"
                     width={600}
                     height={320}
@@ -1554,85 +1489,82 @@ export default function HomePage() {
                       </div>
                       <div className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
-                        <span>{featuredBlogPost?.reading_time || featuredPost.readTime}</span>
+                        <span>{featuredBlogPost?.readTime || '5 min read'}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="lg:col-span-2 p-6 lg:p-8 flex flex-col justify-center">
-                  <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm w-fit mb-3">{featuredBlogPost?.category || featuredPost.category}</div>
-                  <h3 className="text-sm lg:text-2xl font-bold mb-3 leading-tight">{featuredBlogPost?.title || featuredPost.title}</h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{featuredBlogPost?.excerpt || featuredPost.excerpt}</p>
+                  <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm w-fit mb-3">{featuredBlogPost?.category || 'Hospitality'}</div>
+                  <h3 className="text-sm lg:text-2xl font-bold mb-3 leading-tight">{featuredBlogPost?.title || 'Loading...'}</h3>
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{featuredBlogPost?.description || 'Discover expert insights on hotel furniture selection and design.'}</p>
                   
                   <div className="flex items-center gap-4 text-xs text-gray-600 mb-4">
                     <div className="flex items-center gap-1">
                       <User className="w-3 h-3" />
-                      <span>{featuredBlogPost?.author || featuredPost.author}</span>
+                      <span>{featuredBlogPost?.author || 'Sara Global Team'}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
-                      <span>{featuredBlogPost?.created_at ? new Date(featuredBlogPost.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : featuredPost.date}</span>
+                      <span>{featuredBlogPost?.date || 'Recent'}</span>
                     </div>
                   </div>
                   
-                  <Link href={`/blog/${featuredBlogPost?.slug || featuredPost.slug}`}>
-                    <Button size="sm" className="w-fit bg-[#f26d35] hover:bg-[#f26d35]/90">
-                      Read Article
-                      <ArrowRight className="w-3 h-3 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-                    </Button>
-                  </Link>
+                  {featuredBlogPost && (
+                    <Link href={`/blog/${featuredBlogPost.slug}`}>
+                      <Button size="sm" className="w-fit bg-[#f26d35] hover:bg-[#f26d35]/90">
+                        Read Article
+                        <ArrowRight className="w-3 h-3 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </Card>
           </div>
 
-          {/* Compact Article Grid */}
+          {/* Compact Article Grid - All from Database */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {[
-              { post: gridBlogPost1, fallback: blogPosts[0] },
-              { post: gridBlogPost2, fallback: blogPosts[1] },
-              { post: gridBlogPost3, fallback: blogPosts[2] },
-              { post: gridBlogPost4, fallback: blogPosts[3] }
-            ].map((item, index) => (
+            {gridBlogPosts.map((post, index) => (
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-sm overflow-hidden h-full">
                 <div className="flex gap-4 p-4">
                   <div className="relative flex-shrink-0">
                     <ImageWithFallback
-                      src={item.post?.image_url || item.fallback?.image}
-                      alt={item.post?.title || item.fallback?.title}
+                      src={post.image || '/blog/outdoor furniture for hotels/outdoor-furniture.webp'}
+                      alt={post.title}
                       className="w-24 h-24 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
                       width={96}
                       height={96}
                     />
                     <div className="absolute -top-1 -right-1">
                       <div className="bg-white/90 text-gray-700 px-2 py-0.5 rounded-full text-xs shadow-sm">
-                        {item.post?.category || item.fallback?.category}
+                        {post.category}
                       </div>
                     </div>
                   </div>
                   
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold mb-2 group-hover:text-[#f26d35] transition-colors line-clamp-2 text-sm leading-snug">
-                      {item.post?.title || item.fallback?.title}
+                      {post.title}
                     </h3>
                     
                     <p className="text-xs text-gray-600 mb-3 line-clamp-2 leading-relaxed">
-                      {item.post?.excerpt || item.fallback?.excerpt}
+                      {post.description}
                     </p>
                     
                     <div className="flex items-center justify-between text-xs text-gray-600">
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-1">
                           <User className="w-3 h-3" />
-                          <span>{item.post?.author || item.fallback?.author}</span>
+                          <span>{post.author}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="w-3 h-3" />
-                          <span>{item.post?.reading_time || item.fallback?.readTime}</span>
+                          <span>{post.readTime}</span>
                         </div>
                       </div>
                       
-                      <Link href={`/blog/${item.post?.slug || item.fallback?.slug}`}>
+                      <Link href={`/blog/${post.slug}`}>
                         <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent group/btn text-xs">
                           <span className="text-[#f26d35]">Read</span>
                           <ArrowRight className="w-3 h-3 ml-1 text-[#f26d35] group-hover/btn:translate-x-1 transition-transform duration-300 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />

@@ -246,7 +246,16 @@ export async function getAllBlogPostsFromDB(): Promise<BlogPostListing[]> {
       // Determine image based on post title
       let postImage = post.banner_image_url;
       if (!postImage) {
-        if (post.title && post.title.toLowerCase().includes('hotel casegoods')) {
+        // Check for specific blog posts by title
+        const titleLower = post.title?.toLowerCase() || '';
+        
+        if (titleLower.includes('why choose sara global')) {
+          postImage = '/blog/outdoor furniture for hotels/how-to-choose-hotel-furniture.webp';
+        } else if (titleLower.includes('buying tips for beginners') || titleLower.includes('furniture buying tips')) {
+          postImage = '/blog/outdoor furniture for hotels/furniture-buying-tips.webp';
+        } else if (titleLower.includes('how to choose hotel furniture')) {
+          postImage = '/blog/outdoor furniture for hotels/hotel-furniture.webp';
+        } else if (titleLower.includes('hotel casegoods')) {
           postImage = '/blog/hotel casegoods manufacturers partner/hotel casegoods.webp';
         } else {
           postImage = '/blog/outdoor furniture for hotels/outdoor-furniture.webp';
@@ -410,7 +419,16 @@ export async function getBlogPostFromDB(slug: string): Promise<BlogPostDetail | 
     // Determine image using same logic as listing page
     let postImage = data.banner_image_url || data.image_url;
     if (!postImage) {
-      if (data.title && data.title.toLowerCase().includes('hotel casegoods')) {
+      // Check for specific blog posts by title
+      const titleLower = data.title?.toLowerCase() || '';
+      
+      if (titleLower.includes('why choose sara global')) {
+        postImage = '/blog/outdoor furniture for hotels/how-to-choose-hotel-furniture.webp';
+      } else if (titleLower.includes('buying tips for beginners') || titleLower.includes('furniture buying tips')) {
+        postImage = '/blog/outdoor furniture for hotels/furniture-buying-tips.webp';
+      } else if (titleLower.includes('how to choose hotel furniture')) {
+        postImage = '/blog/outdoor furniture for hotels/hotel-furniture.webp';
+      } else if (titleLower.includes('hotel casegoods')) {
         postImage = '/blog/hotel casegoods manufacturers partner/hotel casegoods.webp';
       } else {
         postImage = '/blog/outdoor furniture for hotels/outdoor-furniture.webp';

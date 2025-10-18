@@ -33,11 +33,11 @@ export default function FloatingActionButtons({ onQuoteRequest }: FloatingAction
 
   return (
     <>
-      {/* Request A Quote Button - Vertical on right side */}
-      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50">
+      {/* Request A Quote Button - Vertical on right side - Responsive sizing */}
+      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40">
         <button
           onClick={handleQuoteClick}
-          className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-2 py-8 flex items-center justify-center"
+          className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center px-1.5 py-6 sm:px-2 sm:py-8"
           style={{
             writingMode: 'vertical-rl',
             textOrientation: 'mixed',
@@ -45,11 +45,10 @@ export default function FloatingActionButtons({ onQuoteRequest }: FloatingAction
             borderBottomLeftRadius: '8px',
             borderTopRightRadius: '0px',
             borderBottomRightRadius: '0px',
-            minHeight: '160px',
-            width: '28px'
+            minHeight: '140px',
           }}
         >
-          <span className="text-sm font-medium tracking-wider">REQUEST A QUOTE</span>
+          <span className="text-[10px] sm:text-sm font-medium tracking-wider whitespace-nowrap">REQUEST A QUOTE</span>
         </button>
       </div>
 
