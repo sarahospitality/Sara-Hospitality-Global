@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { COUNTRIES } from '@/lib/constants';
+import { siteConfig } from '@/lib/metadata';
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 import { useHydrationSafe } from '@/hooks/useHydrationSafe';
 
@@ -29,21 +30,21 @@ export function Footer() {
                 Premium B2B furniture solutions for hotels, resorts, and senior living communities across the globe. We combine quality craftsmanship with modern design to enhance guest experiences and elevate your brand.
               </p>
               <div className="flex space-x-4">
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
                   <Facebook className="w-5 h-5" />
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                </a>
+                <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Twitter">
                   <Twitter className="w-5 h-5" />
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                </a>
+                <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
                   <Linkedin className="w-5 h-5" />
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                </a>
+                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
                   <Instagram className="w-5 h-5" />
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                </a>
+                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="YouTube">
                   <Youtube className="w-5 h-5" />
-                </Link>
+                </a>
               </div>
             </div>
 
@@ -161,21 +162,21 @@ export function Footer() {
               Premium B2B furniture solutions for hotels, resorts, and senior living communities across the globe. We combine quality craftsmanship with modern design to enhance guest experiences and elevate your brand.
             </p>
             <div className="flex space-x-3 sm:space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+              <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-2" aria-label="Facebook">
                 <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+              </a>
+              <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-2" aria-label="Twitter">
                 <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+              </a>
+              <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-2" aria-label="LinkedIn">
                 <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+              </a>
+              <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-2" aria-label="Instagram">
                 <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors p-2">
+              </a>
+              <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-2" aria-label="YouTube">
                 <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
-              </Link>
+              </a>
             </div>
           </motion.div>
 

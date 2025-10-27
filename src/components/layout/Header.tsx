@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { COUNTRIES } from '@/lib/constants';
+import { siteConfig } from '@/lib/metadata';
 import { Menu, X, Globe, ChevronDown, Phone, Mail, Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 import { useState } from 'react';
 import { useHydrationSafe } from '@/hooks/useHydrationSafe';
@@ -35,16 +36,16 @@ export function Header({ onQuoteRequest }: HeaderProps) {
             <div className="flex items-center gap-2">
               <span className="text-xs sm:text-sm">Follow Us:</span>
               <div className="flex gap-2">
-                <a href="#" className="hover:text-gray-200 transition-colors" aria-label="Facebook">
+                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors" aria-label="Facebook">
                   <Facebook className="w-3 h-3 sm:w-4 sm:h-4" />
                 </a>
-                <a href="#" className="hover:text-gray-200 transition-colors" aria-label="LinkedIn">
+                <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors" aria-label="LinkedIn">
                   <Linkedin className="w-3 h-3 sm:w-4 sm:h-4" />
                 </a>
-                <a href="#" className="hover:text-gray-200 transition-colors" aria-label="Instagram">
+                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors" aria-label="Instagram">
                   <Instagram className="w-3 h-3 sm:w-4 sm:h-4" />
                 </a>
-                <a href="#" className="hover:text-gray-200 transition-colors" aria-label="YouTube">
+                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors" aria-label="YouTube">
                   <Youtube className="w-3 h-3 sm:w-4 sm:h-4" />
                 </a>
               </div>
