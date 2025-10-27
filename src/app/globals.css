@@ -91,6 +91,15 @@ a:hover {
 
 .animate-scroll-logos {
   animation: scroll-logos 10s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-logos img {
+  image-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Mobile-specific styles */

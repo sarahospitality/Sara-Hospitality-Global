@@ -43,7 +43,7 @@ export default function AboutPageClient() {
   const stats = [
     { number: "500+", label: "Projects Completed" },
     { number: "50+", label: "Countries Served" },
-    { number: "100k+", label: "Rooms Furnished" },
+    { number: "1000+", label: "Custom Designs" },
     { number: "98%", label: "Client Satisfaction" }
   ];
 

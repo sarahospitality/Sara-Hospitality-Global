@@ -186,7 +186,7 @@ export default function HomePage() {
       icon: Award,
       title: "25+ Years Expertise",
       description: "Decades of experience in hotel furniture manufacturing with deep industry knowledge.",
-      metric: "500+ Hotels",
+      metric: "300+ Hotels",
       color: "bg-gray-100 text-[#f26d35]"
     },
     {
@@ -229,7 +229,7 @@ export default function HomePage() {
   const stats = [
     { number: "500+", label: "Projects Completed" },
     { number: "50+", label: "Countries Served" },
-    { number: "100k+", label: "Rooms Furnished" },
+    { number: "1000+", label: "Custom Designs" },
     { number: "98%", label: "Client Satisfaction" }
   ];
 
@@ -379,7 +379,7 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: '#faece7' }}>
                     <Star className="w-6 h-6" style={{ color: '#f26d35' }} />
                   </div>
-                  <div className="font-semibold text-sm mb-1">Furnished 500+</div>
+                  <div className="font-semibold text-sm mb-1">Furnished 300+</div>
                   <div className="text-xs text-muted-foreground">Hotels</div>
                 </div>
                 <div className="text-center p-4 rounded-xl border border-orange-200" style={{ backgroundColor: '#faece7' }}>
@@ -441,7 +441,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
-                  <span className="text-xs sm:text-sm md:text-base">Furnished 500+ Hotels</span>
+                  <span className="text-xs sm:text-sm md:text-base">Furnished 300+ Hotels</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
@@ -507,7 +507,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-2 sm:mb-6 md:mb-8 lg:mb-10">
             <div className="text-center">
               <div className="bg-white/95 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-2xl border border-white/20">
-                <div className="text-xl sm:text-2xl md:text-3xl text-[#f26d35] mb-1">500+</div>
+                <div className="text-xl sm:text-2xl md:text-3xl text-[#f26d35] mb-1">300+</div>
                 <div className="text-xs sm:text-sm text-gray-600">Hotels Served</div>
               </div>
             </div>
@@ -547,54 +547,60 @@ export default function HomePage() {
                       <ImageWithFallback
                         src="/assets/f31b2dfb28307640a195a389e2838f1c2a7dc156.png"
                         alt="La Quinta by Wyndham logo"
-                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={120}
-                        height={48}
+                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={200}
+                        height={80}
+                        quality={100}
                       />
                     </div>
                     <div className="flex-shrink-0">
                       <ImageWithFallback
                         src="/assets/6e7b3d1f8e168548d6b65e7dd7fb4691d792ff17.png"
                         alt="Holiday Inn Express & Suites logo"
-                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={120}
-                        height={48}
+                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={200}
+                        height={80}
+                        quality={100}
                       />
                     </div>
                     <div className="flex-shrink-0">
                       <ImageWithFallback
                         src="/assets/1a36f52dfb717910963752bf97e84ab00d9f89e9.png"
                         alt="Quality Inn logo"
-                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={120}
-                        height={48}
+                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={200}
+                        height={80}
+                        quality={100}
                       />
                     </div>
                     <div className="flex-shrink-0">
                       <ImageWithFallback
                         src="/assets/65e2b4ed424723dae6731b7df90d808c1d793105.png"
                         alt="Baymont by Wyndham logo"
-                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={120}
-                        height={48}
+                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={200}
+                        height={80}
+                        quality={100}
                       />
                     </div>
                     <div className="flex-shrink-0">
                       <ImageWithFallback
                         src="/assets/d3e30d7d50aff6f76bb0916c50dc15aa2919a066.png"
                         alt="Best Western Plus logo"
-                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={120}
-                        height={48}
+                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={200}
+                        height={80}
+                        quality={100}
                       />
                     </div>
                     <div className="flex-shrink-0">
                       <ImageWithFallback
                         src="/assets/61636d64a66e87acc43f2e63f91829fa6b8f0dea.png"
                         alt="Days Inn & Suites logo"
-                        className="h-6 sm:h-8 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={120}
-                        height={48}
+                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={200}
+                        height={80}
+                        quality={100}
                       />
                     </div>
                   </div>
@@ -786,11 +792,6 @@ export default function HomePage() {
                                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm p-3 rounded-xl shadow-lg">
                                     <IconComponent className="w-6 h-6 text-[#f26d35]" />
                                   </div>
-                                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <div className="bg-[#f26d35] text-white px-3 py-1 rounded-full text-sm">
-                                      Explore
-                                    </div>
-                                  </div>
                                 </div>
                                 
                                 <div className="p-6 pb-4">
@@ -799,9 +800,9 @@ export default function HomePage() {
                                   
                                   <div className="grid grid-cols-2 gap-2 mb-3">
                                     {category.features.slice(0, 4).map((feature, featureIndex) => (
-                                      <div key={featureIndex} className="flex items-center gap-2 text-sm">
-                                        <div className="w-1.5 h-1.5 bg-[#f26d35] rounded-full flex-shrink-0"></div>
-                                        <span className="truncate">{feature}</span>
+                                      <div key={featureIndex} className="flex items-start gap-2 text-sm">
+                                        <div className="w-1.5 h-1.5 bg-[#f26d35] rounded-full flex-shrink-0 mt-1.5"></div>
+                                        <span className="flex-1 break-words">{feature}</span>
                                       </div>
                                     ))}
                                   </div>
@@ -873,13 +874,15 @@ export default function HomePage() {
                 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    size="lg" 
-                    className="bg-[#f26d35] hover:bg-[#f26d35]/90 shadow-lg hover:shadow-xl transition-all duration-300 group px-6 sm:px-8 py-4 sm:py-3 w-full sm:w-auto"
-                  >
-                    Request A Quote
-                    <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-                  </Button>
+                  <Link href="/contact" className="w-full sm:w-auto">
+                    <Button 
+                      size="lg" 
+                      className="bg-[#f26d35] hover:bg-[#f26d35]/90 shadow-lg hover:shadow-xl transition-all duration-300 group px-6 sm:px-8 py-4 sm:py-3 w-full sm:w-auto"
+                    >
+                      Request A Quote
+                      <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
+                    </Button>
+                  </Link>
                   <Link href="/portfolio" className="w-full sm:w-auto">
                     <Button 
                       size="lg" 
@@ -894,7 +897,7 @@ export default function HomePage() {
                 {/* Trust indicator */}
                 <div className="mt-8 pt-6 border-t border-gray-200">
                   <p className="text-sm text-gray-600">
-                    âœ¨ <span className="font-semibold">500+ successful projects</span> â€¢ <span className="font-semibold">98% client satisfaction</span> â€¢ <span className="font-semibold">Award-winning designs</span>
+                    <span className="font-semibold">500+ successful projects</span> • <span className="font-semibold">98% client satisfaction</span> • <span className="font-semibold">Award-winning designs</span>
                   </p>
                 </div>
               </div>

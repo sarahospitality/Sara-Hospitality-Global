@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { Send, X } from "lucide-react";
+import { Send, X, CheckCircle, AlertCircle } from "lucide-react";
+import { useInquiryForm } from "@/hooks/useInquiryForm";
+import { InquiryCategory } from "@/types/inquiries";
 
 interface QuotePopupProps {
   isOpen: boolean;
@@ -11,15 +13,17 @@ interface QuotePopupProps {
 }
 
 export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    interestedIn: "",
-    message: ""
-  });
+  const {
+    formData,
+    errors,
+    submissionState,
+    updateField,
+    toggleCategory,
+    submitForm,
+    resetForm
+  } = useInquiryForm();
 
-  const interestOptions = [
+  const interestOptions: InquiryCategory[] = [
     "Casegoods",
     "FF&E",
     "Reception Items",
@@ -30,20 +34,37 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
     "Custom Solutions"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Reset form when popup closes
+  useEffect(() => {
+    if (!isOpen) {
+      // Reset form when closing
+      setTimeout(() => {
+        resetForm();
+      }, 300);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
+  // Close popup after successful submission
+  useEffect(() => {
+    if (submissionState.isSuccess) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [submissionState.isSuccess, onClose]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+    console.log('QuotePopup: Form submitted');
+    console.log('QuotePopup: Current formData:', formData);
+    console.log('QuotePopup: Current errors:', errors);
     
-    // Reset form and close popup
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      interestedIn: "",
-      message: ""
-    });
-    onClose();
+    const success = await submitForm();
+    console.log('QuotePopup: Submit result:', success);
+    console.log('QuotePopup: Updated errors after submit:', errors);
+    console.log('QuotePopup: Submission state:', submissionState);
   };
 
   if (!isOpen) return null;
@@ -207,87 +228,140 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
 
             {/* Form Content */}
             <div className="p-4 sm:p-6">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Contact Details Row */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="popup-name" className="text-sm font-medium text-gray-700">
-                      Name *
-                    </label>
-                    <input 
-                      id="popup-name"
-                      value={formData.name}
-                      onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
-                      placeholder="Enter your full name"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent h-10"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="popup-email" className="text-sm font-medium text-gray-700">
-                      Email Address *
-                    </label>
-                    <input 
-                      id="popup-email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData(prev => ({...prev, email: e.target.value}))}
-                      placeholder="your@email.com"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent h-10"
-                      required
-                    />
+              {/* Success Message */}
+              {submissionState.isSuccess && (
+                <div className="bg-green-50 border border-green-200 rounded-md p-4 flex items-center space-x-2 mb-6">
+                  <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                  <div>
+                    <p className="text-green-800 font-medium">
+                      Thank you! Your inquiry has been submitted successfully. We&apos;ll get back to you within 24 hours.
+                    </p>
                   </div>
                 </div>
+              )}
 
-                {/* Phone and Interested In Row */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="popup-phone" className="text-sm font-medium text-gray-700">
-                      Phone Number *
-                    </label>
-                    <input 
-                      id="popup-phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData(prev => ({...prev, phone: e.target.value}))}
-                      placeholder="+1-678-431-9041"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent h-10"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="popup-interested-in" className="text-sm font-medium text-gray-700">
-                      Interested In *
-                    </label>
-                    <select 
-                      id="popup-interested-in"
-                      value={formData.interestedIn}
-                      onChange={(e) => setFormData(prev => ({...prev, interestedIn: e.target.value}))}
-                      className="w-full pl-3 pr-16 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent h-10"
-                      required
-                    >
-                      <option value="">Select your interest</option>
-                      {interestOptions.map((option) => (
-                        <option key={option} value={option}>{option}</option>
-                      ))}
-                    </select>
+              {/* Error Message */}
+              {submissionState.isError && (
+                <div className="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
+                  <div className="flex items-start space-x-2">
+                    <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <p className="text-red-800 font-medium mb-1">
+                        Failed to submit inquiry
+                      </p>
+                      <p className="text-red-700 text-sm">
+                        {submissionState.errorMessage || 'An unexpected error occurred. Please try again or contact us directly.'}
+                      </p>
+                      <p className="text-red-600 text-xs mt-2">
+                        If this problem persists, please contact us at{" "}
+                        <a href="mailto:sales@sarahospitalityusa.com" className="underline font-medium">
+                          sales@sarahospitalityusa.com
+                        </a>
+                      </p>
+                    </div>
                   </div>
                 </div>
+              )}
 
-                {/* Message Field */}
-                <div className="space-y-2">
-                  <label htmlFor="popup-message" className="text-sm font-medium text-gray-700">
-                    Message from the Client *
-                  </label>
-                  <textarea 
-                    id="popup-message"
-                    value={formData.message}
-                    onChange={(e) => setFormData(prev => ({...prev, message: e.target.value}))}
-                    placeholder="Please describe your project, specific furniture needs, timeline, and any special requirements..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent min-h-[120px] resize-none"
-                    required
-                  />
-                </div>
+              {!submissionState.isSuccess && (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Contact Details Row */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label htmlFor="popup-name" className="text-sm font-medium text-gray-700">
+                        Name *
+                      </label>
+                      <input 
+                        id="popup-name"
+                        value={formData.full_name}
+                        onChange={(e) => updateField('full_name', e.target.value)}
+                        placeholder="Enter your full name"
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent h-10 ${
+                          errors.full_name ? 'border-red-300' : 'border-gray-300'
+                        }`}
+                      />
+                      {errors.full_name && <p className="text-red-600 text-sm">{errors.full_name}</p>}
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="popup-email" className="text-sm font-medium text-gray-700">
+                        Email Address *
+                      </label>
+                      <input 
+                        id="popup-email"
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => updateField('email', e.target.value)}
+                        placeholder="your@email.com"
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent h-10 ${
+                          errors.email ? 'border-red-300' : 'border-gray-300'
+                        }`}
+                      />
+                      {errors.email && <p className="text-red-600 text-sm">{errors.email}</p>}
+                    </div>
+                  </div>
+
+                  {/* Phone Number and Interested In - Side by side */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label htmlFor="popup-phone" className="text-sm font-medium text-gray-700">
+                        Phone Number *
+                      </label>
+                      <input 
+                        id="popup-phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => updateField('phone', e.target.value)}
+                        placeholder="+1-678-431-9041"
+                        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent h-10 ${
+                          errors.phone ? 'border-red-300' : 'border-gray-300'
+                        }`}
+                      />
+                      {errors.phone && <p className="text-red-600 text-sm">{errors.phone}</p>}
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="popup-interested-in" className="text-sm font-medium text-gray-700">
+                        Interested In *
+                      </label>
+                      <div className="relative">
+                        <select 
+                          id="popup-interested-in"
+                          value={formData.category[0] || ''}
+                          onChange={(e) => updateField('category', e.target.value ? [e.target.value as InquiryCategory] : [])}
+                          className={`w-full pl-3 pr-12 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent appearance-none h-10 ${
+                            errors.category ? 'border-red-300' : 'border-gray-300'
+                          }`}
+                        >
+                          <option value="">Select your interest</option>
+                          {interestOptions.map((option) => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </div>
+                      {errors.category && <p className="text-red-600 text-sm">{errors.category}</p>}
+                    </div>
+                  </div>
+
+                  {/* Message Field */}
+                  <div className="space-y-2">
+                    <label htmlFor="popup-message" className="text-sm font-medium text-gray-700">
+                      Message from the Client *
+                    </label>
+                    <textarea 
+                      id="popup-message"
+                      value={formData.message}
+                      onChange={(e) => updateField('message', e.target.value)}
+                      placeholder="Please describe your project, specific furniture needs, timeline, and any special requirements..."
+                      className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent min-h-[120px] resize-none ${
+                        errors.message ? 'border-red-300' : 'border-gray-300'
+                      }`}
+                    />
+                    {errors.message && <p className="text-red-600 text-sm">{errors.message}</p>}
+                  </div>
 
 
                 {/* reCAPTCHA Section */}
@@ -310,19 +384,21 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
                   </div>
                 </div>
 
-                {/* Submit Button */}
-                <div className="flex justify-center pt-4">
-                  <Button 
-                    type="submit"
-                    className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white px-8 py-3 rounded-md font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Inquiry
-                  </Button>
-                </div>
-
-                
-              </form>
+                  {/* Submit Button */}
+                  <div className="flex justify-center pt-4">
+                    <Button 
+                      type="submit"
+                      disabled={submissionState.isSubmitting}
+                      className={`bg-[#f26d35] hover:bg-[#f26d35]/90 text-white px-8 py-3 rounded-md font-medium shadow-lg hover:shadow-xl transition-all duration-300 ${
+                        submissionState.isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
+                    >
+                      <Send className="w-4 h-4 mr-2" />
+                      {submissionState.isSubmitting ? 'Submitting...' : 'Send Inquiry'}
+                    </Button>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>
