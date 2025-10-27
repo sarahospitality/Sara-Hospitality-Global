@@ -32,7 +32,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const organizationSchema = generateOrganizationSchema();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* JSON-LD Structured Data - Organization Schema */}
         <script
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           dangerouslySetInnerHTML={createJsonLd(organizationSchema)}
         />
       </head>
-      <body className="bg-white text-gray-900">
+      <body className="bg-white text-gray-900" suppressHydrationWarning>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
