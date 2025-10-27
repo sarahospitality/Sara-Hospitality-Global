@@ -28,6 +28,7 @@ export const siteConfig = {
     linkedin: 'https://linkedin.com/company/sara-global-hospitality',
     instagram: 'https://instagram.com/saraglobal',
     twitter: 'https://twitter.com/saraglobal',
+    youtube: 'https://youtube.com/@saraglobal',
   },
   
   // Keywords
