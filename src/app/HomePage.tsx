@@ -545,61 +545,61 @@ export default function HomePage() {
                   <div key={setIndex} className="flex gap-8 sm:gap-16 items-center flex-shrink-0">
                     <div className="flex-shrink-0">
                       <ImageWithFallback
-                        src="/assets/f31b2dfb28307640a195a389e2838f1c2a7dc156.png"
+                        src="/assets/laquinta-5.png"
                         alt="La Quinta by Wyndham logo"
-                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={200}
-                        height={80}
+                        className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={300}
+                        height={120}
                         quality={100}
                       />
                     </div>
                     <div className="flex-shrink-0">
                       <ImageWithFallback
-                        src="/assets/6e7b3d1f8e168548d6b65e7dd7fb4691d792ff17.png"
-                        alt="Holiday Inn Express & Suites logo"
-                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={200}
-                        height={80}
-                        quality={100}
-                      />
-                    </div>
-                    <div className="flex-shrink-0">
-                      <ImageWithFallback
-                        src="/assets/1a36f52dfb717910963752bf97e84ab00d9f89e9.png"
-                        alt="Quality Inn logo"
-                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={200}
-                        height={80}
-                        quality={100}
-                      />
-                    </div>
-                    <div className="flex-shrink-0">
-                      <ImageWithFallback
-                        src="/assets/65e2b4ed424723dae6731b7df90d808c1d793105.png"
-                        alt="Baymont by Wyndham logo"
-                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={200}
-                        height={80}
-                        quality={100}
-                      />
-                    </div>
-                    <div className="flex-shrink-0">
-                      <ImageWithFallback
-                        src="/assets/d3e30d7d50aff6f76bb0916c50dc15aa2919a066.png"
+                        src="/assets/bestwesternplus-3.png"
                         alt="Best Western Plus logo"
-                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={200}
-                        height={80}
+                        className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={300}
+                        height={120}
                         quality={100}
                       />
                     </div>
                     <div className="flex-shrink-0">
                       <ImageWithFallback
-                        src="/assets/61636d64a66e87acc43f2e63f91829fa6b8f0dea.png"
+                        src="/assets/qualityinn-1.png"
+                        alt="Quality Inn logo"
+                        className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={300}
+                        height={120}
+                        quality={100}
+                      />
+                    </div>
+                    <div className="flex-shrink-0">
+                      <ImageWithFallback
+                        src="/assets/baymont-2.png"
+                        alt="Baymont by Wyndham logo"
+                        className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={300}
+                        height={120}
+                        quality={100}
+                      />
+                    </div>
+                    <div className="flex-shrink-0">
+                      <ImageWithFallback
+                        src="/assets/daysinn-4.png"
                         alt="Days Inn & Suites logo"
-                        className="h-8 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:scale-105"
-                        width={200}
-                        height={80}
+                        className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={300}
+                        height={120}
+                        quality={100}
+                      />
+                    </div>
+                    <div className="flex-shrink-0">
+                      <ImageWithFallback
+                        src="/assets/laquinta-6.png"
+                        alt="La Quinta by Wyndham logo"
+                        className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300 hover:scale-105"
+                        width={300}
+                        height={120}
                         quality={100}
                       />
                     </div>
