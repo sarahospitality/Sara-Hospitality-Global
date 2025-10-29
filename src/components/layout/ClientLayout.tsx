@@ -22,7 +22,7 @@ export function ClientLayout({ children }: ClientLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" suppressHydrationWarning>
       <Header onQuoteRequest={handleQuoteRequest} />
       <main className="flex-1">
         {children}

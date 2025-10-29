@@ -122,7 +122,7 @@ export function ContactSection() {
                   </div>
                 )}
 
-                <form onSubmit={(e) => { e.preventDefault(); submitForm(); }} className="space-y-6">
+                <form onSubmit={(e) => { e.preventDefault(); submitForm(); }} className="space-y-6" suppressHydrationWarning>
                   {/* Name and Email - Side by side */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
@@ -132,6 +132,7 @@ export function ContactSection() {
                         value={formData.full_name}
                         onChange={(e) => updateField('full_name', e.target.value)}
                         placeholder="Enter your full name"
+                        suppressHydrationWarning
                         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent ${
                           errors.full_name ? 'border-red-300' : 'border-gray-300'
                         }`}
@@ -146,6 +147,7 @@ export function ContactSection() {
                         value={formData.email}
                         onChange={(e) => updateField('email', e.target.value)}
                         placeholder="your@email.com"
+                        suppressHydrationWarning
                         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent ${
                           errors.email ? 'border-red-300' : 'border-gray-300'
                         }`}
@@ -164,6 +166,7 @@ export function ContactSection() {
                         value={formData.phone}
                         onChange={(e) => updateField('phone', e.target.value)}
                         placeholder="+1-678-431-9041"
+                        suppressHydrationWarning
                         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#f26d35] focus:border-transparent ${
                           errors.phone ? 'border-red-300' : 'border-gray-300'
                         }`}

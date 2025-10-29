@@ -37,8 +37,10 @@ import { getPortfolioItemsByIds, PortfolioItem, getPortfolioImageUrl, extractSlu
 import { getBlogPostFromDB, getAllBlogPostsFromDB, BlogPostDetail, BlogPostListing } from '@/lib/blog-data';
 
 // Lazy load ContactSection since it's below the fold
+// Disable SSR to prevent hydration mismatches from browser extensions (autofill/password managers)
 const ContactSection = dynamic(() => import('@/components/ContactSection').then(mod => ({ default: mod.ContactSection })), {
   loading: () => <div className="py-12 text-center text-gray-500">Loading contact form...</div>,
+  ssr: false, // Disable SSR to avoid hydration issues with browser extensions
 });
 
 // ============================================
