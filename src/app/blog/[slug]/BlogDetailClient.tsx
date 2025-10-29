@@ -94,6 +94,58 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
     return date.toLocaleDateString('en-US', options);
   };
 
+  // Sanitize HTML content to fix empty href attributes
+  const sanitizeHtml = (html: string): string => {
+    if (!html) return '';
+    
+    // Process HTML to fix invalid anchor tags
+    // We'll handle both opening and closing tags by processing in order
+    let sanitized = html;
+    let spanDepth = 0;
+    
+    // Replace all anchor tags - check each one
+    sanitized = sanitized.replace(/<\/?a\b[^>]*>/gi, (match) => {
+      // Handle closing tags
+      if (match.startsWith('</a')) {
+        if (spanDepth > 0) {
+          spanDepth--;
+          return '</span>';
+        }
+        return match; // Keep as </a> if not part of converted span
+      }
+      
+      // Handle opening tags
+      const attrsMatch = match.match(/<a\s+([^>]*)>/i);
+      if (!attrsMatch) return match;
+      
+      const attrs = attrsMatch[1];
+      const hrefMatch = attrs.match(/href=["']([^"']*)["']/i);
+      
+      // Check if href is missing or invalid
+      if (!hrefMatch) {
+        // No href - convert to span
+        const cleanAttrs = attrs.trim();
+        spanDepth++;
+        return `<span${cleanAttrs ? ' ' + cleanAttrs : ''}>`;
+      }
+      
+      const hrefValue = hrefMatch[1].trim();
+      
+      // Check if href is empty or just #
+      if (!hrefValue || hrefValue === '#' || hrefValue === '') {
+        // Invalid href - convert to span
+        const cleanAttrs = attrs.replace(/href=["'][^"']*["']/gi, '').trim();
+        spanDepth++;
+        return `<span${cleanAttrs ? ' ' + cleanAttrs : ''}>`;
+      }
+      
+      // Valid href - keep as anchor
+      return match;
+    });
+    
+    return sanitized;
+  };
+
   // Render HTML content safely
   const renderContent = (content: string) => {
     if (!content) {
@@ -111,12 +163,13 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
     });
     
     if (hasHTMLTags) {
-      // Render as HTML with styling
+      // Sanitize HTML before rendering
+      const sanitizedContent = sanitizeHtml(content);
       console.log('✅ Rendering as HTML');
       return (
         <div 
           className="blog-content-html"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         />
       );
     }
@@ -480,10 +533,10 @@ export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
                           <Clock className="w-4 h-4" />
                           <span>{post.readTime}</span>
                         </div>
-                        <Button size="sm" variant="ghost" className="p-0 h-auto">
-                          Read More
-                          <ArrowRight className="w-4 h-4 ml-1" />
-                        </Button>
+                        <div className="flex items-center gap-1 text-[#f26d35]">
+                          <span className="text-sm">Read More</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
                       </div>
                     </CardContent>
                   </Card>

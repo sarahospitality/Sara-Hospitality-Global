@@ -1564,11 +1564,9 @@ export default function HomePage() {
                         </div>
                       </div>
                       
-                      <Link href={`/blog/${post.slug}`}>
-                        <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent group/btn text-xs">
-                          <span className="text-[#f26d35]">Read</span>
-                          <ArrowRight className="w-3 h-3 ml-1 text-[#f26d35] group-hover/btn:translate-x-1 transition-transform duration-300 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-                        </Button>
+                      <Link href={`/blog/${post.slug}`} className="flex items-center gap-1 text-[#f26d35] hover:gap-2 transition-all group/btn">
+                        <span className="text-xs font-medium">Read</span>
+                        <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform duration-300 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                       </Link>
                     </div>
                   </div>

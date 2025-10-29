@@ -344,14 +344,10 @@ export default function BlogPage() {
                           
                           <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                             <span className="text-sm text-gray-600">{post.date}</span>
-                            <Link href={`/blog/${post.slug}`}>
-                              <Button 
-                                className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white"
-                              >
-                                Read More
-                                <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-                              </Button>
-                            </Link>
+                            <div className="flex items-center gap-2 text-[#f26d35] group-hover:gap-3 transition-all">
+                              <span className="text-sm font-medium">Read More</span>
+                              <ArrowRight className="w-4 h-4 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
+                            </div>
                           </div>
                         </div>
                       </CardContent>
