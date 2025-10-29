@@ -88,18 +88,28 @@ export async function POST(request: NextRequest) {
     }
 
     // Check for duplicate submissions (same email within last hour)
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-    const { data: recentInquiries } = await supabase
-      .from('inquiries')
-      .select('id')
-      .eq('email', email.toLowerCase().trim())
-      .gte('created_at', oneHourAgo);
+    // Use admin client to bypass RLS for duplicate check
+    try {
+      const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+      const { data: recentInquiries, error: duplicateError } = await supabaseAdmin
+        ?.from('inquiries')
+        .select('id')
+        .eq('email', email.toLowerCase().trim())
+        .gte('created_at', oneHourAgo) || { data: null, error: null };
 
-    if (recentInquiries && recentInquiries.length > 0) {
-      return NextResponse.json(
-        { error: 'You have already submitted an inquiry recently. Please wait before submitting again.' },
-        { status: 429 }
-      );
+      if (duplicateError) {
+        console.warn('Inquiries API: Error checking duplicates (continuing anyway):', duplicateError);
+      }
+
+      if (recentInquiries && recentInquiries.length > 0) {
+        return NextResponse.json(
+          { error: 'You have already submitted an inquiry recently. Please wait before submitting again.' },
+          { status: 429 }
+        );
+      }
+    } catch (duplicateCheckError) {
+      console.warn('Inquiries API: Error checking duplicates (continuing anyway):', duplicateCheckError);
+      // Continue with submission even if duplicate check fails
     }
 
     // Get user agent (ip is already declared above for rate limiting)
@@ -130,12 +140,17 @@ export async function POST(request: NextRequest) {
     // Use admin client to bypass RLS for now (temporary solution)
     if (!supabaseAdmin) {
       console.error('Inquiries API: Admin client not available');
+      console.error('Inquiries API: SUPABASE_SERVICE_ROLE_KEY is missing');
       return NextResponse.json(
-        { error: 'Server configuration error' },
+        { 
+          error: 'Server configuration error. Admin client not available.',
+          details: 'SUPABASE_SERVICE_ROLE_KEY environment variable is missing.'
+        },
         { status: 500 }
       );
     }
     
+    console.log('Inquiries API: Using admin client to insert inquiry...');
     const { data, error } = await supabaseAdmin
       .from('inquiries')
       .insert([inquiryData])
@@ -143,20 +158,35 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (error) {
-      console.error('Supabase error:', error);
-      console.error('Supabase error details:', {
+      console.error('Inquiries API: Supabase insert error:', error);
+      console.error('Inquiries API: Error details:', {
         message: error.message,
         details: error.details,
         hint: error.hint,
-        code: error.code
+        code: error.code,
+        statusCode: error.code === '23505' ? 'Duplicate entry' : 'Unknown'
       });
+      
+      // Provide more specific error messages
+      let errorMessage = 'Failed to submit inquiry. Please try again.';
+      if (error.code === '23505') {
+        errorMessage = 'This inquiry already exists in our system.';
+      } else if (error.message) {
+        errorMessage = `Database error: ${error.message}`;
+      }
+      
       return NextResponse.json(
-        { error: 'Failed to submit inquiry. Please try again.' },
+        { 
+          error: errorMessage,
+          code: error.code,
+          details: error.details
+        },
         { status: 500 }
       );
     }
 
     console.log('Inquiries API: Successfully inserted data:', data);
+    console.log('Inquiries API: Inquiry ID:', data?.id);
 
     return NextResponse.json(
       { 

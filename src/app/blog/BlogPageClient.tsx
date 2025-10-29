@@ -45,6 +45,7 @@ const Separator = ({ className = "" }: { className?: string }) => (
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [blogPosts, setBlogPosts] = useState<BlogPostListing[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<BlogPostListing[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -60,6 +61,7 @@ export default function BlogPage() {
         console.log('📝 BlogPageClient: Received posts:', posts);
         console.log('📊 BlogPageClient: Posts count:', posts.length);
         setBlogPosts(posts);
+        setFilteredPosts(posts);
       } catch (err) {
         console.error('❌ BlogPageClient: Error loading blog posts:', err);
         setError('Failed to load blog posts. Please try again later.');
@@ -71,8 +73,38 @@ export default function BlogPage() {
     fetchBlogPosts();
   }, []);
 
+  // Filter blog posts based on search query
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setFilteredPosts(blogPosts);
+      return;
+    }
+
+    const query = searchQuery.toLowerCase().trim();
+    const filtered = blogPosts.filter(post => {
+      // Search in title
+      const titleMatch = post.title.toLowerCase().includes(query);
+      
+      // Search in description
+      const descriptionMatch = post.description.toLowerCase().includes(query);
+      
+      // Search in category
+      const categoryMatch = post.category.toLowerCase().includes(query);
+      
+      // Search in tags
+      const tagsMatch = post.tags.some(tag => tag.toLowerCase().includes(query));
+      
+      // Search in author
+      const authorMatch = post.author.toLowerCase().includes(query);
+      
+      return titleMatch || descriptionMatch || categoryMatch || tagsMatch || authorMatch;
+    });
+
+    setFilteredPosts(filtered);
+  }, [searchQuery, blogPosts]);
+
   const handleSearch = () => {
-    // Search functionality will be implemented here
+    // Search is handled automatically by useEffect
     console.log("Searching for:", searchQuery);
   };
 
@@ -114,7 +146,7 @@ export default function BlogPage() {
     { name: "Eco-Friendly", count: 16 }
   ];
 
-  const allPosts = blogPosts;
+  const allPosts = filteredPosts;
 
   return (
     <div className="min-h-screen bg-white">
@@ -158,9 +190,14 @@ export default function BlogPage() {
             <div className="flex bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#f26d35]">
               <input
                 type="text"
-                placeholder="Search blog.."
+                placeholder="Search blog articles (e.g., hotel furniture, design, trends)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSearch();
+                  }
+                }}
                 className="flex-1 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#f26d35]/20"
               />
               <button
@@ -169,12 +206,14 @@ export default function BlogPage() {
               >
                 Search
               </button>
-              <button
-                onClick={handleReset}
-                className="px-3 sm:px-6 py-2 sm:py-3 bg-gray-200 text-gray-700 text-xs sm:text-base font-medium hover:bg-gray-300 transition-colors flex items-center justify-center text-center min-w-[72px] sm:min-w-0 shrink-0"
-              >
-                Reset
-              </button>
+              {searchQuery && (
+                <button
+                  onClick={handleReset}
+                  className="px-3 sm:px-6 py-2 sm:py-3 bg-gray-200 text-gray-700 text-xs sm:text-base font-medium hover:bg-gray-300 transition-colors flex items-center justify-center text-center min-w-[72px] sm:min-w-0 shrink-0"
+                >
+                  Reset
+                </button>
+              )}
             </div>
           </motion.div>
         </div>
@@ -271,7 +310,7 @@ export default function BlogPage() {
                 </div>
               )}
 
-              {/* Empty State */}
+              {/* Empty State - No Posts */}
               {!loading && !error && blogPosts.length === 0 && (
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-12 text-center">
                   <p className="text-gray-600 text-lg mb-2">No blog posts available</p>
@@ -279,8 +318,31 @@ export default function BlogPage() {
                 </div>
               )}
 
+              {/* Empty State - No Search Results */}
+              {!loading && !error && blogPosts.length > 0 && filteredPosts.length === 0 && searchQuery && (
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-12 text-center">
+                  <p className="text-gray-600 text-lg mb-2">No results found for &quot;{searchQuery}&quot;</p>
+                  <p className="text-gray-500 text-sm mb-4">Try searching with different keywords</p>
+                  <Button 
+                    onClick={handleReset}
+                    className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white"
+                  >
+                    Clear Search
+                  </Button>
+                </div>
+              )}
+
+              {/* Search Results Count */}
+              {!loading && !error && searchQuery && filteredPosts.length > 0 && (
+                <div className="mb-6 p-4 bg-[#f26d35]/10 rounded-lg border border-[#f26d35]/20">
+                  <p className="text-sm text-gray-700">
+                    Found <span className="font-bold text-[#f26d35]">{filteredPosts.length}</span> article{filteredPosts.length !== 1 ? 's' : ''} matching &quot;<span className="font-semibold">{searchQuery}</span>&quot;
+                  </p>
+                </div>
+              )}
+
               {/* Blog Posts Grid */}
-              {!loading && !error && blogPosts.length > 0 && (
+              {!loading && !error && filteredPosts.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   {allPosts.map((post, index) => (
                   <motion.div

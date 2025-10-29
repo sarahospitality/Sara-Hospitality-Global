@@ -8,7 +8,6 @@ import {
   MapPin, 
   Send,
   MessageSquare,
-  Globe,
   CheckCircle,
   AlertCircle
 } from 'lucide-react';
@@ -42,12 +41,6 @@ export function ContactSection() {
       title: "Headquarters",
       details: ["Sara Global Hospitality", "1010 MCGINNIS PARK CT, Suite A, SUWANEE, GA 30024"],
       description: "Visit our showroom"
-    },
-    {
-      icon: Globe,
-      title: "Global Offices",
-      details: ["Dubai • London • Singapore", "Mumbai • Shanghai • Toronto"],
-      description: "Worldwide presence"
     }
   ];
 

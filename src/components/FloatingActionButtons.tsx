@@ -37,6 +37,7 @@ export default function FloatingActionButtons({ onQuoteRequest }: FloatingAction
       <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40">
         <button
           onClick={handleQuoteClick}
+          aria-label="Request a quote for hospitality furniture"
           className="bg-[#f26d35] hover:bg-[#f26d35]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center px-1.5 py-6 sm:px-2 sm:py-8"
           style={{
             writingMode: 'vertical-rl',
@@ -57,9 +58,11 @@ export default function FloatingActionButtons({ onQuoteRequest }: FloatingAction
         <div className="relative group">
           <button
             onClick={handleWhatsAppClick}
+            aria-label="Chat with us on WhatsApp"
             className="w-14 h-14 bg-[#25D366] hover:bg-[#20BA5A] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           >
             <WhatsAppIcon />
+            <span className="sr-only">WhatsApp</span>
           </button>
           
           {/* Pulse animation ring */}

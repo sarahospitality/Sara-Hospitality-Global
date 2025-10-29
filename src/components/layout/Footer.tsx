@@ -138,9 +138,9 @@ export function Footer() {
     );
   }
   return (
-    <footer className="bg-gray-900 text-white" suppressHydrationWarning>
+      <footer className="bg-gray-900 text-white" suppressHydrationWarning>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 lg:gap-8">
           {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -247,7 +247,7 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="hidden sm:block"
+            className="hidden sm:block lg:-mr-8"
           >
             <h4 className="text-base sm:text-lg font-semibold mb-4 text-white">Quick Links</h4>
             <ul className="space-y-3">
@@ -285,7 +285,7 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden sm:block"
+            className="hidden sm:block lg:-ml-8"
           >
             <h4 className="text-base sm:text-lg font-semibold mb-4 text-white">Global Locations</h4>
             <ul className="space-y-3">

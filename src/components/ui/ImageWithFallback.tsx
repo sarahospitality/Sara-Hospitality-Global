@@ -83,7 +83,8 @@ export function ImageWithFallback(props: ImageWithFallbackProps) {
       fill={fill}
       sizes={sizes}
       priority={priority}
-      quality={quality}
+      quality={quality ?? 85}
+      loading={priority ? 'eager' : 'lazy'}
       onError={handleError}
       {...rest}
     />

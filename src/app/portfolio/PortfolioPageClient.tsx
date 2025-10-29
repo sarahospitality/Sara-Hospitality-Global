@@ -7,7 +7,6 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { ExternalLink, MapPin, ArrowRight, Filter, AlertCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { getPortfolioItems, extractSlug, getPortfolioImageUrl, PortfolioItem } from "@/lib/portfolio";
-import build from "next/dist/build"
 
 export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<string>("");
