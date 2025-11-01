@@ -8,6 +8,9 @@ import Link from "next/link";
 import { ContactSection } from '@/components/ContactSection';
 import { getPortfolioItemBySlug, getPortfolioImageUrl, PortfolioItem } from "@/lib/portfolio";
 import { SeeWhatGuestSaySection, WhatOurClientSaySection, HospitalityBuyingGuideSection, FAQSection } from './PortfolioSections';
+import { usePathname } from "next/navigation";
+import { COUNTRIES } from '@/lib/constants';
+import type { Country } from '@/types';
 
 interface PortfolioDetailClientProps {
   slug: string;
@@ -19,6 +22,17 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
   const [error, setError] = useState<string | null>(null);
   const [activeGuideItem, setActiveGuideItem] = useState(0);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const pathname = usePathname();
+  const pathSegments = pathname?.split('/').filter(Boolean) ?? [];
+  const potentialCountry = pathSegments[0] as Country | undefined;
+  const activeCountryCode =
+    potentialCountry && Object.prototype.hasOwnProperty.call(COUNTRIES, potentialCountry)
+      ? potentialCountry
+      : null;
+  const countryPrefix = activeCountryCode ? `/${activeCountryCode}` : '';
+  const contactHref = `${countryPrefix}/contact`;
+  const portfolioHref = `${countryPrefix}/portfolio`;
+  const aboutHref = `${countryPrefix}/about`;
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -62,7 +76,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
           <p className="text-gray-600 mb-8">The project you&apos;re looking for doesn&apos;t exist.</p>
-          <Link href="/portfolio">
+          <Link href={portfolioHref}>
             <Button className="bg-primary text-white hover:bg-primary/90">
               <ArrowLeft className="w-4 h-4 mr-2 animate-pulse" style={{ animation: 'arrowMoveBack 2s ease-in-out infinite' }} />
               Back to Portfolio
@@ -89,7 +103,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
           <div className="text-center text-white max-w-4xl px-4">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 leading-tight">{project.title}</h1>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 lg:mb-8 px-2">{project.subtitle}</p>
-            <Link href="/contact">
+            <Link href={contactHref}>
               <Button className="bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
                 Request A Quote
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -261,13 +275,13 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
             Let us help you create exceptional hospitality experiences with our premium furniture solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-            <Link href="/contact" className="w-full sm:w-auto">
+            <Link href={contactHref} className="w-full sm:w-auto">
               <Button variant="outline" className="bg-white text-primary hover:bg-gray-100 text-xs sm:text-base px-3 sm:px-6 py-1.5 sm:py-3 w-full sm:w-auto">
                 <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
                 Get Free Consultation
               </Button>
             </Link>
-            <Link href="/about" className="w-full sm:w-auto">
+            <Link href={aboutHref} className="w-full sm:w-auto">
               <Button variant="outline" className="border-white text-white hover:bg-white/10 text-xs sm:text-base px-3 sm:px-6 py-1.5 sm:py-3 w-full sm:w-auto">
                 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 Learn About Us
@@ -351,7 +365,7 @@ export default function PortfolioDetailClient({ slug }: PortfolioDetailClientPro
               Aligning brand identity and guest experience is key. Our award-winning design team creates bespoke furniture solutions that flawlessly match your hotel&apos;s distinct vision and global standards.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-              <Link href="/contact" className="w-full sm:w-auto">
+              <Link href={contactHref} className="w-full sm:w-auto">
                 <Button className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-lg flex items-center text-sm sm:text-base w-full sm:w-auto">
                   Request A Quote
                   <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />

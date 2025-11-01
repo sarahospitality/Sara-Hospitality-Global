@@ -259,7 +259,7 @@ export default function AboutPageClient() {
                 international service can fully realize your design ambitions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact">
+                <Link href="/ca/contact">
                   <Button 
                     size="lg" 
                     className="bg-white text-[#f26d35] hover:bg-gray-100 shadow-lg w-full sm:w-auto"
@@ -268,7 +268,7 @@ export default function AboutPageClient() {
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
-                <Link href="/portfolio">
+                <Link href="/ca/portfolio">
                   <Button 
                     size="lg" 
                     variant="outline" 

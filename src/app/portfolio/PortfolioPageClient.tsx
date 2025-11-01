@@ -7,8 +7,11 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { ExternalLink, MapPin, ArrowRight, Filter, AlertCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { getPortfolioItems, extractSlug, getPortfolioImageUrl, PortfolioItem } from "@/lib/portfolio";
+import { usePathname } from "next/navigation";
 
 export default function PortfolioPage() {
+  const pathname = usePathname();
+  const prefix = pathname?.startsWith('/ca') ? '/ca' : '';
   const [selectedProject, setSelectedProject] = useState<string>("");
   const [filterProject, setFilterProject] = useState<string>("all");
   const [projects, setProjects] = useState<PortfolioItem[]>([]);
@@ -103,7 +106,7 @@ export default function PortfolioPage() {
     
     setSelectedProject(cleanSlug);
     // Navigate to project detail page
-    window.location.href = `/portfolio/${cleanSlug}`;
+    window.location.href = `${prefix}/portfolio/${cleanSlug}`;
   };
 
   return (
@@ -126,7 +129,7 @@ export default function PortfolioPage() {
               encompassing luxury resorts, boutique hotels, and distinct accommodations across every continent.
             </p>
             
-            <Link href="/contact">
+            <Link href="/ca/contact">
               <button className="bg-[#f26d35] hover:bg-[#e55a2b] text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 mx-auto transition-all duration-300 shadow-2xl hover:shadow-3xl relative overflow-hidden">
                 <span className="relative z-10">Request A Quote</span>
                 <ArrowRight className="w-5 h-5 relative z-10 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />

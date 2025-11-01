@@ -6,6 +6,9 @@ import { ArrowRight, Star } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import Link from "next/link";
 import { PortfolioItem } from "@/lib/portfolio";
+import { usePathname } from "next/navigation";
+import { COUNTRIES } from '@/lib/constants';
+import type { Country } from '@/types';
 
 interface PortfolioSectionsProps {
   project: PortfolioItem;
@@ -208,6 +211,15 @@ export function WhatOurClientSaySection({ project }: PortfolioSectionsProps) {
 
 export function HospitalityBuyingGuideSection({ project }: PortfolioSectionsProps) {
   const [activeGuideItem, setActiveGuideItem] = useState(0);
+  const pathname = usePathname();
+  const pathSegments = pathname?.split('/').filter(Boolean) ?? [];
+  const potentialCountry = pathSegments[0] as Country | undefined;
+  const activeCountryCode =
+    potentialCountry && Object.prototype.hasOwnProperty.call(COUNTRIES, potentialCountry)
+      ? potentialCountry
+      : null;
+  const countryPrefix = activeCountryCode ? `/${activeCountryCode}` : '';
+  const contactHref = `${countryPrefix}/contact`;
 
   return (
     <section className="pt-8 sm:pt-12 lg:pt-16 pb-4 sm:pb-6 lg:pb-8 bg-white">
@@ -323,7 +335,7 @@ export function HospitalityBuyingGuideSection({ project }: PortfolioSectionsProp
                     Choose versatile designs that can adapt to different spaces - from intimate conversation areas to large gatherings - maximizing your investment&apos;s functionality.
                   </p>
                 </div>
-                <Link href="/contact" className="inline-block mt-6 sm:mt-8">
+                <Link href={contactHref} className="inline-block mt-6 sm:mt-8">
                   <Button className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-lg flex items-center text-sm sm:text-base">
                     Get Expert Consultation
                     <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
@@ -349,7 +361,7 @@ export function HospitalityBuyingGuideSection({ project }: PortfolioSectionsProp
                     Evaluate your timeline, budget constraints, and design requirements to determine the optimal procurement approach for your furniture investment.
                   </p>
                 </div>
-                <Link href="/contact" className="inline-block mt-6 sm:mt-8">
+                <Link href={contactHref} className="inline-block mt-6 sm:mt-8">
                   <Button className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-lg flex items-center text-sm sm:text-base">
                     Get Expert Consultation
                     <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
@@ -375,7 +387,7 @@ export function HospitalityBuyingGuideSection({ project }: PortfolioSectionsProp
                     Balance budget constraints with guest experience goals, focusing on furniture that enhances comfort, functionality, and overall satisfaction.
                   </p>
                 </div>
-                <Link href="/contact" className="inline-block mt-6 sm:mt-8">
+                <Link href={contactHref} className="inline-block mt-6 sm:mt-8">
                   <Button className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-lg flex items-center text-sm sm:text-base">
                     Get Expert Consultation
                     <ArrowRight className="w-4 h-4 ml-2 animate-pulse" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />

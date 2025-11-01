@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
@@ -43,6 +44,8 @@ const Separator = ({ className = "" }: { className?: string }) => (
 );
 
 export default function BlogPage() {
+  const pathname = usePathname();
+  const prefix = pathname?.startsWith('/ca') ? '/ca' : '';
   const [searchQuery, setSearchQuery] = useState("");
   const [blogPosts, setBlogPosts] = useState<BlogPostListing[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<BlogPostListing[]>([]);
@@ -353,7 +356,7 @@ export default function BlogPage() {
                     viewport={{ once: true }}
                     className="h-full"
                   >
-                    <Link href={`/blog/${post.slug}`} className="h-full block">
+                    <Link href={`${prefix}/blog/${post.slug}`} className="h-full block">
                       <Card className="group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer h-full flex flex-col">
                         <div className="relative overflow-hidden flex-shrink-0">
                           <ImageWithFallback
@@ -440,7 +443,7 @@ export default function BlogPage() {
                   <CardContent className="space-y-3 sm:space-y-4">
                     {popularPosts.map((post, index) => (
                       <div key={index} className="group">
-                        <Link href={`/blog/${post.slug}`} className="flex gap-3 cursor-pointer">
+                        <Link href={`${prefix}/blog/${post.slug}`} className="flex gap-3 cursor-pointer">
                           <div className="w-16 h-16 flex-shrink-0 overflow-hidden rounded-lg">
                             <ImageWithFallback
                               src={post.image}

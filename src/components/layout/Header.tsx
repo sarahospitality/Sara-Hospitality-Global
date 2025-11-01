@@ -1,9 +1,11 @@
 "use client";
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { COUNTRIES } from '@/lib/constants';
 import { siteConfig } from '@/lib/metadata';
+import type { Country } from '@/types';
 import { Menu, X, Globe, ChevronDown, Phone, Mail, Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 import { useState } from 'react';
 import { useHydrationSafe } from '@/hooks/useHydrationSafe';
@@ -16,6 +18,15 @@ export function Header({ onQuoteRequest }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const isMounted = useHydrationSafe();
+  const pathname = usePathname();
+  const pathSegments = pathname?.split('/').filter(Boolean) ?? [];
+  const potentialCountry = pathSegments[0] as Country | undefined;
+  const activeCountry =
+    potentialCountry && Object.prototype.hasOwnProperty.call(COUNTRIES, potentialCountry)
+      ? COUNTRIES[potentialCountry]
+      : null;
+  const countryPrefix = activeCountry ? `/${activeCountry.code}` : '';
+  const homeHref = countryPrefix || '/';
 
   return (
     <header className="w-full">
@@ -65,7 +76,7 @@ export function Header({ onQuoteRequest }: HeaderProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <Link href={homeHref} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#f26d35] rounded-lg flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-lg sm:text-xl">S</span>
                 </div>
@@ -83,7 +94,7 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Link href="/about" className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
+                <Link href={`${countryPrefix}/about`} className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
                   About
                 </Link>
               </motion.div>
@@ -102,7 +113,7 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <Link href="/portfolio" className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
+                <Link href={`${countryPrefix}/portfolio`} className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
                   Portfolio
                 </Link>
               </motion.div>
@@ -111,7 +122,7 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <Link href="/blog" className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
+                <Link href={`${countryPrefix}/blog`} className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
                   Blog
                 </Link>
               </motion.div>
@@ -120,7 +131,7 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <Link href="/contact" className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
+                <Link href={`${countryPrefix}/contact`} className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
                   Contact
                 </Link>
               </motion.div>
@@ -141,7 +152,14 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                     onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
                     className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
                   >
-                    <span>Select Country</span>
+                    {activeCountry ? (
+                      <>
+                        <span className="text-lg">{activeCountry.flag}</span>
+                        <span>{activeCountry.name}</span>
+                      </>
+                    ) : (
+                      <span>Select Country</span>
+                    )}
                     <ChevronDown className={`w-4 h-4 transition-transform ${isMounted && isCountryDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
                   
@@ -178,7 +196,14 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                     onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
                     className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
                   >
-                    <span>Select Country</span>
+                    {activeCountry ? (
+                      <>
+                        <span className="text-lg">{activeCountry.flag}</span>
+                        <span>{activeCountry.name}</span>
+                      </>
+                    ) : (
+                      <span>Select Country</span>
+                    )}
                     <ChevronDown className={`w-4 h-4 transition-transform ${isMounted && isCountryDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
                   
@@ -236,28 +261,28 @@ export function Header({ onQuoteRequest }: HeaderProps) {
             >
               <div className="px-4 pt-4 pb-6 space-y-2">
                 <Link
-                  href="/about"
+                  href={`${countryPrefix}/about`}
                   className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link
-                  href="/portfolio"
+                  href={`${countryPrefix}/portfolio`}
                   className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Portfolio
                 </Link>
                 <Link
-                  href="/blog"
+                  href={`${countryPrefix}/blog`}
                   className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Blog
                 </Link>
                 <Link
-                  href="/contact"
+                  href={`${countryPrefix}/contact`}
                   className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >

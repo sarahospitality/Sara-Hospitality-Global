@@ -21,6 +21,13 @@ export function ClientLayout({ children }: ClientLayoutProps) {
     setIsQuotePopupOpen(false);
   };
 
+  // Expose a global opener so any button can trigger the popup without prop drilling
+  // This keeps existing pages unchanged while enabling country-specific pages to call it
+  if (typeof window !== 'undefined') {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).openQuotePopup = handleQuoteRequest;
+  }
+
   return (
     <div className="min-h-screen flex flex-col" suppressHydrationWarning>
       <Header onQuoteRequest={handleQuoteRequest} />

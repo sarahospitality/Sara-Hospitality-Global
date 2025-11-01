@@ -1,9 +1,16 @@
 import type { NextConfig } from "next";
 
-// Bundle analyzer (only enable when needed)
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+// Bundle analyzer (only enable when needed and if available)
+let withBundleAnalyzer: (config: NextConfig) => NextConfig;
+try {
+  const bundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+  });
+  withBundleAnalyzer = bundleAnalyzer;
+} catch (error) {
+  // Bundle analyzer not installed, use identity function
+  withBundleAnalyzer = (config: NextConfig) => config;
+}
 
 const nextConfig: NextConfig = {
   /* config options here */

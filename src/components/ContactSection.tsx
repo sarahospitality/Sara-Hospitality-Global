@@ -53,7 +53,7 @@ export function ContactSection() {
             <MessageSquare className="w-4 h-4" />
             <span>Get In Touch</span>
           </div>
-          <h2 className="text-3xl lg:text-5xl font-bold mb-3">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-3">
             Start Your Project
             <span className="text-[#f26d35] block">With Sara Global</span>
           </h2>

@@ -83,7 +83,7 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
               <div className="flex flex-wrap justify-center items-center gap-3">
                 <div className="flex-shrink-0">
                   <ImageWithFallback
-                    src="/assets/f31b2dfb28307640a195a389e2838f1c2a7dc156.png"
+                    src="/assets/laquinta-5.png"
                     alt="La Quinta by Wyndham logo"
                     className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
                     width={100}
@@ -92,34 +92,7 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
                 </div>
                 <div className="flex-shrink-0">
                   <ImageWithFallback
-                    src="/assets/6e7b3d1f8e168548d6b65e7dd7fb4691d792ff17.png"
-                    alt="Holiday Inn Express & Suites logo"
-                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={100}
-                    height={24}
-                  />
-                </div>
-                <div className="flex-shrink-0">
-                  <ImageWithFallback
-                    src="/assets/1a36f52dfb717910963752bf97e84ab00d9f89e9.png"
-                    alt="Quality Inn logo"
-                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={100}
-                    height={24}
-                  />
-                </div>
-                <div className="flex-shrink-0">
-                  <ImageWithFallback
-                    src="/assets/65e2b4ed424723dae6731b7df90d808c1d793105.png"
-                    alt="Baymont by Wyndham logo"
-                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
-                    width={100}
-                    height={24}
-                  />
-                </div>
-                <div className="flex-shrink-0">
-                  <ImageWithFallback
-                    src="/assets/d3e30d7d50aff6f76bb0916c50dc15aa2919a066.png"
+                    src="/assets/bestwesternplus-3.png"
                     alt="Best Western Plus logo"
                     className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
                     width={100}
@@ -128,8 +101,35 @@ export default function QuotePopup({ isOpen, onClose }: QuotePopupProps) {
                 </div>
                 <div className="flex-shrink-0">
                   <ImageWithFallback
-                    src="/assets/61636d64a66e87acc43f2e63f91829fa6b8f0dea.png"
+                    src="/assets/qualityinn-1.png"
+                    alt="Quality Inn logo"
+                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={100}
+                    height={24}
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <ImageWithFallback
+                    src="/assets/baymont-2.png"
+                    alt="Baymont by Wyndham logo"
+                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={100}
+                    height={24}
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <ImageWithFallback
+                    src="/assets/daysinn-4.png"
                     alt="Days Inn & Suites logo"
+                    className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    width={100}
+                    height={24}
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <ImageWithFallback
+                    src="/assets/laquinta-6.png"
+                    alt="La Quinta by Wyndham logo"
                     className="h-6 w-auto object-contain transition-all duration-300 hover:scale-105"
                     width={100}
                     height={24}
