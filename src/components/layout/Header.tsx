@@ -98,16 +98,18 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                   About
                 </Link>
               </motion.div>
-              {/* Products menu item hidden for now */}
-              {/* <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <Link href="/products" className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
-                  Products
-                </Link>
-              </motion.div> */}
+              {/* Products menu item - show only for Canada */}
+              {activeCountry?.code === 'ca' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <Link href={`${countryPrefix}/products`} className="text-gray-700 hover:text-[#f26d35] transition-colors font-medium">
+                    Products
+                  </Link>
+                </motion.div>
+              )}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -267,6 +269,16 @@ export function Header({ onQuoteRequest }: HeaderProps) {
                 >
                   About
                 </Link>
+                {/* Products menu item - show only for Canada */}
+                {activeCountry?.code === 'ca' && (
+                  <Link
+                    href={`${countryPrefix}/products`}
+                    className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Products
+                  </Link>
+                )}
                 <Link
                   href={`${countryPrefix}/portfolio`}
                   className="block px-4 py-4 text-gray-700 hover:text-[#f26d35] hover:bg-gray-50 rounded-lg transition-colors text-lg font-medium border-b border-gray-100"

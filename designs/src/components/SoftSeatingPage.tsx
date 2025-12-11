@@ -125,7 +125,7 @@ export default function SoftSeatingPage({ onNavigate }: SoftSeatingPageProps) {
                   onClick={() => onNavigate("contact")}
                 >
                   Request A Quote
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-5 h-5 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
                 <Button 
                   size="lg" 
@@ -134,7 +134,7 @@ export default function SoftSeatingPage({ onNavigate }: SoftSeatingPageProps) {
                   onClick={() => onNavigate("portfolio")}
                 >
                   View Portfolio
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-5 h-5 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
               </div>
             </div>
@@ -206,7 +206,7 @@ export default function SoftSeatingPage({ onNavigate }: SoftSeatingPageProps) {
                         }}
                       >
                         View All
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                        <ArrowRight className="w-4 h-4 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                       </Button>
                     </div>
                   </div>
@@ -237,7 +237,7 @@ export default function SoftSeatingPage({ onNavigate }: SoftSeatingPageProps) {
                 onClick={() => onNavigate("contact")}
               >
                 Request a Quote
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-5 h-5 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
               </Button>
             </div>
 
@@ -469,7 +469,7 @@ export default function SoftSeatingPage({ onNavigate }: SoftSeatingPageProps) {
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium w-full sm:w-auto"
                   >
                     Get Expert Consultation
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    <ArrowRight className="w-5 h-5 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                   </Button>
                 </div>
               </div>
@@ -892,7 +892,7 @@ export default function SoftSeatingPage({ onNavigate }: SoftSeatingPageProps) {
           <div className="flex justify-center">
             <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
               Get Free Consultation
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
             </Button>
           </div>
         </div>

@@ -222,7 +222,7 @@ export default function ProductCategories({ selectedCountry, onNavigate }: Produ
                     
                     <Button className="w-full mt-6 bg-primary hover:bg-primary/90">
                       Explore Collection
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      <ArrowRight className="w-4 h-4 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                     </Button>
                   </CardContent>
                 </Card>
@@ -260,7 +260,7 @@ export default function ProductCategories({ selectedCountry, onNavigate }: Produ
                   className="bg-primary hover:bg-primary/90 text-white px-12 py-4 h-auto shadow-lg shadow-primary/25"
                 >
                   Request A Quote
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-5 h-5 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
               </div>
             </div>
@@ -374,7 +374,7 @@ export default function ProductCategories({ selectedCountry, onNavigate }: Produ
                                 
                                 <Button variant="ghost" className="group/btn w-full justify-center p-0 h-auto hover:bg-primary/5 py-2 rounded-lg">
                                   <span className="text-primary group-hover/btn:text-primary/80">View Collection</span>
-                                  <ArrowRight className="w-4 h-4 ml-2 text-primary group-hover/btn:translate-x-1 transition-transform" />
+                                  <ArrowRight className="w-4 h-4 ml-2 text-primary" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                                 </Button>
                               </div>
                             </CardContent>
@@ -443,7 +443,7 @@ export default function ProductCategories({ selectedCountry, onNavigate }: Produ
                 >
                   <Bath className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
                   Start Custom Project
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                 </Button>
                 <Button 
                   size="lg" 

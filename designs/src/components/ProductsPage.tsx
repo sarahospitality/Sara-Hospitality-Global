@@ -195,7 +195,7 @@ export default function ProductsPage({ onNavigate, selectedCountry }: ProductsPa
               </p>
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
                 Request A Quote
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-5 h-5 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
               </Button>
             </div>
           </div>
@@ -325,11 +325,13 @@ export default function ProductsPage({ onNavigate, selectedCountry }: ProductsPa
                       onClick={() => {
                         if (product.category === 'soft-seating') {
                           onNavigate('soft-seating');
+                        } else if (product.category === 'fixtures-equipment') {
+                          onNavigate('fixtures-equipment');
                         }
                       }}
                     >
                       View All
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      <ArrowRight className="w-4 h-4 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
                     </Button>
                   </div>
                 </CardContent>
@@ -349,7 +351,7 @@ export default function ProductsPage({ onNavigate, selectedCountry }: ProductsPa
           <div className="flex justify-center">
             <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
               Get Free Consultation
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
             </Button>
           </div>
         </div>

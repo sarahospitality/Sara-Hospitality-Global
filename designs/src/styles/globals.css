@@ -231,3 +231,26 @@ html {
 .animate-fade-in {
   animation: fade-in 1s ease-out;
 }
+
+/* Arrow animations for buttons */
+@keyframes arrowMove {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-arrow-move {
+  animation: arrowMove 2s ease-in-out infinite;
+}
+
+@keyframes arrowMoveBack {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+}

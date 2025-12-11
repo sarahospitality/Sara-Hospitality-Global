@@ -23,6 +23,14 @@ import BlogDetailPage from "./components/BlogDetailPage";
 import ProductsPage from "./components/ProductsPage";
 import SoftSeatingPage from "./components/SoftSeatingPage";
 import BreakfastChairsPage from "./components/BreakfastChairsPage";
+import FixturesEquipmentPage from "./components/FixturesEquipmentPage";
+import FaucetsPage from "./components/FaucetsPage";
+import LightingPage from "./components/LightingPage";
+import MirrorsPage from "./components/MirrorsPage";
+import ArtworksPage from "./components/ArtworksPage";
+import SinksPage from "./components/SinksPage";
+import TubShowerSurroundPage from "./components/TubShowerSurroundPage";
+import LobbyItemsPage from "./components/LobbyItemsPage";
 import CanadianStatsSection from "./components/CanadianStatsSection";
 import TrustedBrandsSection from "./components/TrustedBrandsSection";
 import CallToActionSection from "./components/CallToActionSection";
@@ -264,6 +272,110 @@ export default function App() {
         <Header onNavigate={navigateToPage} currentPage="products" selectedCountry={selectedCountry} onCountryChange={handleCountryChange} />
         <main>
           <BreakfastChairsPage onNavigate={navigateToPage} />
+        </main>
+        <Footer />
+        <FloatingActionButtons onNavigate={navigateToPage} onQuoteRequest={handleQuoteRequest} />
+      </div>
+    );
+  }
+
+  if (currentPage === "fixtures-equipment") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header onNavigate={navigateToPage} currentPage="products" selectedCountry={selectedCountry} onCountryChange={handleCountryChange} />
+        <main>
+          <FixturesEquipmentPage onNavigate={navigateToPage} />
+        </main>
+        <Footer />
+        <FloatingActionButtons onNavigate={navigateToPage} onQuoteRequest={handleQuoteRequest} />
+      </div>
+    );
+  }
+
+  if (currentPage === "faucets") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header onNavigate={navigateToPage} currentPage="products" selectedCountry={selectedCountry} onCountryChange={handleCountryChange} />
+        <main>
+          <FaucetsPage onNavigate={navigateToPage} />
+        </main>
+        <Footer />
+        <FloatingActionButtons onNavigate={navigateToPage} onQuoteRequest={handleQuoteRequest} />
+      </div>
+    );
+  }
+
+  if (currentPage === "lighting") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header onNavigate={navigateToPage} currentPage="products" selectedCountry={selectedCountry} onCountryChange={handleCountryChange} />
+        <main>
+          <LightingPage onNavigate={navigateToPage} />
+        </main>
+        <Footer />
+        <FloatingActionButtons onNavigate={navigateToPage} onQuoteRequest={handleQuoteRequest} />
+      </div>
+    );
+  }
+
+  if (currentPage === "mirrors") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header onNavigate={navigateToPage} currentPage="products" selectedCountry={selectedCountry} onCountryChange={handleCountryChange} />
+        <main>
+          <MirrorsPage onNavigate={navigateToPage} />
+        </main>
+        <Footer />
+        <FloatingActionButtons onNavigate={navigateToPage} onQuoteRequest={handleQuoteRequest} />
+      </div>
+    );
+  }
+
+  if (currentPage === "artworks") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header onNavigate={navigateToPage} currentPage="products" selectedCountry={selectedCountry} onCountryChange={handleCountryChange} />
+        <main>
+          <ArtworksPage onNavigate={navigateToPage} />
+        </main>
+        <Footer />
+        <FloatingActionButtons onNavigate={navigateToPage} onQuoteRequest={handleQuoteRequest} />
+      </div>
+    );
+  }
+
+  if (currentPage === "sinks") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header onNavigate={navigateToPage} currentPage="products" selectedCountry={selectedCountry} onCountryChange={handleCountryChange} />
+        <main>
+          <SinksPage onNavigate={navigateToPage} />
+        </main>
+        <Footer />
+        <FloatingActionButtons onNavigate={navigateToPage} onQuoteRequest={handleQuoteRequest} />
+      </div>
+    );
+  }
+
+  if (currentPage === "tub-shower-surround") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header onNavigate={navigateToPage} currentPage="products" selectedCountry={selectedCountry} onCountryChange={handleCountryChange} />
+        <main>
+          <TubShowerSurroundPage onNavigate={navigateToPage} />
+        </main>
+        <Footer />
+        <FloatingActionButtons onNavigate={navigateToPage} onQuoteRequest={handleQuoteRequest} />
+      </div>
+    );
+  }
+
+  if (currentPage === "lobby-items") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header onNavigate={navigateToPage} currentPage="products" selectedCountry={selectedCountry} onCountryChange={handleCountryChange} />
+        <main>
+          <LobbyItemsPage onNavigate={navigateToPage} />
         </main>
         <Footer />
         <FloatingActionButtons onNavigate={navigateToPage} onQuoteRequest={handleQuoteRequest} />

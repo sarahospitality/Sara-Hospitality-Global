@@ -11,6 +11,10 @@
   }
 }
 
+.animate-arrow-move {
+  animation: arrowMove 2s ease-in-out infinite;
+}
+
 @keyframes arrowMoveBack {
   0%, 100% {
     transform: translateX(0);

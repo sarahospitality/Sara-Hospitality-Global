@@ -6905,6 +6905,25 @@ html {
   animation: 1s ease-out fade-in;
 }
 
+/* Arrow animations for buttons */
+@keyframes arrowMove {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes arrowMoveBack {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+}
+
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;
