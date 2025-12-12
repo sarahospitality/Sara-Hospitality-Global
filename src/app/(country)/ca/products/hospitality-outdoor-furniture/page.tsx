@@ -174,7 +174,7 @@ export default function HospitalityOutdoorFurniturePage() {
         <div className="relative z-10 h-full flex items-center">
           <div className="container mx-auto px-3 md:px-4 text-center">
             <div className="max-w-2xl mx-auto px-3">
-              <h1 className="text-xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-white line-clamp-2 md:line-clamp-none">
+              <h1 className="text-base sm:text-lg md:text-2xl lg:text-4xl font-bold mb-3 md:mb-4 text-white whitespace-nowrap">
                 Hospitality Outdoor Furniture Collection
               </h1>
               <p className="text-sm md:text-lg lg:text-xl mb-5 md:mb-6 opacity-90 text-white">

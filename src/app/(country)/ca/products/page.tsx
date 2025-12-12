@@ -311,9 +311,7 @@ export default function CanadaProductsPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => {
-              const isCasegoods = product.category === 'hospitality-casegoods';
-              return (
+            {products.map((product) => (
               <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="relative overflow-hidden rounded-t-lg">
                   <div 
@@ -354,37 +352,35 @@ export default function CanadaProductsPage() {
                     ))}
                   </div>
                   
-                  {!isCasegoods && (
-                    <div className="flex justify-center md:justify-start">
-                      <Link 
-                        href={
-                          product.category === 'soft-seating' ? '/ca/products/soft-seating' : 
-                          product.category === 'bathroom-vanity' ? '/ca/products/bathroom-vanity' :
-                          product.category === 'fixtures-equipment' ? '/ca/products/fixtures-equipment' :
-                          product.category === 'countertops-cabinets' ? '/ca/products/countertops-cabinets' :
-                          product.category === 'hospitality-casegoods' ? '/ca/products/hospitality-casegoods' :
-                          product.category === 'outdoor-furniture' ? '/ca/products/hospitality-outdoor-furniture' :
-                          product.category === 'senior-living' ? '/ca/products/senior-living-furniture' :
-                          product.category === 'reception-desk' ? '/ca/products/hotel-reception-desk' :
-                          product.category === 'bedroom-furniture' ? '/ca/products/bedroom-hotel-furniture' :
-                          product.category === 'custom-commercial' ? '/ca/products/custom-commercial-furniture' :
-                          product.category === 'boutique-furniture' ? '/ca/products/hotel-boutique-furniture' :
-                          '#'
-                        } 
-                        className="flex-1 md:flex-initial"
+                  <div className="flex justify-center md:justify-start">
+                    <Link 
+                      href={
+                        product.category === 'soft-seating' ? '/ca/products/soft-seating' : 
+                        product.category === 'bathroom-vanity' ? '/ca/products/bathroom-vanity' :
+                        product.category === 'fixtures-equipment' ? '/ca/products/fixtures-equipment' :
+                        product.category === 'countertops-cabinets' ? '/ca/products/countertops-cabinets' :
+                        product.category === 'hospitality-casegoods' ? '/ca/products/hospitality-casegoods' :
+                        product.category === 'outdoor-furniture' ? '/ca/products/hospitality-outdoor-furniture' :
+                        product.category === 'senior-living' ? '/ca/products/senior-living-furniture' :
+                        product.category === 'reception-desk' ? '/ca/products/hotel-reception-desk' :
+                        product.category === 'bedroom-furniture' ? '/ca/products/bedroom-hotel-furniture' :
+                        product.category === 'custom-commercial' ? '/ca/products/custom-commercial-furniture' :
+                        product.category === 'boutique-furniture' ? '/ca/products/hotel-boutique-furniture' :
+                        '#'
+                      } 
+                      className="flex-1 md:flex-initial"
+                    >
+                      <Button 
+                        className="w-full"
                       >
-                        <Button 
-                          className="w-full"
-                        >
-                          View All
-                          <ArrowRight className="w-4 h-4 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
-                        </Button>
-                      </Link>
-                    </div>
-                  )}
+                        View All
+                        <ArrowRight className="w-4 h-4 ml-2" style={{ animation: 'arrowMove 2s ease-in-out infinite' }} />
+                      </Button>
+                    </Link>
+                  </div>
                 </CardContent>
               </Card>
-            )})}
+            ))}
           </div>
         </div>
       </section>
